@@ -1,4 +1,4 @@
-function y = lookup_solve_3(initial, action)
+function y = final_state_3(initial, action)
 A = [1 1 0 1 0 0 0 0 0; 1 1 1 0 1 0 0 0 0; 0 1 1 0 0 1 0 0 0; 1 0 0 1 1 0 1 0 0; 0 1 0 1 1 1 0 1 0; 0 0 1 0 1 1 0 0 1; 0 0 0 1 0 0 1 1 0; 0 0 0 0 1 0 1 1 1; 0 0 0 0 0 1 0 1 1 ];
 b = initial'(:);
 x = action'(:);
