@@ -65,3 +65,7 @@ table{
 th {
 	padding : 10px;
 }
+
+#timetable {
+	text-align: center;
+}
