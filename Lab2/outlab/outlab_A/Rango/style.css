@@ -1,0 +1,82 @@
+#mywrapper {
+	max-width: 1920px;
+	padding-left: 18%;
+	padding-right:18%;
+	padding-top: 10px;
+}
+
+.card .card-title .card-content {
+	overflow: none;
+}
+
+/*table, th, td {
+	border: 2px solid;
+}
+
+a {
+	font-size: 35px;
+}
+
+nav{
+	background: orange;
+	font-size: 30px;
+	text-align: center;
+	padding: 5px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+h1 {
+	font-size: 50px;
+}
+
+body {
+	margin: 0;
+	text-align: center;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+ul {
+	list-style: none;
+	font-size: 25px;
+	margin-right: 50px;
+}
+
+nav > a {
+	color: white;
+	text-decoration: none;
+}
+
+nav > a:hover {
+	font-weight: bold;
+}
+
+#teamname {
+	font-size: 40px;
+}
+
+#teammate,#aim {
+	font-size: 40px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+h4 {
+	font-size: 30px;
+}
+
+table{
+	margin-left: 20%;
+	margin-top: 10%;
+	font-size: 40px;	
+}
+
+th {
+	padding : 10px;
+}
+
+#timetable {
+	text-align: center;
+}*/
