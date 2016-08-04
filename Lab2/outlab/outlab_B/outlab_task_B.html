@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<script type="text/javascript">
+	function sanitise() {
+		var text = document.lab2B.text.value;
+		text = text.replace(/&/g, '&amp');
+		text = text.replace(/</g, '&lt');
+		text = text.replace(/>/g, '&gt');
+		text = text.replace(/"/g, '&quot');
+		text = text.replace(/'/g, '&#x27');
+		text = text.replace(/\//g, '&#x2F');
+		console.log(text);
+	}
+</script>
+</head>
+<body>
+<form method="post" name="lab2B" action="" onsubmit="sanitise()">
+Name:<br>
+<input type="text" name="text" pattern=".{6,50}" required title="Name should be from 6 to 50 characters."><br><br>
+Password:<br>
+<input type="password" name="pass" pattern="^(?=.*[$!@_])[0-9a-zA-Z!@$_]{8,20}" required title="Password length -> 8-20 characters. Atlest one special character from the set {$, !, @, _}"><br><br>
+Email:<br>
+<input type="text" name="email" pattern="^[0-9a-zA-Z._]{3,}@[a-zA-Z]{3,}.[a-zA-Z]{2,}" required><br><br>
+<input type="submit" value="Submit">
+</form>
+</body>
