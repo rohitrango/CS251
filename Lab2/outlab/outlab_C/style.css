@@ -1,3 +1,8 @@
+/*IMPORTANT
+
+Apply the CSS wrapper from materialize
+*/
+
 div {
 	display: block;
 }
@@ -41,11 +46,25 @@ div {
 }
 
 .panel > .panel-body {
-	display: none;
+	overflow: hidden;
+	opacity: 0;
+	max-height: 0px;
+	font-size:20px;
+	padding:0px 5px 10px 5px;
+	border-radius: 0px 0px 4px 4px;
+	background-color: #f2f2f2;
+	transition: 0.4s;
+}
+
+.panel > .panel-body.show {
+	opacity: 1;
+	height: auto;
+	max-height: 1000px;
 	font-size:20px;
 	padding:10px 5px 10px 5px;
 	border-radius: 0px 0px 4px 4px;
 	background-color: #f2f2f2;
+	transition: 0.7s;
 }
 
 body {
