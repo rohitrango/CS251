@@ -17,16 +17,23 @@ for(var i=0;i<length;i++) {
 				swap = el[j];
 				break;
 			}
+			else if(el[j].style.display !== "none" && el[j]==content) {
+				swap = el[j];
+			}
 		}
-		if(swap===0 || swap==content) {							//clicking on the same element again
+		if(swap===0) {							//no tab is open
 			console.log("No other element to close.");
+			content.style.display = "block";
 		}
-		else {	
+		else if(swap!=content) {	
 			console.log(swap);									//log the panel to close
 			swap.style.display = "none";		
+			content.style.display = "block";
+		}
+		else if(swap==content) {
+			content.style.display = "none";
 		}
 		
-		content.style.display = "block";
 		
 	});
 }
