@@ -13,7 +13,7 @@ for(var i=0;i<length;i++) {
 		var swap = 0;
 		for(var j=0;j<l;j++) {
 			// console.log(el[j].style.display);
-			if(el[j].style.display !== "none") {
+			if(el[j].style.display !== "none" && el[j]!=content) {
 				swap = el[j];
 				break;
 			}
