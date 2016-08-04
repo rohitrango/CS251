@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Outlab, Task B</title>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="style.css">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+</head>
+<body>
+	<div class="container">
+		<div id="formWrapper">
+		<h4>Form with manual validation: </h4><br>
+			<form name="lab2B" action="" method="POST" novalidate onsubmit="sanitize()">
+				
+				<label for="name">Name:</label>
+				<input type="text" name="text" id="name" onblur="validateForm('name')"> <br>
+				<p id="nameMessage" class="red-text">Name should contain between 6-50 characters.</p>
+				<br>
+				<label for="email">Email:</label>
+				<input type="text" name="email" id="email" onblur="validateForm('email')"> <br>
+				<p id="emailMessage" class="red-text">Invalid email format</p>
+				<br>
+				<label for="password">Password:</label>
+				<input type="password" name="pass" id="password" onblur="validateForm('password')"> <br>
+				<p id="passwordMessage" class="red-text">Password must be between 8-20 characters and should have atleast one of these characters - {$, !, @, _}</p>
+				<br>
+				<br><br>
+				<input type="submit" value="Submit!" disabled="disabled" id="submit" class="btn btn-large">
+			</form>
+		</div>
+	</div>
+	<!-- Compiled and minified JavaScript -->
+	<script type="text/javascript" src="script.js"></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+</body>
+</html>
