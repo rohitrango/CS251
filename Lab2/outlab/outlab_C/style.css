@@ -10,7 +10,10 @@ div {
 
 .panel {
 	display: block;
-/*	margin: 30px 0px 30px 0px;*/
+	border-width: 1.5px;
+	border-style: solid;
+	border-color: #0288d1 ;
+	margin: 20px 0px 20px 0px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -21,7 +24,7 @@ div {
 
 .panel > .panel-title:hover {
 	font-size:30px;
-	background-color: blue;
+	background-color: #0277bd ;
 	padding:10px 5px 10px 5px;
 	border-color: blue;
 	cursor: pointer;
@@ -30,7 +33,7 @@ div {
 
 .panel > .panel-title {
 	font-size:30px;
-	background-color: lightblue;
+	background-color: #0288d1;
 	padding:10px 5px 10px 5px;
 	border-color: blue;
 	border-radius: 4px 4px 0px 0px;
