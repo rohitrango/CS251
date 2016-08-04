@@ -1,4 +1,4 @@
-var elements = document.getElementsByClassName('panel-title');
+var elements = document.getElementsByClassName('mypanel-title');
 var length = elements.length;
 
 // for(var i=0;i<length;i++) {
@@ -53,7 +53,7 @@ for(var i=0;i<length;i++) {
 		var content = this.nextElementSibling;			//content of the title
 		var accordion = panel.parentNode;				//accordion
 		// console.log(accordion);
-		var el = accordion.getElementsByClassName("panel-body"); var l = el.length;		//all panels of this accordion
+		var el = accordion.getElementsByClassName("mypanel-body"); var l = el.length;		//all panels of this accordion
 		console.log("Length of current accordion - "+String(l));		
 		var swap = 0;
 		for(var j=0;j<l;j++) {

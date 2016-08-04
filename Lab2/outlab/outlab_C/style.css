@@ -7,13 +7,39 @@ div {
 	display: block;
 }
 
-.accordion {
-	padding-left:15%;
-	padding-right:15%;
+.pokemon-img {
+	width:25%;
+	float: left;
+	display: inline;
+	align-content: center;
+	overflow: hidden;
+}
+
+
+.pokemon-img > img {
+	width:100%;
+	height:auto;
+	overflow: hidden;
+}
+
+.pokemon-content {
+	width:70%;
+	float: right;
+	display: inline;
+}
+
+.pokemon-container {
+	display: block;
+	width:100%;
+}
+
+.myaccordion {
+/*	padding-left:15%;
+	padding-right:15%;*/
 	padding-top:5px;
 }
 
-.panel {
+.mypanel {
 	display: block;
 	border-width: 1.5px;
 	border-style: solid;
@@ -22,12 +48,12 @@ div {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.panel:hover {
+.mypanel:hover {
 	display: block;
 	box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.16), 0 13px 30px 0 rgba(0, 0, 0, 0.15);
 }
 
-.panel > .panel-title:hover {
+.mypanel > .mypanel-title:hover {
 	font-size:30px;
 	background-color: #0277bd ;
 	padding:10px 5px 10px 5px;
@@ -36,7 +62,7 @@ div {
 	border-radius: 4px 4px 0px 0px;
 }
 
-.panel > .panel-title {
+.mypanel > .mypanel-title {
 	font-size:30px;
 	background-color: #0288d1;
 	padding:10px 5px 10px 5px;
@@ -45,25 +71,25 @@ div {
 	cursor: pointer;
 }
 
-.panel > .panel-body {
+.mypanel > .mypanel-body {
 	overflow: hidden;
 	opacity: 0;
 	max-height: 0px;
 	font-size:20px;
 	padding:0px 5px 10px 5px;
 	border-radius: 0px 0px 4px 4px;
-	background-color: #f2f2f2;
+	/*background-color: #f2f2f2;*/
 	transition: 0.4s;
 }
 
-.panel > .panel-body.show {
+.mypanel > .mypanel-body.show {
 	opacity: 1;
 	height: auto;
 	max-height: 1000px;
 	font-size:20px;
 	padding:10px 5px 10px 5px;
 	border-radius: 0px 0px 4px 4px;
-	background-color: #f2f2f2;
+	/*background-color: #f2f2f2;*/
 	transition: 0.7s;
 }
 
