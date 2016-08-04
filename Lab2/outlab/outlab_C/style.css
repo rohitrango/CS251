@@ -1,0 +1,50 @@
+div {
+	display: block;
+}
+
+.accordion {
+	padding-left:15%;
+	padding-right:15%;
+	padding-top:5px;
+}
+
+.panel {
+	display: block;
+/*	margin: 30px 0px 30px 0px;*/
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.panel:hover {
+	display: block;
+	box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.16), 0 13px 30px 0 rgba(0, 0, 0, 0.15);
+}
+
+.panel > .panel-title:hover {
+	font-size:30px;
+	background-color: blue;
+	padding:10px 5px 10px 5px;
+	border-color: blue;
+	cursor: pointer;
+	border-radius: 4px 4px 0px 0px;
+}
+
+.panel > .panel-title {
+	font-size:30px;
+	background-color: lightblue;
+	padding:10px 5px 10px 5px;
+	border-color: blue;
+	border-radius: 4px 4px 0px 0px;
+	cursor: pointer;
+}
+
+.panel > .panel-body {
+	display: none;
+	font-size:20px;
+	padding:10px 5px 10px 5px;
+	border-radius: 0px 0px 4px 4px;
+	background-color: #f2f2f2;
+}
+
+body {
+	font-family: "Comic Sans MS",cursive,Sans-serif;
+}
