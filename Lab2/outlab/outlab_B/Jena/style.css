@@ -1,0 +1,10 @@
+#formWrapper {
+	border: solid 1px;
+	border-radius: 15px;
+	padding: 10px 25px 45px 25px ;
+	margin: 10px 0px;
+}
+
+#nameMessage, #emailMessage, #passwordMessage {
+	display: none;
+}

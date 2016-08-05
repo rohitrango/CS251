@@ -1,28 +1,53 @@
 <!DOCTYPE html>
 <html>
+
+
 <head>
-<title></title>
-<script type="text/javascript">
-	function sanitise() {
-		var text = document.lab2B.text.value;
-		text = text.replace(/&/g, '&amp');
-		text = text.replace(/</g, '&lt');
-		text = text.replace(/>/g, '&gt');
-		text = text.replace(/"/g, '&quot');
-		text = text.replace(/'/g, '&#x27');
-		text = text.replace(/\//g, '&#x2F');
-		console.log(text);
-	}
-</script>
+<title>Form with Manual Validation</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
+
 <body>
-<form method="post" name="lab2B" action="" onsubmit="sanitise()">
-Name:<br>
-<input type="text" name="text" pattern=".{6,50}" required title="Name should be from 6 to 50 characters."><br><br>
-Password:<br>
-<input type="password" name="pass" pattern="^(?=.*[$!@_])[0-9a-zA-Z!@$_]{8,20}" required title="Password length -> 8-20 characters. Atlest one special character from the set {$, !, @, _}"><br><br>
-Email:<br>
-<input type="text" name="email" pattern="^[0-9a-zA-Z._]{3,}@[a-zA-Z]{3,}.[a-zA-Z]{2,}" required><br><br>
-<input type="submit" value="Submit">
-</form>
+<div class="container">
+	<div id="formWrapper">
+		<h4 align="center">Form with Manual Validation</h4><br>
+		<div class="row">
+			<form class="col s12" method="post" name="lab2B" action="" onsubmit="return sanitise()">
+		  		<div class="row">
+				    <div class="input-field col s12">
+					    <input type="text" name="text" onblur="text_validate()" onfocus="rem('name')">
+					    <label for="name">Name<sup>*</sup></label><br>
+					    <span class="errormsg" id="name_error"></span><br>
+				    </div>
+		  		</div>
+		  		<div class="row">
+				    <div class="input-field col s12">
+					    <input type="password" name="pass" onblur="pass_validate()" onfocus="rem('pass')">
+					    <label for="password">Password<sup>*</sup></label><br>
+					    <span class="errormsg" id="pass_error"></span><br>
+				    </div>
+		  		</div>
+		  		<div class="row">
+				    <div class="input-field col s12">
+					    <input type="text" name="email" onblur="email_validate()" onfocus="rem('email')">
+					    <label for="email">Email ID<sup>*</sup></label><br>
+					    <span class="errormsg" id="email_error"></span><br>
+				    </div>
+		  		</div>
+		  		<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+					<i class="material-icons right">send</i>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="script.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 </body>
+
+</html>
