@@ -1,4 +1,9 @@
 function sanitise() {
+    if(!(text_validate() && pass_validate() && email_validate()))
+    {
+        alert("Please complete the form properly!");
+        return false;
+    }
     var text = document.lab2B.text;
     text.value = text.value.replace(/&/g, '&amp');
     text.value = text.value.replace(/</g, '&lt');
@@ -6,11 +11,6 @@ function sanitise() {
     text.value = text.value.replace(/"/g, '&quot');
     text.value = text.value.replace(/'/g, '&#x27');
     text.value = text.value.replace(/\//g, '&#x2F');
-    if(!(text_validate() && pass_validate() && email_validate()))
-    {
-        alert("Please complete the form properly!");
-        return false;
-    }
     return true;
 }
 
