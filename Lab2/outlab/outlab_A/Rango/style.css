@@ -6,7 +6,7 @@
 }
 
 .card .card-title .card-content {
-	overflow: none;
+	overflow: hidden;
 }
 
 /*table, th, td {
