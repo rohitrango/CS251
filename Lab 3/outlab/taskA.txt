@@ -1,7 +1,11 @@
 Tokyo
+/Users/akash/Downloads/Earth
 
-Find file:
-find -perm u=r -type f -size +50k -size -100k -iname 't*'
+To find file:
+find ./Asia/Japan/ -iname "t*" -size +50k -size -100k -perm 0400
+OR
+find ./Asia/Japan/ -iname "t*" -size +50k -size -100k -perm u=r
 
-Find file and display:
-find -perm u=r -type f -size +50k -size -100k -iname 't*' | xargs cat
+To fond and print:
+
+find ./Asia/Japan/ -iname "t*" -size +50k -size -100k -perm 0400 | xargs cat
