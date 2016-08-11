@@ -1,0 +1,5 @@
+s | tr '\t' '\n' | xargs file | grep -n -E '[^\.]*gzip'| sed -r 's/[^\.]*:([a-zA-Z]*(\.[a-z]+)*):.*/\1/'
+
+
+
+ls | tr '\t' '\n' | xargs file^C
