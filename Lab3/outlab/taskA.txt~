@@ -6,6 +6,6 @@ find ./Asia/Japan/ -iname "t*" -size +50k -size -100k -perm 0400
 OR
 find ./Asia/Japan/ -iname "t*" -size +50k -size -100k -perm u=r
 
-To fond and print:
+To find and display on a text editor (say subl):
 
-find ./Asia/Japan/ -iname "t*" -size +50k -size -100k -perm 0400 | xargs cat
+find ./Asia/Japan/ -iname "t*" -size +50k -size -100k -perm 0400 | xargs subl

@@ -1,5 +1,8 @@
-s | tr '\t' '\n' | xargs file | grep -n -E '[^\.]*gzip'| sed -r 's/[^\.]*:([a-zA-Z]*(\.[a-z]+)*):.*/\1/'
+Pokemon Captured - Rotom
 
+Mime Types present - 
 
-
-ls | tr '\t' '\n' | xargs file^C
+application/gzip
+image/jpeg
+text/html
+text/x-c
