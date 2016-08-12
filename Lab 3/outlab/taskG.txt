@@ -1,0 +1,2 @@
+Magikarp
+ls -ltr | awk '{print $5}'
