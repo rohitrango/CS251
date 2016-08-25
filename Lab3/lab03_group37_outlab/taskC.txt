@@ -1,0 +1,6 @@
+Magikarp
+rm -r */
+rm A*
+rm {1..20}
+rm *.jpg
+cat * > ultraball.html

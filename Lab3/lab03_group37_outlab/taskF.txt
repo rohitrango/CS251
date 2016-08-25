@@ -1,0 +1,6 @@
+Rotom
+
+application/gzip
+image/jpeg
+text/html
+text/x-c
