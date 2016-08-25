@@ -1,0 +1,3 @@
+Tokyo
+/home/rohitrango/CSE_IITB/Sem_3/CS251/Lab3/rango/Earth
+find ./Asia/Japan/ -iname "t*" -size +50k -size -100k -perm 0400
