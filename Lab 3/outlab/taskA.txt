@@ -1,5 +1,0 @@
-Tokyo
-/Users/akash/Downloads/Earth
-find ./Asia/Japan/ -iname "t*" -size +50k -size -100k -perm 0400
-OR
-find ./Asia/Japan/ -iname "t*" -size +50k -size -100k -perm u=r

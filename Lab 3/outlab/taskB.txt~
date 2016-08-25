@@ -1,8 +1,0 @@
-GRASS Sceptile
-/home/eryx/ACADS/CS 251/Outlab 3/Earth
-ls output: 
-
-ERYX:Outlab 3$ find -regex '.*Shanghai'| xargs cat | grep -i -E  '^((grass)|(water))( [^BM]{6,10})$'
-
-\_____________________________________/ \_________/ \______________________________________________/
-			Finds Shanghai               Opens file           Searches for pokemon in file

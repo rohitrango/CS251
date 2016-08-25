@@ -1,0 +1,7 @@
+Magikarp
+for i in `find . -maxdepth 1 -type d`; do if [ $i != '.' ]; then rm -rf $i; fi; done
+rm A*
+rm {1..20}
+rm *.jpg
+for i in `find . -maxdepth 1 -type f`; do cat $i >> ultraball.html; done
+
