@@ -1,0 +1,8 @@
+Pokemon Captured - Rotom
+
+Mime Types present - 
+
+application/gzip
+image/jpeg
+text/html
+text/x-c

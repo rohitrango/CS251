@@ -1,3 +1,0 @@
-Squirtle
-alpha omega
-curl -X POST -F 'username=alpha' -F 'password=omega' https://www.cse.iitb.ac.in/~sharat/current/cs251/Assign/Lab03/support/verify.php

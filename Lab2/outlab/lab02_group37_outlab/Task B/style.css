@@ -1,0 +1,17 @@
+.errormsg {
+    color: red;
+    font-family: "Times New Roman", Times, serif;
+}
+
+sup {
+    color: red;
+}
+
+h4 {
+    font-family: "Times New Roman", Times, serif;
+    color: #26a69a;
+}
+
+#formWrapper {
+    padding: 10%;
+}
