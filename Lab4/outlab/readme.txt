@@ -36,6 +36,9 @@ Commit ID - cbb62682cade12e934c337e334a393374947b010
 Name of commit - `Initial commit`   (we had no better name to think of :P )
 
 2.
+The definition of `duck typing` is what caught our attention. 
+Citing it from an unknwon source - `If it quacks like a duck and flies like a duck, then it must be a duck`. So int are supposed to behave like ints, floats like floats and so on.
+
 The sum functions did not work initially when we tried to add real numbers and complex numbers because we had not overloaded the operators to handle arithmetic with int and float (since int and float types do not have attributes 'a' and 'b').
 The solution was to take conditional arguments to determine the type of the other argument and then perform the suitable operation. This also enabled us to write a `universal` myexponent() function which will take int, float and ComplexNumber types without any conditions (since we already defined all the arithmetic).
 
