@@ -22,9 +22,10 @@
  * 
  */
 
-
+#include <iostream>
 #include "cs251_base.hpp"
 #include "render.hpp"
+
 
 #ifdef __APPLE__
 	#include <GLUT/glut.h>
@@ -63,7 +64,7 @@ namespace cs251
 ////////////////////////////////////////////////////////////////////////////////////
 // Create the Static circular magnets here
 ////////////////////////////////////////////////////////////////////////////////////
-
+    b2Body *magnet1,*magnet2,*ball1,*ball2;
     {
 
         // Magnet 1
@@ -79,8 +80,8 @@ namespace cs251
         fixture1.density = 10;
         fixture1.shape = &circle1;
 
-        b1 = m_world->CreateBody(&mag1);
-        b1->CreateFixture(&fixture1);
+        magnet1 = m_world->CreateBody(&mag1);
+        magnet1->CreateFixture(&fixture1);
 
         // Magnet 2
 
@@ -95,8 +96,8 @@ namespace cs251
         fixture2.density = 10;
         fixture2.shape = &circle2;
 
-        b1 = m_world->CreateBody(&mag2);
-        b1->CreateFixture(&fixture2);
+        magnet2 = m_world->CreateBody(&mag2);
+        magnet2->CreateFixture(&fixture2);
 
     }
 
@@ -105,7 +106,7 @@ namespace cs251
 ////////////////////////////////////////////////////////////////////////////////////
     {
 
-        // Magnet body 1
+        // Magnet ball 1
 
         b2BodyDef mag1;
         mag1.position.Set(5,15);
@@ -118,11 +119,12 @@ namespace cs251
         b2FixtureDef fixture1;
         fixture1.density = 5;
         fixture1.shape = &circle1;
+        fixture1.restitution = 0.6;
 
-        b1 = m_world->CreateBody(&mag1);
-        b1->CreateFixture(&fixture1);
+        ball1 = m_world->CreateBody(&mag1);
+        ball1->CreateFixture(&fixture1);
 
-        // Magnet 2
+        // Magnet ball 2
 
         b2BodyDef mag2;
         mag2.position.Set(-5,15);
@@ -135,14 +137,14 @@ namespace cs251
         b2FixtureDef fixture2;
         fixture2.density = 5;
         fixture2.shape = &circle2;
+        fixture2.restitution = 0.6;
 
-        b1 = m_world->CreateBody(&mag2);
-        b1->CreateFixture(&fixture2);
+        ball2 = m_world->CreateBody(&mag2);
+        ball2->CreateFixture(&fixture2);
 
     }
 
-
-
+    ball1->ApplyLinearImpulse( b2Vec2(-100,-50), ball1->GetWorldCenter() , true);
 
   }
 

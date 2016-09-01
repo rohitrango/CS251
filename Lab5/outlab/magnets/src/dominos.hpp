@@ -21,7 +21,6 @@
  * Department of Computer Science and Engineering, IIT Bombay
  * 
  */
-
 #ifndef _DOMINOS_HPP_
 #define _DOMINOS_HPP_
 
@@ -34,7 +33,6 @@ namespace cs251
   public:
     
     dominos_t();
-    
     static base_sim_t* create()
     {
       return new dominos_t;
