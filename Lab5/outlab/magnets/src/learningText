@@ -1,0 +1,32 @@
+
+    // // create a box
+    //  {
+    //       b2PolygonShape shape;
+    //       shape.SetAsBox(1.0f, 2.0f);
+          
+    //       b2BodyDef bd;
+    //       bd.position.Set(10.0f,20);
+    //       bd.type = b2_dynamicBody;       //by default they are static
+    //       // bd.density = 10;
+    //       b1 = m_world->CreateBody(&bd);
+    //       b1->CreateFixture(&shape,0.0f);
+    //  }
+
+    //  //create a body with fixture 
+    //  {
+    //     b2BodyDef bd;
+    //     bd.position.Set(-10,20);
+    //     bd.type = b2_dynamicBody;
+
+    //     b2PolygonShape shape;
+    //     shape.SetAsBox(1,2);
+
+    //     b2FixtureDef fixture;
+    //     fixture.shape = &shape;
+    //     fixture.density = 100;
+    //     fixture.friction = 1;
+
+    //     b1 = m_world->CreateBody(&bd);  //create the body in the world
+    //     b1->CreateFixture(&fixture);    //create the fixtures
+
+    //  }
