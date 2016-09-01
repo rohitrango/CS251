@@ -1,0 +1,6 @@
+cf3c122f1dabdc0fc4e1c37a25556bc8
+f24109a62a0422577119abeb0db4f801
+10.42.0.29
+10.42.0.11
+ncat 10.42.0.11 < Bulbasaur > Slowpoke
+cat Slowpoke | ncat -l  > Bulbasaur
