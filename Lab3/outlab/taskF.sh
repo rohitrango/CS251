@@ -9,6 +9,6 @@ for file in *; do
 	elif [ $TYPE = "text/x-c" ]; then mv $file $file.cpp
 	fi
 done
-ls | grep --regexp=".cpp$" | tr "\n" " " | xargs g++
+ls | grep --regexp=".cpp$" | tr "\n" " " | xargs g++ -w
 ./a.out >& masterball 
 subl masterball
