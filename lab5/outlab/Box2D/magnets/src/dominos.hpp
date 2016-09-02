@@ -42,6 +42,9 @@ namespace cs251
     }
 
     virtual void step(settings_t* settings); 
+    virtual void keyboard(unsigned char key);
+    virtual void mouse_down(const b2Vec2& p);
+
 
   };
 }
