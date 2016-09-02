@@ -151,7 +151,10 @@ obj/dominos.o: src/dominos.cpp /usr/include/stdc-predef.h \
  /usr/local/include/Box2D/Dynamics/Joints/b2RopeJoint.h \
  /usr/local/include/Box2D/Dynamics/Joints/b2WeldJoint.h \
  /usr/local/include/Box2D/Dynamics/Joints/b2WheelJoint.h \
- /usr/include/c++/4.8/cmath /usr/include/GL/freeglut.h \
+ /usr/include/c++/4.8/cmath /usr/include/c++/4.8/vector \
+ /usr/include/c++/4.8/bits/stl_vector.h \
+ /usr/include/c++/4.8/bits/stl_bvector.h \
+ /usr/include/c++/4.8/bits/vector.tcc /usr/include/GL/freeglut.h \
  /usr/include/GL/freeglut_std.h /usr/include/GL/gl.h \
  /usr/include/GL/glext.h /usr/include/inttypes.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h /usr/include/stdint.h \

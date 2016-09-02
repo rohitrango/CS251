@@ -1,32 +1,26 @@
 
-    // // create a box
-    //  {
-    //       b2PolygonShape shape;
-    //       shape.SetAsBox(1.0f, 2.0f);
-          
-    //       b2BodyDef bd;
-    //       bd.position.Set(10.0f,20);
-    //       bd.type = b2_dynamicBody;       //by default they are static
-    //       // bd.density = 10;
-    //       b1 = m_world->CreateBody(&bd);
-    //       b1->CreateFixture(&shape,0.0f);
-    //  }
+            b2Vec2 distances[4];
 
-    //  //create a body with fixture 
-    //  {
-    //     b2BodyDef bd;
-    //     bd.position.Set(-10,20);
-    //     bd.type = b2_dynamicBody;
+            distances[0] = ball1->GetWorldCenter() - magnet1->GetWorldCenter();
+            distances[1] = ball1->GetWorldCenter() - magnet2->GetWorldCenter();
 
-    //     b2PolygonShape shape;
-    //     shape.SetAsBox(1,2);
+            distances[2] = ball2->GetWorldCenter() - magnet1->GetWorldCenter();
+            distances[3] = ball2->GetWorldCenter() - magnet2->GetWorldCenter();
 
-    //     b2FixtureDef fixture;
-    //     fixture.shape = &shape;
-    //     fixture.density = 100;
-    //     fixture.friction = 1;
+            // // cout<<ball1Mag1.x<<" "<<ball1Mag1.y<<endl;
+            long double d[4];
+            for(int i=0;i<4;i++)
+              d[i] = distances[i].Length();
 
-    //     b1 = m_world->CreateBody(&bd);  //create the body in the world
-    //     b1->CreateFixture(&fixture);    //create the fixtures
+            b2Vec2 Force[4];
+            Force[0] = k1/pow(d[0],3)*distances[0];
+            Force[1] = k2/pow(d[1],3)*distances[1];
 
-    //  }
+            Force[2] = k1/pow(d[2],3)*distances[2];
+            Force[3] = k2/pow(d[3],3)*distances[3];
+
+            ball1->ApplyForce(Force[0],ball1->GetWorldCenter(),true);
+            ball1->ApplyForce(Force[1],ball1->GetWorldCenter(),true);
+
+            ball2->ApplyForce(Force[2],ball2->GetWorldCenter(),true);
+            ball2->ApplyForce(Force[3],ball2->GetWorldCenter(),true);
