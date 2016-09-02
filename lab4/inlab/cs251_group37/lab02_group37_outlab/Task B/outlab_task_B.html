@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+<title>Form with Manual Validation</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+
+<body>
+<div class="container">
+	<div id="formWrapper">
+		<h4 align="center">Form with Manual Validation</h4><br>
+		<div class="row">
+
+			<form class="col s12" method="post" name="lab2B" action="https://www.cse.iitb.ac.in/~sharat/php/example/form.php" onsubmit="return sanitise()">
+		  		<div class="row">
+				    <div class="input-field col s12">
+					    <input type="text" name="text" onblur="text_validate()" onfocus="rem('name')">
+					    <label for="name">Name<sup>*</sup></label><br>
+					    <span class="errormsg" id="name_error"></span><br>
+				    </div>
+		  		</div>
+		  		<div class="row">
+				    <div class="input-field col s12">
+					    <input type="password" name="pass" onblur="pass_validate()" onfocus="rem('pass')">
+					    <label for="password">Password<sup>*</sup></label><br>
+					    <span class="errormsg" id="pass_error"></span><br>
+				    </div>
+		  		</div>
+		  		<div class="row">
+				    <div class="input-field col s12">
+					    <input type="text" name="email" onblur="email_validate()" onfocus="rem('email')">
+					    <label for="email">Email ID<sup>*</sup></label><br>
+					    <span class="errormsg" id="email_error"></span><br>
+				    </div>
+		  		</div>
+		  		<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+					<i class="material-icons right">send</i>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="script.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+</body>
+
+</html>
