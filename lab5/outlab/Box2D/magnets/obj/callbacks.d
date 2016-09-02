@@ -110,32 +110,20 @@ obj/callbacks.o: src/callbacks.cpp /usr/include/stdc-predef.h \
  /usr/local/include/Box2D/Dynamics/Joints/b2RopeJoint.h \
  /usr/local/include/Box2D/Dynamics/Joints/b2WeldJoint.h \
  /usr/local/include/Box2D/Dynamics/Joints/b2WheelJoint.h \
- src/cs251_base.hpp /usr/include/GL/glui.h /usr/include/GL/glut.h \
- /usr/include/GL/freeglut_std.h /usr/include/GL/gl.h \
- /usr/include/GL/glext.h /usr/include/inttypes.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h /usr/include/GL/glu.h \
- /usr/include/c++/4.8/cstdio /usr/include/stdio.h /usr/include/libio.h \
- /usr/include/_G_config.h /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h \
- /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
- /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/4.8/cstring \
- /usr/include/c++/4.8/string /usr/include/c++/4.8/bits/stringfwd.h \
- /usr/include/c++/4.8/bits/char_traits.h \
+ src/cs251_base.hpp /usr/include/c++/4.8/iostream \
+ /usr/include/c++/4.8/ostream /usr/include/c++/4.8/ios \
+ /usr/include/c++/4.8/iosfwd /usr/include/c++/4.8/bits/stringfwd.h \
  /usr/include/c++/4.8/bits/postypes.h /usr/include/c++/4.8/cwchar \
+ /usr/include/wchar.h /usr/include/stdio.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
+ /usr/include/c++/4.8/bits/char_traits.h \
  /usr/include/c++/4.8/bits/localefwd.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++locale.h \
  /usr/include/c++/4.8/clocale /usr/include/locale.h \
- /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/4.8/iosfwd \
- /usr/include/c++/4.8/cctype /usr/include/ctype.h \
- /usr/include/c++/4.8/bits/ostream_insert.h \
- /usr/include/c++/4.8/bits/cxxabi_forced.h \
- /usr/include/c++/4.8/bits/stl_function.h \
- /usr/include/c++/4.8/backward/binders.h \
- /usr/include/c++/4.8/bits/range_access.h \
- /usr/include/c++/4.8/bits/basic_string.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/4.8/cctype \
+ /usr/include/ctype.h /usr/include/c++/4.8/bits/ios_base.h \
  /usr/include/c++/4.8/ext/atomicity.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/gthr-default.h \
@@ -144,7 +132,34 @@ obj/callbacks.o: src/callbacks.cpp /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/timex.h \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/atomic_word.h \
- /usr/include/c++/4.8/bits/basic_string.tcc /usr/include/c++/4.8/vector \
- /usr/include/c++/4.8/bits/stl_vector.h \
+ /usr/include/c++/4.8/bits/locale_classes.h /usr/include/c++/4.8/string \
+ /usr/include/c++/4.8/bits/ostream_insert.h \
+ /usr/include/c++/4.8/bits/cxxabi_forced.h \
+ /usr/include/c++/4.8/bits/stl_function.h \
+ /usr/include/c++/4.8/backward/binders.h \
+ /usr/include/c++/4.8/bits/range_access.h \
+ /usr/include/c++/4.8/bits/basic_string.h \
+ /usr/include/c++/4.8/bits/basic_string.tcc \
+ /usr/include/c++/4.8/bits/locale_classes.tcc \
+ /usr/include/c++/4.8/streambuf /usr/include/c++/4.8/bits/streambuf.tcc \
+ /usr/include/c++/4.8/bits/basic_ios.h \
+ /usr/include/c++/4.8/bits/locale_facets.h /usr/include/c++/4.8/cwctype \
+ /usr/include/wctype.h \
+ /usr/include/x86_64-linux-gnu/c++/4.8/bits/ctype_base.h \
+ /usr/include/c++/4.8/bits/streambuf_iterator.h \
+ /usr/include/x86_64-linux-gnu/c++/4.8/bits/ctype_inline.h \
+ /usr/include/c++/4.8/bits/locale_facets.tcc \
+ /usr/include/c++/4.8/bits/basic_ios.tcc \
+ /usr/include/c++/4.8/bits/ostream.tcc /usr/include/c++/4.8/istream \
+ /usr/include/c++/4.8/bits/istream.tcc /usr/include/GL/glui.h \
+ /usr/include/GL/glut.h /usr/include/GL/freeglut_std.h \
+ /usr/include/GL/gl.h /usr/include/GL/glext.h /usr/include/inttypes.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h /usr/include/stdint.h \
+ /usr/include/GL/glu.h /usr/include/c++/4.8/cstdio /usr/include/libio.h \
+ /usr/include/_G_config.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/4.8/cstring \
+ /usr/include/c++/4.8/vector /usr/include/c++/4.8/bits/stl_vector.h \
  /usr/include/c++/4.8/bits/stl_bvector.h \
  /usr/include/c++/4.8/bits/vector.tcc
