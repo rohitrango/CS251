@@ -1,0 +1,12 @@
+0000000000000000000000000000000000000000 ecc28459b86803f9a1054a5a608c2687a8fe605d Akash Trehan <akash.trehan123@gmail.com> 1472315285 +0530	commit (initial): ComplexNumber class
+ecc28459b86803f9a1054a5a608c2687a8fe605d 6b53971f2c21ed057531065696da238debf73923 Akash Trehan <akash.trehan123@gmail.com> 1472315314 +0530	commit (amend): ComplexNumber class
+6b53971f2c21ed057531065696da238debf73923 c01a281904a01e36a107267e0efc667823f44e2b Akash Trehan <akash.trehan123@gmail.com> 1472315957 +0530	commit: File names changed
+c01a281904a01e36a107267e0efc667823f44e2b be10d94742b226f12166afb8e5bffcde1dd83dba Akash Trehan <akash.trehan123@gmail.com> 1472316026 +0530	commit: Added __repr__ func
+be10d94742b226f12166afb8e5bffcde1dd83dba c01a281904a01e36a107267e0efc667823f44e2b Akash Trehan <akash.trehan123@gmail.com> 1472316111 +0530	reset: moving to c01a281
+c01a281904a01e36a107267e0efc667823f44e2b e615357d83ab2bf8ea44a3d01705f88685ab7ad4 Akash Trehan <akash.trehan123@gmail.com> 1472316468 +0530	commit: Added mysquare
+e615357d83ab2bf8ea44a3d01705f88685ab7ad4 7f8e41800a2a10e5931960cd60ab5ba30d3ccaf1 Akash Trehan <akash.trehan123@gmail.com> 1472316730 +0530	commit (merge): Merge branch 'representation'
+7f8e41800a2a10e5931960cd60ab5ba30d3ccaf1 e615357d83ab2bf8ea44a3d01705f88685ab7ad4 Akash Trehan <akash.trehan123@gmail.com> 1472317111 +0530	reset: moving to e615357
+e615357d83ab2bf8ea44a3d01705f88685ab7ad4 3ec053f4abddc60dcdd95d48b82c4c74bdda7def Akash Trehan <akash.trehan123@gmail.com> 1472317273 +0530	commit (merge): Merge branch 'representation'
+3ec053f4abddc60dcdd95d48b82c4c74bdda7def 4d1b7bd31a4e2858c3562cf0fdec3997136c21db Akash Trehan <akash.trehan123@gmail.com> 1472318376 +0530	commit: Math rocks!
+4d1b7bd31a4e2858c3562cf0fdec3997136c21db 03dcfd3b66672509007589e9e1c5a30b2e3e2cd0 Akash Trehan <akash.trehan123@gmail.com> 1472318484 +0530	commit (merge): Merge branch 'electricity!'
+03dcfd3b66672509007589e9e1c5a30b2e3e2cd0 16ef44a62fb38952dfa2301f03cdf3180f239901 Akash Trehan <akash.trehan123@gmail.com> 1472318509 +0530	commit: Remove random print statement

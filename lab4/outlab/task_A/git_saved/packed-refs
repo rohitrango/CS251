@@ -1,0 +1,5 @@
+# pack-refs with: peeled fully-peeled 
+681e7f461ccb64f045982c87764f08e6f867cd08 refs/remotes/origin/compare
+78ff4ad775621fc2666baf01b83b11667de5d306 refs/remotes/origin/euclidean
+f80e17c29fdf66e7e992edd4fc416b78276ce5a8 refs/remotes/origin/master
+049aac960670c0bf242607881236f1ac9e8c01aa refs/remotes/origin/pearson
