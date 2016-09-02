@@ -1,0 +1,18 @@
+-----------------------------------------------------------------------------
+Subtask 0
+-----------------------------------------------------------------------------
+
+cs251_base.hpp - Number of position iterations changed to 10 (just tinkering around)
+
+dominos.hpp - Added member functions to store the magnet and ball objects and magnets constants for the formula
+
+dominos.cpp - Essential code added here. Basically, the constructor starts with assigning the values for `k1` and `k2` constants, and defining the ball and magnet objects (we have made 2 of each). 
+Now, the step function that is inherited ( from the `base_sim_t` class ) is made used of. Inside the step function, we passed the settings for the parent class to handle. Next, we find out the force vectors using the formula given in the pdf and apply the forces on the magnetic balls. 
+
+-----------------------------------------------------------------------------
+Subtask 1
+-----------------------------------------------------------------------------
+
+dominos.hpp - Declared callback functions for mouse and keyboard. They are derived from base_sim_t which is derived from b2ContactListener, which has the callback functions for handling keyboard and mouse input.
+
+dominos.cpp - Defined callback functions to handle given cases. b2Fixture.Testpoint(p) used to find if point P lies within the shape of fixture of magnet (for generality wrt shape of magnet).
