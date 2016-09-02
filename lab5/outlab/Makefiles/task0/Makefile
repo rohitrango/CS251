@@ -12,7 +12,7 @@ out: $(OBJ_FILES)
 %.o: %.cpp
 	gcc -c -MMD  -o $@ $<
 
-clean: $(OBJ_FILES) $(DEPS) out
-	rm -f $^
+clean:
+	rm -f *.o *.d out
 
 -include $(DEPS)
