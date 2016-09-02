@@ -90,26 +90,26 @@ void base_sim_t::step(settings_t* settings)
   float32 time_step = settings->hz > 0.0f ? 1.0f / settings->hz : float32(0.0f);
 
   if (settings->pause)
-    {
+  {
       if (settings->single_step)
-	{
-	  settings->single_step = 0;
-	}
+  {
+    settings->single_step = 0;
+  }
       else
-	{
-	  time_step = 0.0f;
-	}
+  {
+    time_step = 0.0f;
+  }
       
       m_debug_draw.DrawString(5, m_text_line, "****PAUSED****");
       m_text_line += 15;
-    }
+  }
   
   uint32 flags = 0;
-  flags += settings->draw_shapes			* b2Draw::e_shapeBit;
-  flags += settings->draw_joints			* b2Draw::e_jointBit;
-  flags += settings->draw_AABBs			* b2Draw::e_aabbBit;
-  flags += settings->draw_pairs			* b2Draw::e_pairBit;
-  flags += settings->draw_COMs				* b2Draw::e_centerOfMassBit;
+  flags += settings->draw_shapes      * b2Draw::e_shapeBit;
+  flags += settings->draw_joints      * b2Draw::e_jointBit;
+  flags += settings->draw_AABBs     * b2Draw::e_aabbBit;
+  flags += settings->draw_pairs     * b2Draw::e_pairBit;
+  flags += settings->draw_COMs        * b2Draw::e_centerOfMassBit;
   m_debug_draw.SetFlags(flags);
   
   m_world->SetWarmStarting(settings->enable_warm_starting > 0);
@@ -172,17 +172,17 @@ void base_sim_t::step(settings_t* settings)
       b2Profile ave_profile;
       memset(&ave_profile, 0, sizeof(b2Profile));
       if (m_step_count > 0)
-	{
-	  float32 scale = 1.0f / m_step_count;
-	  ave_profile.step = scale * m_total_profile.step;
-	  ave_profile.collide = scale * m_total_profile.collide;
-	  ave_profile.solve = scale * m_total_profile.solve;
-	  ave_profile.solveInit = scale * m_total_profile.solveInit;
-	  ave_profile.solveVelocity = scale * m_total_profile.solveVelocity;
-	  ave_profile.solvePosition = scale * m_total_profile.solvePosition;
-	  ave_profile.solveTOI = scale * m_total_profile.solveTOI;
-	  ave_profile.broadphase = scale * m_total_profile.broadphase;
-	}
+  {
+    float32 scale = 1.0f / m_step_count;
+    ave_profile.step = scale * m_total_profile.step;
+    ave_profile.collide = scale * m_total_profile.collide;
+    ave_profile.solve = scale * m_total_profile.solve;
+    ave_profile.solveInit = scale * m_total_profile.solveInit;
+    ave_profile.solveVelocity = scale * m_total_profile.solveVelocity;
+    ave_profile.solvePosition = scale * m_total_profile.solvePosition;
+    ave_profile.solveTOI = scale * m_total_profile.solveTOI;
+    ave_profile.broadphase = scale * m_total_profile.broadphase;
+  }
       
       m_debug_draw.DrawString(5, m_text_line, "step [ave] (max) = %5.2f [%6.2f] (%6.2f)", p.step, ave_profile.step, m_max_profile.step);
       m_text_line += 15;
@@ -208,40 +208,40 @@ void base_sim_t::step(settings_t* settings)
       const float32 k_axis_scale = 0.3f;
       
       for (int32 i = 0; i < m_point_count; ++i)
-	{
-	  contact_point_t* point = m_points + i;
-	  
-	  if (point->state == b2_addState)
-	    {
-	      // Add
-	      m_debug_draw.DrawPoint(point->position, 10.0f, b2Color(0.3f, 0.95f, 0.3f));
-	    }
-	  else if (point->state == b2_persistState)
-	    {
-	      // Persist
-	      m_debug_draw.DrawPoint(point->position, 5.0f, b2Color(0.3f, 0.3f, 0.95f));
-	    }
-	  
-	  if (settings->draw_contact_normals == 1)
-	    {
-	      b2Vec2 p1 = point->position;
-	      b2Vec2 p2 = p1 + k_axis_scale * point->normal;
-	      m_debug_draw.DrawSegment(p1, p2, b2Color(0.9f, 0.9f, 0.9f));
-	    }
-	  else if (settings->draw_contact_forces == 1)
-	    {
-	      //b2Vec2 p1 = point->position;
-	      //b2Vec2 p2 = p1 + k_forceScale * point->normalForce * point->normal;
-	      //DrawSegment(p1, p2, b2Color(0.9f, 0.9f, 0.3f));
-	    }
-	  
-	  if (settings->draw_friction_forces == 1)
-	    {
-	      //b2Vec2 tangent = b2Cross(point->normal, 1.0f);
-	      //b2Vec2 p1 = point->position;
-	      //b2Vec2 p2 = p1 + k_forceScale * point->tangentForce * tangent;
-	      //DrawSegment(p1, p2, b2Color(0.9f, 0.9f, 0.3f));
-	    }
-	}
+  {
+    contact_point_t* point = m_points + i;
+    
+    if (point->state == b2_addState)
+      {
+        // Add
+        m_debug_draw.DrawPoint(point->position, 10.0f, b2Color(0.3f, 0.95f, 0.3f));
+      }
+    else if (point->state == b2_persistState)
+      {
+        // Persist
+        m_debug_draw.DrawPoint(point->position, 5.0f, b2Color(0.3f, 0.3f, 0.95f));
+      }
+    
+    if (settings->draw_contact_normals == 1)
+      {
+        b2Vec2 p1 = point->position;
+        b2Vec2 p2 = p1 + k_axis_scale * point->normal;
+        m_debug_draw.DrawSegment(p1, p2, b2Color(0.9f, 0.9f, 0.9f));
+      }
+    else if (settings->draw_contact_forces == 1)
+      {
+        //b2Vec2 p1 = point->position;
+        //b2Vec2 p2 = p1 + k_forceScale * point->normalForce * point->normal;
+        //DrawSegment(p1, p2, b2Color(0.9f, 0.9f, 0.3f));
+      }
+    
+    if (settings->draw_friction_forces == 1)
+      {
+        //b2Vec2 tangent = b2Cross(point->normal, 1.0f);
+        //b2Vec2 p1 = point->position;
+        //b2Vec2 p2 = p1 + k_forceScale * point->tangentForce * tangent;
+        //DrawSegment(p1, p2, b2Color(0.9f, 0.9f, 0.3f));
+      }
+  }
     }
 }

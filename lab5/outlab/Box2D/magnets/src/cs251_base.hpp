@@ -51,7 +51,7 @@ namespace cs251
       view_center(0.0f, 20.0f),
       hz(60.0f),
       velocity_iterations(8),
-      position_iterations(3),
+      position_iterations(10),
       draw_shapes(1),
       draw_joints(1),
       draw_AABBs(0),

@@ -23,6 +23,7 @@
  */
 #ifndef _DOMINOS_HPP_
 #define _DOMINOS_HPP_
+#include <Box2D/Box2D.h>
 
 namespace cs251
 {
@@ -31,12 +32,17 @@ namespace cs251
   class dominos_t : public base_sim_t
   {
   public:
-    
+    long double k1,k2;
+    b2Body *magnet1,*magnet2,*ball1,*ball2;
     dominos_t();
+    ~dominos_t();
     static base_sim_t* create()
     {
       return new dominos_t;
     }
+
+    virtual void step(settings_t* settings); 
+
   };
 }
   

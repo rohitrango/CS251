@@ -25,7 +25,7 @@
 #include <iostream>
 #include "cs251_base.hpp"
 #include "render.hpp"
-
+#include <cmath>
 
 #ifdef __APPLE__
 	#include <GLUT/glut.h>
@@ -51,6 +51,9 @@ namespace cs251
      * \brief pointer to the body ground 
      */ 
 
+    k1 = -100000;  // initially the force is attractive
+    k2 = 100000;    // this magnet is replusive initially
+
     b2Body* b1;  
     {
 
@@ -59,21 +62,36 @@ namespace cs251
       b2BodyDef bd; 
       b1 = m_world->CreateBody(&bd); 
       b1->CreateFixture(&shape, 0.0f);
+
+
+
+      shape.Set(b2Vec2(-90.0f, 0.0f), b2Vec2(-90.0f, 90.0f));
+      b1 = m_world->CreateBody(&bd); 
+      b1->CreateFixture(&shape, 0.0f);
+
+      shape.Set(b2Vec2(-90.0f, 90.0f), b2Vec2(90.0f, 90.0f));
+      b1 = m_world->CreateBody(&bd); 
+      b1->CreateFixture(&shape, 0.0f);
+
+      shape.Set(b2Vec2(90.0f, 0.0f), b2Vec2(90.0f, 90.0f));
+      b1 = m_world->CreateBody(&bd); 
+      b1->CreateFixture(&shape, 0.0f);
+
     }
 
 ////////////////////////////////////////////////////////////////////////////////////
 // Create the Static circular magnets here
 ////////////////////////////////////////////////////////////////////////////////////
-    b2Body *magnet1,*magnet2,*ball1,*ball2;
+    // b2Body *magnet1,*magnet2,*ball1,*ball2;
     {
 
         // Magnet 1
 
         b2BodyDef mag1;
-        mag1.position.Set(10,10);
+        mag1.position.Set(20,20);
 
         b2CircleShape circle1;
-        circle1.m_p.Set(10,10);
+        circle1.m_p.Set(0,0);
         circle1.m_radius = 2;
 
         b2FixtureDef fixture1;
@@ -86,10 +104,10 @@ namespace cs251
         // Magnet 2
 
         b2BodyDef mag2;
-        mag2.position.Set(-10,10);
+        mag2.position.Set(-20,20);
 
         b2CircleShape circle2;
-        circle2.m_p.Set(-10,10);
+        circle2.m_p.Set(0,0);
         circle2.m_radius = 2;
 
         b2FixtureDef fixture2;
@@ -109,11 +127,11 @@ namespace cs251
         // Magnet ball 1
 
         b2BodyDef mag1;
-        mag1.position.Set(5,15);
+        mag1.position.Set(2,2);
         mag1.type = b2_dynamicBody;
 
         b2CircleShape circle1;
-        circle1.m_p.Set(5,15);
+        circle1.m_p.Set(0,0);
         circle1.m_radius = 1;
 
         b2FixtureDef fixture1;
@@ -127,11 +145,11 @@ namespace cs251
         // Magnet ball 2
 
         b2BodyDef mag2;
-        mag2.position.Set(-5,15);
+        mag2.position.Set(-2,2);
         mag2.type = b2_dynamicBody;
 
         b2CircleShape circle2;
-        circle2.m_p.Set(-5,15);
+        circle2.m_p.Set(0,0);
         circle2.m_radius = 1;
 
         b2FixtureDef fixture2;
@@ -144,10 +162,67 @@ namespace cs251
 
     }
 
-    ball1->ApplyLinearImpulse( b2Vec2(-100,-50), ball1->GetWorldCenter() , true);
+    // ball1->ApplyLinearImpulse( b2Vec2(-100,-50), ball1->GetWorldCenter() , true);
 
   }
 
+
+    //// The step function overwritten, added from settings
+
+
+  void dominos_t::step(settings_t* settings) {
+      
+      base_sim_t::step(settings);
+
+      if(!settings->pause) {
+            b2Vec2 distances[4];
+
+            distances[0] = ball1->GetWorldCenter() - magnet1->GetWorldCenter();
+            distances[1] = ball1->GetWorldCenter() - magnet2->GetWorldCenter();
+
+            distances[2] = ball2->GetWorldCenter() - magnet1->GetWorldCenter();
+            distances[3] = ball2->GetWorldCenter() - magnet2->GetWorldCenter();
+
+            // // cout<<ball1Mag1.x<<" "<<ball1Mag1.y<<endl;
+            long double d[4];
+            for(int i=0;i<4;i++)
+              d[i] = distances[i].Length();
+
+            b2Vec2 Force[4];
+            Force[0] = k1/pow(d[0],3)*distances[0];
+            Force[1] = k2/pow(d[1],3)*distances[1];
+
+            Force[2] = k1/pow(d[2],3)*distances[2];
+            Force[3] = k2/pow(d[3],3)*distances[3];
+
+            ball1->ApplyForce(Force[0],ball1->GetWorldCenter(),true);
+            ball1->ApplyForce(Force[1],ball1->GetWorldCenter(),true);
+
+            ball2->ApplyForce(Force[2],ball2->GetWorldCenter(),true);
+            ball2->ApplyForce(Force[3],ball2->GetWorldCenter(),true);
+            
+
+            // // To check the filed line
+            // glBegin(GL_LINES);
+            // glVertex2f(ball2->GetWorldCenter().x, ball2->GetWorldCenter().y);
+            // glVertex2f(magnet1->GetWorldCenter().x, magnet1->GetWorldCenter().y);
+            // glEnd();
+
+            // glBegin(GL_LINES);
+            // glVertex2f(ball2->GetWorldCenter().x, ball2->GetWorldCenter().y);
+            // glVertex2f(magnet2->GetWorldCenter().x, magnet2->GetWorldCenter().y);
+            // glEnd();
+
+
+      }
+        
+  }
+
+  dominos_t::~dominos_t() {
+    ;
+  }
+
   sim_t *sim = new sim_t("Magnets!", dominos_t::create);
+      
 }
 
