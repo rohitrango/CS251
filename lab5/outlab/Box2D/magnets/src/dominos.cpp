@@ -21,7 +21,6 @@
  * Department of Computer Science and Engineering, IIT Bombay
  * 
  */
-
 #include <iostream>
 #include "cs251_base.hpp"
 #include "render.hpp"
@@ -56,44 +55,44 @@ namespace cs251
     {
 
       b2EdgeShape shape; 
-      shape.Set(b2Vec2(-90.0f, 0.0f), b2Vec2(90.0f, 0.0f));
+      shape.Set(b2Vec2(-67.0f, 0.0f), b2Vec2(67.0f, 0.0f));
       b2BodyDef bd; 
       b1 = m_world->CreateBody(&bd); 
       b1->CreateFixture(&shape, 0.0f);
 
-      shape.Set(b2Vec2(-90.0f, 0.0f), b2Vec2(-90.0f, 90.0f));
+      shape.Set(b2Vec2(-67.0f, 0.0f), b2Vec2(-67.0f, 120.0f));
       b1 = m_world->CreateBody(&bd); 
       b1->CreateFixture(&shape, 0.0f);
 
-      shape.Set(b2Vec2(-90.0f, 90.0f), b2Vec2(90.0f, 90.0f));
+      shape.Set(b2Vec2(-67.0f, 120.0f), b2Vec2(67.0f, 120.0f));
       b1 = m_world->CreateBody(&bd); 
       b1->CreateFixture(&shape, 0.0f);
 
-      shape.Set(b2Vec2(90.0f, 0.0f), b2Vec2(90.0f, 90.0f));
+      shape.Set(b2Vec2(67.0f, 0.0f), b2Vec2(67.0f, 120.0f));
       b1 = m_world->CreateBody(&bd); 
       b1->CreateFixture(&shape, 0.0f);
 
     }
+////////////////////////////////////////////////////////////////////////////////////
+// Create the Slider here
+////////////////////////////////////////////////////////////////////////////////////
+      player = new Slider(m_world);
 
 ////////////////////////////////////////////////////////////////////////////////////
 // Create the Static circular magnets here
 ////////////////////////////////////////////////////////////////////////////////////
     // b2Body *magnet1,*magnet2,*ball1,*ball2;
-    {
-        Magnet m1(-100000,b2Vec2(20,20),2,m_world), m2(100000,b2Vec2(-20,20),2,m_world);
+    
+        Magnet m1(100000,b2Vec2(20,20),2,m_world), m2(200000,b2Vec2(-20,20),2,m_world);
         magnets.push_back(m1);
         magnets.push_back(m2);
-    }
-
+  
 ////////////////////////////////////////////////////////////////////////////////////
 // Create the dynamic magnetic balls here
 ////////////////////////////////////////////////////////////////////////////////////
-    {
-
-        // Magnet ball 1 and 2
-        mgBalls.push_back(Ball(b2Vec2(2,2), 1,m_world));
-        mgBalls.push_back(Ball(b2Vec2(-2,2), 1,m_world));
-    }
+    // Magnet ball 1 and 2
+        mgBalls.push_back(Ball(b2Vec2(2,50), 1,m_world));
+        mgBalls.push_back(Ball(b2Vec2(-2,50), 1,m_world));
 
   }
    //// The step function overwritten, added from settings
@@ -113,6 +112,11 @@ namespace cs251
                   }
             }
       }
+
+      for (b2ContactEdge* edge = player->body->GetContactList(); edge; edge = edge->next) { 
+          edge->other->SetTransform(b2Vec2(0,100),true);
+          mgBalls.push_back(Ball(b2Vec2(0,100), 1,m_world));
+      }
         
   }
 
@@ -122,15 +126,26 @@ namespace cs251
 
   void dominos_t::keyboard(unsigned char key) {
 
-      if(key=='q') {
-        for (vector<Magnet>::iterator mag = magnets.begin(); mag!=magnets.end(); mag++) {
-            mag->k = -abs(mag->k);
-        }
-      }
-      else if(key=='t') {
-        for (vector<Magnet>::iterator mag = magnets.begin(); mag!=magnets.end(); mag++) {
-            mag->k = -mag->k;
-        }
+      switch(key) {
+          case 'q':
+              for (vector<Magnet>::iterator mag = magnets.begin(); mag!=magnets.end(); mag++) {
+                  mag->k = -abs(mag->k);
+              }
+              break;
+
+          case 't':
+              for (vector<Magnet>::iterator mag = magnets.begin(); mag!=magnets.end(); mag++) {
+                  mag->k = -mag->k;
+              }
+              break;
+
+          case GLUT_KEY_LEFT:
+              player->Move(-3);
+              break;
+
+          case GLUT_KEY_RIGHT:
+              player->Move(3);
+              break;            
       }
 
   }
@@ -147,6 +162,7 @@ namespace cs251
 
 
   sim_t *sim = new sim_t("Magnets!", dominos_t::create);
-      
 }
+      
+
 
