@@ -27,7 +27,6 @@
 
 namespace cs251
 {
-
   struct Magnet {
       b2Body* body;
       long double k;
@@ -85,12 +84,12 @@ namespace cs251
     Slider(b2World *m_world) {
         
         b2BodyDef bd;
-        bd.position.Set(0,0.5f);
+        bd.position.Set(0,1.0f);
         bd.type = b2_kinematicBody;
 
 
         b2PolygonShape shape;
-        shape.SetAsBox(10.0f, 0.3f);
+        shape.SetAsBox(15.0f, 0.3f);
         
         b2FixtureDef fd;
         fd.shape = &shape;
@@ -116,6 +115,7 @@ namespace cs251
     vector<Magnet> magnets;
     vector<Ball> mgBalls;
     Slider *player;
+    b2Body *ground;
     
     dominos_t();
     ~dominos_t();
