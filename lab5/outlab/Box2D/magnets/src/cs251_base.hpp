@@ -48,7 +48,7 @@ namespace cs251
     //! Notice the initialization of the class members in the constructor
     //! How is this happening?
     settings_t() :
-      view_center(0.0f, 40.0f),
+      view_center(0.0f, 47.0f),
       hz(60.0f),
       velocity_iterations(8),
       position_iterations(10),
