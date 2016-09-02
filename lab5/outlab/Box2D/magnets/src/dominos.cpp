@@ -162,12 +162,9 @@ namespace cs251
 
     }
 
-    // ball1->ApplyLinearImpulse( b2Vec2(-100,-50), ball1->GetWorldCenter() , true);
-
   }
 
-
-    //// The step function overwritten, added from settings
+   //// The step function overwritten, added from settings
 
 
   void dominos_t::step(settings_t* settings) {
@@ -213,7 +210,6 @@ namespace cs251
             // glVertex2f(magnet2->GetWorldCenter().x, magnet2->GetWorldCenter().y);
             // glEnd();
 
-
       }
         
   }
@@ -221,6 +217,26 @@ namespace cs251
   dominos_t::~dominos_t() {
     ;
   }
+
+  void dominos_t::keyboard(unsigned char key) {
+
+      if(key=='q') {
+          k1 = -abs(k1);
+          k2 = -abs(k2);
+      }
+      else if(key=='t') {
+        k1 = -k1;
+        k2 = -k2;
+      }
+
+  }
+  void dominos_t::mouse_down(const b2Vec2& p) {
+
+    if(magnet1->GetFixtureList()[0].TestPoint(p)) k1 = -k1;
+    else if(magnet2->GetFixtureList()[0].TestPoint(p)) k2 = -k2;
+  }
+
+
 
   sim_t *sim = new sim_t("Magnets!", dominos_t::create);
       
