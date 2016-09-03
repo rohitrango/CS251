@@ -1,3 +1,0 @@
-out: dependency1.cpp dependency2.cpp main.cpp
-	g++ -o out main.cpp dependency1.cpp dependency2.cpp
-all: out
