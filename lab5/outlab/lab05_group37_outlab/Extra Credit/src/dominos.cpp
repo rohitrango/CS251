@@ -95,8 +95,7 @@ namespace cs251
 // Create the dynamic magnetic balls here
 ////////////////////////////////////////////////////////////////////////////////////
     // Magnet ball 1 and 2
-        mgBalls.push_back(Ball(b2Vec2(5,50), 1,m_world));
-        mgBalls.push_back(Ball(b2Vec2(-5,50),1,m_world));
+        mgBalls.push_back(Ball(b2Vec2(rand()%120-60,100), 1,m_world));
 
   }
 
@@ -138,8 +137,7 @@ namespace cs251
           mgBalls.clear();
 
           // Push 2 brand new balls
-          mgBalls.push_back(Ball(b2Vec2(5,50), 1,m_world));
-          mgBalls.push_back(Ball(b2Vec2(-5,50), 1,m_world));
+          mgBalls.push_back(Ball(b2Vec2(rand()%120-60,100), 1,m_world));
 
           // Restore repulsive power of all magnets
           for(unsigned int i=0;i<magnets.size();i++) {
