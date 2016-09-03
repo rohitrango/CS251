@@ -1,0 +1,35 @@
+-----------------------------------------------------------------------------
+Subtask 0
+-----------------------------------------------------------------------------
+
+cs251_base.hpp - Number of position iterations changed to 10 (just tinkering around)
+
+dominos.hpp - Added member functions to store the magnet and ball objects and magnets constants for the formula
+
+dominos.cpp - Essential code added here. Basically, the constructor starts with assigning the values for `k1` and `k2` constants, and defining the ball and magnet objects (we have made 2 of each). 
+Now, the step function that is inherited ( from the `base_sim_t` class ) is made used of. Inside the step function, we passed the settings for the parent class to handle. Next, we find out the force vectors using the formula given in the pdf and apply the forces on the magnetic balls. 
+
+-----------------------------------------------------------------------------
+Subtask 1
+-----------------------------------------------------------------------------
+
+dominos.hpp - Declared callback functions for mouse and keyboard. They are derived from base_sim_t which is derived from b2ContactListener, which has the callback functions for handling keyboard and mouse input.
+
+dominos.cpp - Defined callback functions to handle given cases. b2Fixture.Testpoint(p) used to find if point P lies within the shape of fixture of magnet (for generality wrt shape of magnet).
+
+Plus, we realised that we need to have a structured way of having the game objects, so as to keep track of all of them. So, we redesigned to having structs for the slider, magnets and balls.
+
+
+-----------------------------------------------------------------------------
+Subtask 2 (Extra Credit)
+-----------------------------------------------------------------------------
+
+callbacks.cpp -> keyboard callbacks changed, test->keyboard() called in case of special keys like left and right.
+
+What happens is, when we press any special key, the callback_t functions are called sequencially as given in the main function. But in the keyboard_special_cb function, there was no default case for the in-world keys. So we added a default case.
+
+Some frame settings were changed, from callbacks.cpp for adjusting the height, width, and zoom factor.
+And the height was changed from cs251_base.cpp to - 
+view_center(0.0f, 47.0f)
+
+Plus, we did very trivial things like moving the slider left and right using the setTransform() method and using the keyboard callback functions, checking for collisions between slider and the dropping balls, and whether the balls went below the slider or not. The questions given in the comments of various parts of the code were interesting. And you may even find a couple of answers to the questions that you asked by looking at the same comments :P  
