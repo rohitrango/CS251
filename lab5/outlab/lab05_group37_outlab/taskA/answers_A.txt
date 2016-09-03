@@ -1,0 +1,36 @@
+I'll be writing how my solutions satisfies different contditions required in the question.
+
+[There can be any number of cpp files in the directory.]
+
+-> `CPP_FILES := $(wildcard *.cpp)` The wildcard *.cpp captures all the files in the folder.
+
+[The makefile should be efficient, i.e., it should recompile only the files that have been modified. Also it should work with addition of new cpp and .h files and changing the dependencies on header files.]
+
+-> The target `out` depends on the object(.o) files so it is compiled only if the object file changes.
+Now the object files depend on the `.cpp` files so if any of the `.cpp` files changes then the object files change. The .o files also need to change for changing header files and also with changing the dependencies on header files. For this I used the -MMD flag with the gcc command. This dynamically generates `.d` files which contains the dependencies of the `.o` files(The headers and the cpp files).
+Thus only the reqired files are recompiled. The code below takes care of this.
+
+```
+DEPS := $(OBJ_FILES:.o=.d)
+%.o: %.cpp
+    gcc -c -MMD  -o $@ $<
+-include $(DEPS)
+```
+
+[ The task is to write a makefile that generates object files for each of these cpp files and links them together to give the executable out.]
+
+-> The .o files are compiled to give an executable named out. See code below
+```
+out: $(OBJ_FILES)
+    g++ -o $@ $^
+```
+
+[It should also have a target clean that cleans up the directory by deleting all the additional files that you generated as a part of make]
+
+-> The additional files are `.o`, `.d` and the excutable `out`. These are deleted by the `clean` target. See code below
+
+```
+clean:
+    rm -f *.o *.d out
+```
+Also `all` and `clean` have been defined as .PHONY headers since they are "pseudo-targets" and we don't want any files with that name conflicting with out compilation.
