@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/akash/Acads/3sem/cs251/lab5/outlab/Makefiles/task1/Source Files/dependency1.cpp
+dependency1.h
+/Users/akash/Acads/3sem/cs251/lab5/outlab/Makefiles/task1/Source Files/dependency1.h
+dependency2.h
+/Users/akash/Acads/3sem/cs251/lab5/outlab/Makefiles/task1/Source Files/dependency2.h
+
+/Users/akash/Acads/3sem/cs251/lab5/outlab/Makefiles/task1/Source Files/dependency2.cpp
+dependency2.h
+/Users/akash/Acads/3sem/cs251/lab5/outlab/Makefiles/task1/Source Files/dependency2.h
+
+/Users/akash/Acads/3sem/cs251/lab5/outlab/Makefiles/task1/Source Files/main.cpp
+iostream
+-
+fstream
+-
+ctime
+-
+dependency1.h
+/Users/akash/Acads/3sem/cs251/lab5/outlab/Makefiles/task1/Source Files/dependency1.h
+
+Header Files/dependency1.h
+
+Header Files/dependency2.h
+

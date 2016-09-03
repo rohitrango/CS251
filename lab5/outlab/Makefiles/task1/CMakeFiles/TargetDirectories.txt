@@ -1,0 +1,3 @@
+/Users/akash/Acads/3sem/cs251/lab5/outlab/Makefiles/task1/CMakeFiles/edit_cache.dir
+/Users/akash/Acads/3sem/cs251/lab5/outlab/Makefiles/task1/CMakeFiles/rebuild_cache.dir
+/Users/akash/Acads/3sem/cs251/lab5/outlab/Makefiles/task1/CMakeFiles/out.dir
