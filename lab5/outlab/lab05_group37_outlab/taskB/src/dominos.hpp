@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-/*
- * Base code for CS 251 Software Systems Lab
+/* 
+ * Base code for CS 251 Software Systems Lab 
  * Department of Computer Science and Engineering, IIT Bombay
- *
+ * 
  */
 #ifndef _DOMINOS_HPP_
 #define _DOMINOS_HPP_
@@ -27,6 +27,7 @@
 
 namespace cs251
 {
+
   struct Magnet {
       b2Body* body;
       long double k;
@@ -68,7 +69,7 @@ namespace cs251
         b2FixtureDef fixture1;
         fixture1.density = 5;
         fixture1.shape = &circle1;
-        fixture1.restitution = 0.7;
+        fixture1.restitution = 0.6;
 
         body = m_world->CreateBody(&mag1);
         body->CreateFixture(&fixture1);
@@ -78,35 +79,7 @@ namespace cs251
   };
 
   struct Slider {
-
     b2Body* body;
-
-    Slider(b2World *m_world) {
-
-        b2BodyDef bd;
-        bd.position.Set(0,1.0f);
-        bd.type = b2_kinematicBody;
-
-
-        b2PolygonShape shape;
-        shape.SetAsBox(15.0f, 0.3f);
-
-        b2FixtureDef fd;
-        fd.shape = &shape;
-        fd.density = 10.0f;
-
-        body = m_world->CreateBody(&bd);
-        body->CreateFixture(&fd);
-
-    }
-
-    void Move(int dist) {
-      double xCor = body->GetPosition().x;
-      if((xCor < 51 and dist>0) or (xCor > -51 and dist<0))
-        body->SetTransform(b2Vec2(dist,0) + body->GetPosition(),body->GetAngle());
-
-    }
-
   };
   //! This is the class that sets up the Box2D simulation world
   //! Notice the public inheritance - why do we inherit the base_sim_t class?
@@ -117,9 +90,8 @@ namespace cs251
 
     vector<Magnet> magnets;
     vector<Ball> mgBalls;
-    Slider *player;
-    b2Body *ground;
-    b2Body *walls;
+    Slider player;
+    
     dominos_t();
     ~dominos_t();
     static base_sim_t* create()
@@ -127,7 +99,7 @@ namespace cs251
       return new dominos_t;
     }
 
-    virtual void step(settings_t* settings);
+    virtual void step(settings_t* settings); 
     virtual void keyboard(unsigned char key);
     virtual void mouse_down(const b2Vec2& p);
 
@@ -139,5 +111,5 @@ namespace cs251
 }
 
 
-
+  
 #endif
