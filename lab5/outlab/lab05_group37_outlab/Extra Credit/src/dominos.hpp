@@ -16,10 +16,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-/* 
- * Base code for CS 251 Software Systems Lab 
+/*
+ * Base code for CS 251 Software Systems Lab
  * Department of Computer Science and Engineering, IIT Bombay
- * 
+ *
  */
 #ifndef _DOMINOS_HPP_
 #define _DOMINOS_HPP_
@@ -78,11 +78,11 @@ namespace cs251
   };
 
   struct Slider {
-    
+
     b2Body* body;
 
     Slider(b2World *m_world) {
-        
+
         b2BodyDef bd;
         bd.position.Set(0,1.0f);
         bd.type = b2_kinematicBody;
@@ -90,7 +90,7 @@ namespace cs251
 
         b2PolygonShape shape;
         shape.SetAsBox(15.0f, 0.3f);
-        
+
         b2FixtureDef fd;
         fd.shape = &shape;
         fd.density = 10.0f;
@@ -102,9 +102,7 @@ namespace cs251
 
     void Move(int dist) {
       double xCor = body->GetPosition().x;
-      if((xCor < 56 and dist>0))
-        body->SetTransform(b2Vec2(dist,0) + body->GetPosition(),body->GetAngle());
-      else if((xCor > -56 and dist<0))
+      if((xCor < 51 and dist>0) or (xCor > -51 and dist<0))
         body->SetTransform(b2Vec2(dist,0) + body->GetPosition(),body->GetAngle());
 
     }
@@ -121,7 +119,7 @@ namespace cs251
     vector<Ball> mgBalls;
     Slider *player;
     b2Body *ground;
-    
+    b2Body *walls;
     dominos_t();
     ~dominos_t();
     static base_sim_t* create()
@@ -129,7 +127,7 @@ namespace cs251
       return new dominos_t;
     }
 
-    virtual void step(settings_t* settings); 
+    virtual void step(settings_t* settings);
     virtual void keyboard(unsigned char key);
     virtual void mouse_down(const b2Vec2& p);
 
@@ -141,5 +139,5 @@ namespace cs251
 }
 
 
-  
+
 #endif

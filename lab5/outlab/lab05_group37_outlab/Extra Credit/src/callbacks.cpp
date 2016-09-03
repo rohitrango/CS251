@@ -28,11 +28,11 @@ namespace cs251
   cs251::base_sim_t* test;
   cs251::settings_t settings;
   int32 width = 640;
-  int32 height = 600;
+  int32 height = 700;
   int32 frame_period = 16;
   int32 main_window;
   float settings_hz = 60.0;
-  float32 view_zoom = 2.0f;
+  float32 view_zoom = 2.5f;
   int tx, ty, tw, th;
   bool r_mouse_down;
   b2Vec2 lastp;
