@@ -7,6 +7,7 @@
 //! These are user defined include files
 //! Included in double quotes - the path to find these has to be given at compile time
 #include "callbacks.hpp"
+#include <iostream>
 
 #ifndef __APPLE__
 #include "GL/glui.h"
@@ -27,11 +28,11 @@ namespace cs251
   cs251::base_sim_t* test;
   cs251::settings_t settings;
   int32 width = 640;
-  int32 height = 480;
+  int32 height = 600;
   int32 frame_period = 16;
   int32 main_window;
   float settings_hz = 60.0;
-  float32 view_zoom = 1.0f;
+  float32 view_zoom = 2.0f;
   int tx, ty, tw, th;
   bool r_mouse_down;
   b2Vec2 lastp;
@@ -117,12 +118,12 @@ namespace cs251
       settings.pause = !settings.pause;
       break;
       
-      //! The default case. Why is this needed?
+    //   ! The default case. Why is this needed?
     default:
       if (test)
-	{
-	  test->keyboard(key);
-	}
+	     {
+	         test->keyboard(key);
+	     }
     }
   }
   
@@ -135,18 +136,6 @@ namespace cs251
     switch (key)
     {
     case GLUT_ACTIVE_SHIFT:
-      
-      //! Press left to pan left.
-    case GLUT_KEY_LEFT:
-      settings.view_center.x -= 0.5f;
-      resize_cb(width, height);
-      break;
-      
-    //! Press right to pan right.
-    case GLUT_KEY_RIGHT:
-      settings.view_center.x += 0.5f;
-      resize_cb(width, height);
-      break;
       
     //! Press down to pan down.
     case GLUT_KEY_DOWN:
@@ -166,6 +155,15 @@ namespace cs251
       settings.view_center.Set(0.0f, 20.0f);
       callbacks_t::resize_cb(width, height);
       break;
+
+    //   ! The default case. It is needed to pass on the key to the game world!
+    default:
+      if (test)
+       {
+           test->keyboard(key);
+       }
+    
+
     }
   }
 
@@ -176,7 +174,7 @@ namespace cs251
     
     if (test)
       {
-	test->keyboard_up(key);
+	         test->keyboard_up(key);
       }
   }
   
