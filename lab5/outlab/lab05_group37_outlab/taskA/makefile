@@ -7,7 +7,7 @@ DEPS := $(OBJ_FILES:.o=.d)
 all: out
 
 out: $(OBJ_FILES)
-	g++ -MMD -o $@ $^
+	g++ -o $@ $^
 
 %.o: %.cpp
 	gcc -c -MMD  -o $@ $<
