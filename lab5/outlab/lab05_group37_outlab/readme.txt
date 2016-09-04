@@ -23,11 +23,17 @@ Rohit Kumar Jena - 100%
 Task A
 ----------------------------------------------------------------
 
-Instructions to run :-
+Instructions to run (Linux/Mac) :-
 
 0. Put the makefile in the appropriate testing directory(containing all .cpp and .h files) and run using `make` command.
 
 1. Put the CMakeLists.txt file in the appropriate testing directory(containing all .cpp and .h files). Then using `cmake .` and `make` command in the respective order to get the `out` executable.
+
+Instructions to run (Windows) :-
+
+Put CMakeLists.txt along with main.cpp and all its dependencies. Run 'cmake .' in command prompt in that directory. (We could do this because we added the cmake binaries to path at the time of installation.) Open the folder in Visual studio using 'Open Project...'. Click on 'Build solution' in Build menu. Executable 'out.exe' is created in Debug directory. Run it.
+
+NOTE : Only Meet had windows in our group and he had already completed trial period of Visual Studio. So we did it on the pc of Sourabh Singh.
 
 ----------------------------------------------------------------
 Task B
