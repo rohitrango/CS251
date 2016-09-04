@@ -58,6 +58,7 @@ namespace cs251
      */
     // Boundary
     srand(time(NULL));
+    score = 0;
     b2Body* b1;
     {
 
