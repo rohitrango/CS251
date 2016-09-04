@@ -20,9 +20,19 @@ Akash Trehan - 100%
 Rohit Kumar Jena - 100%
 
 ----------------------------------------------------------------
+Task A
+----------------------------------------------------------------
+
+Instructions to run :-
+
+0. Put the makefile in the appropriate testing directory(containing all .cpp and .h files) and run using `make` command.
+
+1. Put the CMakeLists.txt file in the appropriate testing directory(containing all .cpp and .h files). Then using `cmake .` and `make` command in the respective order to get the `out` executable.
+
+----------------------------------------------------------------
 Task B
 ----------------------------------------------------------------
-Files changed - 
+Files changed -
 
 1. callbacks.cpp (edit explained in answers)
 
@@ -45,7 +55,8 @@ Citations
 Reflection Essay
 ----------------------------------------------------------------
 
-Task A - 
+Task A -
+Automating stuff is pretty cool. So this task was very interesting. Inlab had given us a fair idea of how to use make. But Outlab took it one level up. We had to generate dependencies dynamically for improving the efficiency of compilation. That was the part we like the best. Cmake, though pretty interesting and useful from what we read online, had only a very simple question associated to it. But we were amazed on seeing the Makefile it generated and how versatile cmake was - going good across all platforms.
 
 Task B -
 The code structure in the inlab was very complicated. We could not think of writing it from scratch. So we started from inlab and started by modifying dominos.cpp. We came to know about use of step function inherited from parent by reading code for testbeds. Testbeds were very useful. We read about detecting collisions from given manual and ibox2d.org. Also, we could easily assign 'q' and 't' keys to respective purposes. But assigning arrow keys was harder. We searched for the code that moves the window on pressing arrow keys and found it as well. Then some time was spent in figuring out how to call it in dominos.cpp. We made some finishing changes and we were done.
