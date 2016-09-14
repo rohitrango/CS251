@@ -7,10 +7,14 @@
 \ProvidesClass{resume}[11/09/2016 v1 Resume class]
 
 \LoadClass[11pt,letterpaper]{article}
-
+\usepackage[export]{adjustbox}
+\usepackage[margin=1in]{geometry}
 \usepackage[parfill]{parskip} % Do not indent paragraphs
 \usepackage{array} % required for boldface tabular columns
 \usepackage{ifthen}
+\usepackage{hyperref}
+\usepackage[misc]{ifsym}
+\usepackage{graphicx,wrapfig}
 
 \nofiles % .aux files are not needed for resumes
 \pagestyle{empty} % resumes do not need page numbers
@@ -70,8 +74,41 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% start writing your environments and commands from here
 
+\newenvironment{Header}[7]
+{
+  %\begin{figure}[h]
+  %\includegraphics[width=50mm,right]{photo.jpg}
+  %\end{figure}
+  \begin{wrapfigure}{r}{5.5cm}
+  \vspace{-35pt}
+  \label{wrap-fig:1}
+  \includegraphics[width=3.5cm]{photo.jpg}
+  \end{wrapfigure}
+
+  \textbf{#1}\\[4pt]
+  #2
+  #3\\[4pt]
+  #4\\
+  #5\\[4pt]
+  \Letter\,\href{mailto:#6}{#6} \\
+  \rule{\textwidth}{1pt}
+%Figure~\ref{wrap-fig:1} is a wrapped figure.
+
+}
+{
+}
 
 
+\newenvironment{Section}[1]
+{
+\Large
+{
+\uppercase{\textbf{{\em \underline{#1}}}}\\
+}
+}
+{
+  
+}
 
 
 \def\namesize{\huge}
