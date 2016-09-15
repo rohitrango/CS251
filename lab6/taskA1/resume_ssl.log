@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.7.12)  15 SEP 2016 11:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.7.12)  15 SEP 2016 13:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -427,7 +427,7 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 20.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 22.
  [1
 
 
@@ -435,16 +435,16 @@ Package atveryend Info: Empty hook `BeforeClearDocument' on input line 20.
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./photo
 .jpg>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 20.
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 20.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 20.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 20.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 22.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 22.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 22.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 22.
  ) 
 Here is how much of TeX's memory you used:
- 6972 strings out of 493014
- 104857 string characters out of 6133351
- 195924 words of memory out of 5000000
- 10423 multiletter control sequences out of 15000+600000
+ 6974 strings out of 493014
+ 104872 string characters out of 6133351
+ 195947 words of memory out of 5000000
+ 10425 multiletter control sequences out of 15000+600000
  9850 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  47i,10n,70p,332b,316s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -458,7 +458,7 @@ r12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10
 .pfb>
-Output written on resume_ssl.pdf (1 page, 158569 bytes).
+Output written on resume_ssl.pdf (1 page, 162735 bytes).
 PDF statistics:
  52 PDF objects out of 1000 (max. 8388607)
  38 compressed objects within 1 object stream

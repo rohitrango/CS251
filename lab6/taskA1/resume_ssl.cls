@@ -128,6 +128,15 @@
 }
 
 
+\renewcommand{\quote}[2]{
+
+{\centering
+
+``{\it #1}" - {\sc #2}
+
+}
+}
+
 \def\namesize{\huge}
 \def\nameskip{\medskip}
 \def\addressskip{\smallskip}
