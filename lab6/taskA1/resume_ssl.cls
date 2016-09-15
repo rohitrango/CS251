@@ -16,6 +16,7 @@
 \usepackage[misc]{ifsym}
 \usepackage{graphicx,wrapfig}
 \usepackage{enumitem}
+\usepackage{xparse}
 
 \nofiles % .aux files are not needed for resumes
 \pagestyle{empty} % resumes do not need page numbers
@@ -92,6 +93,12 @@
   \rule{\textwidth}{1pt}
 }
 
+\newcommand{\cvitem}[2]{
+\normalsize
+{
+\item #2(\textbf{{\it #1}})
+}
+}
 
 \newenvironment{Section}[1]
 {
@@ -104,12 +111,28 @@
 
 \newenvironment{Subsection}[5]
 {
-\begin{table}[h]
-\begin{tabular}{ll}
-\textbf{#1} & \parbox[t]{0.8\textwidth}{\raggedleft\texttt{#2}}\par\smallskip \\
-{\it #3} &   \parbox[t]{0.8\textwidth}{\raggedleft{\sc #4}}\par\smallskip \\
-\end{tabular}
-\end{table}
+% \begin{table}[h]
+
+\large
+{
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{#1}\\
+{\it #3}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{flushright}
+\texttt{#2}\\
+{\sc #4}
+\end{flushright}
+\end{minipage}
+}
+\vspace{20pt}
+% \begin{tabular}{ll}
+% \textbf{#1} & \parbox[t]{0.8\textwidth}{\raggedleft\texttt{#2}}\par\smallskip \\
+% {\it #3} &   \parbox[t]{\textwidth}{\raggedleft{\sc #4}}\par\smallskip \\
+% \end{tabular}
+% \end{table}
 \begin{itemize}[leftmargin=6mm]
 \normalsize
 {
@@ -121,12 +144,38 @@
 \end{itemize}
 }
 
+% \newcommand{\core}[1]{\renewcommand{\cores}{#1}}
+% \newcommand{\noncore}[1]{\renewcommand{\noncores}{#1}}
+% \newcommand{\cores}{}
+% \newcommand{\noncores}{}
+
+\NewDocumentCommand\core{>{\SplitList{;}}m}
+  {
+    \begin{itemize}[label={}]
+      \ProcessList{#1}{ \insertitem }
+    \end{itemize}
+  }
+\newcommand\insertitem[1]{\item #1}
+
+\NewDocumentCommand\noncore{>{\SplitList{;}}m}
+  {
+    \begin{itemize}[label={}]
+      \ProcessList{#1}{ \insertitem }
+    \end{itemize}
+  }
+\renewcommand\insertitem[1]{\item #1}
 
 \newenvironment{Course}
+{\begin{flushleft}}
 {
-  
-}
-
+\begin{table}[h]
+\begin{tabular}{ll}
+\textbf{##1} & \parbox[t]{0.8\textwidth}{\raggedleft\texttt{}}\par\smallskip \\
+\end{tabular}
+\end{table}
+  % \textbf{\core}\\
+  % \textbf{\noncore}
+\end{flushleft}}
 
 \renewcommand{\quote}[2]{
 
@@ -136,6 +185,7 @@
 
 }
 }
+
 
 \def\namesize{\huge}
 \def\nameskip{\medskip}
