@@ -1,3 +1,4 @@
+.PHONY:all
 all:
 	pdflatex main
 	bibtex main
