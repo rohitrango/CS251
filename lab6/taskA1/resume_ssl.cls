@@ -15,6 +15,7 @@
 \usepackage{hyperref}
 \usepackage[misc]{ifsym}
 \usepackage{graphicx,wrapfig}
+\usepackage{enumitem}
 
 \nofiles % .aux files are not needed for resumes
 \pagestyle{empty} % resumes do not need page numbers
@@ -76,10 +77,7 @@
 
 \newenvironment{Header}[7]
 {
-  %\begin{figure}[h]
-  %\includegraphics[width=50mm,right]{photo.jpg}
-  %\end{figure}
-  \begin{wrapfigure}{r}{5.5cm}
+  \begin{wrapfigure}{r}{4cm}
   \vspace{-35pt}
   \label{wrap-fig:1}
   \includegraphics[width=3.5cm]{photo.jpg}
@@ -92,10 +90,6 @@
   #5\\[4pt]
   \Letter\,\href{mailto:#6}{#6} \\
   \rule{\textwidth}{1pt}
-%Figure~\ref{wrap-fig:1} is a wrapped figure.
-
-}
-{
 }
 
 
@@ -106,6 +100,29 @@
 \uppercase{\textbf{{\em \underline{#1}}}}\\
 }
 }
+
+
+\newenvironment{Subsection}[5]
+{
+\begin{table}[h]
+\begin{tabular}{ll}
+\textbf{#1} & \parbox[t]{0.8\textwidth}{\raggedleft\texttt{#2}}\par\smallskip \\
+{\it #3} &   \parbox[t]{0.8\textwidth}{\raggedleft{\sc #4}}\par\smallskip \\
+\end{tabular}
+\end{table}
+\begin{itemize}[leftmargin=6mm]
+\normalsize
+{
+\vspace{-20pt}
+
+
+#5
+}
+\end{itemize}
+}
+
+
+\newenvironment{Course}
 {
   
 }
