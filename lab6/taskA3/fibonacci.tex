@@ -1,0 +1,25 @@
+\documentclass{article}
+\begin{document}
+\typein[\n]{Enter the value of n :-}
+\newcommand{\fibonacci}[1]{
+	\newcount\nterms
+	\nterms #1\relax
+	\newcount\ta
+	\newcount\tb
+	\newcount\tc
+	\ta 1\relax
+	\tb 1\relax
+	\tc 1\relax
+	\loop
+		\ifnum \nterms>0
+			\advance\nterms -1\relax
+			\huge{\the\ta}
+			\advance\tc \the\ta\relax
+			\ta \the\tb\relax
+			\tb \the\tc\relax
+			\tc \the\tb\
+	\repeat
+}
+
+\fibonacci{\n}
+\end{document}
