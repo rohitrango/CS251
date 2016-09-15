@@ -8,7 +8,7 @@
 
 \LoadClass[11pt,letterpaper]{article}
 \usepackage[export]{adjustbox}
-\usepackage[margin=1in]{geometry}
+\usepackage[left=1in,right=1in,top=0.8in]{geometry}
 \usepackage[parfill]{parskip} % Do not indent paragraphs
 \usepackage{array} % required for boldface tabular columns
 \usepackage{ifthen}
@@ -17,6 +17,7 @@
 \usepackage{graphicx,wrapfig}
 \usepackage{enumitem}
 \usepackage{xparse}
+\usepackage{ifthen}
 
 \nofiles % .aux files are not needed for resumes
 \pagestyle{empty} % resumes do not need page numbers
@@ -78,25 +79,37 @@
 
 \newenvironment{Header}[7]
 {
-  \begin{wrapfigure}{r}{4cm}
-  \vspace{-35pt}
-  \label{wrap-fig:1}
-  \includegraphics[width=3.5cm]{photo.jpg}
-  \end{wrapfigure}
+\begin{minipage}[t]{0.48\textwidth}
 
-  \textbf{#1}\\[4pt]
-  #2
-  #3\\[4pt]
-  #4\\
-  #5\\[4pt]
-  \Letter\,\href{mailto:#6}{#6} \\
-  \rule{\textwidth}{1pt}
+\vspace{-20pt}
+
+\ifthenelse{\equal{#1}{}}{}{\textbf{#1}\\[4pt]}
+  \ifthenelse{\equal{#2}{}}
+  {
+  \ifthenelse{\equal{#3}{}}{}{#3\\[4pt]}
+  }{#2 #3\\[4pt]}
+  \ifthenelse{\equal{#4}{}}{}{#4\\}
+  \ifthenelse{\equal{#5}{}}{}{#5\\[4pt]}
+  \ifthenelse{\equal{#6}{}}{}{\Letter\,\href{mailto:#6}{#6} \\}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{flushright}
+\vspace{-35pt}
+\ifthenelse{\equal{#7}{}}{}{\includegraphics[width=4cm]{#7}}
+\end{flushright}
+\end{minipage}
+
+  % \begin{wrapfigure}{r}{4cm}
+  % \label{wrap-fig:1}
+  % \includegraphics[width=3.5cm]{photo.jpg}
+  % \end{wrapfigure}
 }
 
 \newcommand{\cvitem}[2]{
 \normalsize
 {
-\item #2(\textbf{{\it #1}})
+\ifthenelse{\equal{#1}{}}{\item #2}{\item #2(\textbf{{\it #1}})}
 }
 }
 
@@ -104,44 +117,63 @@
 {
 \Large
 {
-\uppercase{\textbf{{\em \underline{#1}}}}\\
+\ifthenelse{\equal{#1}{}}{}{\uppercase{\textbf{{\em \underline{#1}}}}\\}
 }
 }
 
 
 \newenvironment{Subsection}[5]
 {
-% \begin{table}[h]
 
 \large
 {
 \begin{minipage}[t]{0.48\textwidth}
-\textbf{#1}\\
+\ifthenelse{\equal{#1}{}}{
+  \ifthenelse{\equal{#2}{}}{}{\textbf{#1}\\}
+}{\textbf{#1}\\}
 {\it #3}
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.48\textwidth}
 \begin{flushright}
-\texttt{#2}\\
+\ifthenelse{\equal{#2}{}}{
+  \ifthenelse{\equal{#1}{}}{}{\texttt{#2}\\}
+}{\texttt{#2}\\}
 {\sc #4}
 \end{flushright}
 \end{minipage}
 }
-\vspace{20pt}
+\ifthenelse{\equal{#1}{}}{
+  \ifthenelse{\equal{#2}{}}{}{\vspace{10pt}}
+}{\vspace{10pt}}
+\ifthenelse{\equal{#3}{}}{
+  \ifthenelse{\equal{#4}{}}{}{\vspace{10pt}}
+}{\vspace{10pt}}
+% \begin{table}[h]
 % \begin{tabular}{ll}
 % \textbf{#1} & \parbox[t]{0.8\textwidth}{\raggedleft\texttt{#2}}\par\smallskip \\
 % {\it #3} &   \parbox[t]{\textwidth}{\raggedleft{\sc #4}}\par\smallskip \\
 % \end{tabular}
 % \end{table}
-\begin{itemize}[leftmargin=6mm]
-\normalsize
-{
+% \ifthenelse{\equal{#5}{}}{}
+% {
+
+% \begin{itemize}[leftmargin=6mm]
+% \normalsize
+% {
+% \vspace{-20pt}
+
+% #5
+% }
+% \end{itemize}
+
+% }
+\if\relax\detokenize{#5}\relax\else
 \vspace{-20pt}
-
-
-#5
-}
-\end{itemize}
+    \begin{itemize}[nosep]
+    #5
+    \end{itemize}
+  \fi
 }
 
 % \newcommand{\core}[1]{\renewcommand{\cores}{#1}}
