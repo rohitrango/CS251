@@ -99,11 +99,6 @@
 \ifthenelse{\equal{#7}{}}{}{\includegraphics[width=4cm]{#7}}
 \end{flushright}
 \end{minipage}
-
-  % \begin{wrapfigure}{r}{4cm}
-  % \label{wrap-fig:1}
-  % \includegraphics[width=3.5cm]{photo.jpg}
-  % \end{wrapfigure}
 }
 
 \newcommand{\cvitem}[2]{
@@ -149,25 +144,7 @@
 \ifthenelse{\equal{#3}{}}{
   \ifthenelse{\equal{#4}{}}{}{\vspace{10pt}}
 }{\vspace{10pt}}
-% \begin{table}[h]
-% \begin{tabular}{ll}
-% \textbf{#1} & \parbox[t]{0.8\textwidth}{\raggedleft\texttt{#2}}\par\smallskip \\
-% {\it #3} &   \parbox[t]{\textwidth}{\raggedleft{\sc #4}}\par\smallskip \\
-% \end{tabular}
-% \end{table}
-% \ifthenelse{\equal{#5}{}}{}
-% {
 
-% \begin{itemize}[leftmargin=6mm]
-% \normalsize
-% {
-% \vspace{-20pt}
-
-% #5
-% }
-% \end{itemize}
-
-% }
 \if\relax\detokenize{#5}\relax\else
 \vspace{-20pt}
     \begin{itemize}[nosep]
@@ -176,32 +153,9 @@
   \fi
 }
 
-% \newcommand{\core}[1]{\renewcommand{\cores}{#1}}
-% \newcommand{\noncore}[1]{\renewcommand{\noncores}{#1}}
-% \newcommand{\cores}{}
-% \newcommand{\noncores}{}
-
-% \NewDocumentCommand\core{>{\SplitList{;}}m}
-%   {
-%     \begin{itemize}[label={}]
-%       \ProcessList{#1}{ \insertitem }
-%     \end{itemize}
-%   }
-% \newcommand\insertitem[1]{\item #1}
-
-% \NewDocumentCommand\noncore{>{\SplitList{;}}m}
-%   {
-%     \begin{itemize}[label={}]
-%       \ProcessList{#1}{ \insertitem }
-%     \end{itemize}
-%   }
-% \renewcommand\insertitem[1]{\item #1}
-
 \newcommand{\core}[1]
 {
 \begin{center}
-
-% \vspace{-80pt}
 
 \begin{minipage}[t]{0.48\textwidth}
 \large
@@ -234,16 +188,6 @@
   \uppercase{\textbf{{\em \underline{Courses Taken}}}}\\
 }
 }
-% {\begin{flushleft}}
-% {
-% \begin{table}[h]
-% \begin{tabular}{ll}
-% \textbf{##1} & \parbox[t]{0.8\textwidth}{\raggedleft\texttt{}}\par\smallskip \\
-% \end{tabular}
-% \end{table}
-%   % \textbf{\core}\\
-%   % \textbf{\noncore}
-% \end{flushleft}}
 
 \renewcommand{\quote}[2]{
 
