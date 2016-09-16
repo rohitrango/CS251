@@ -8,7 +8,7 @@
 
 \LoadClass[11pt,letterpaper]{article}
 \usepackage[export]{adjustbox}
-\usepackage[left=1in,right=1in,top=0.8in]{geometry}
+\usepackage[left=1in,right=1in,top=0.8in, bottom=1in]{geometry}
 \usepackage[parfill]{parskip} % Do not indent paragraphs
 \usepackage{array} % required for boldface tabular columns
 \usepackage{ifthen}
@@ -117,7 +117,7 @@
 {
 \Large
 {
-\ifthenelse{\equal{#1}{}}{}{\uppercase{\textbf{{\em \underline{#1}}}}\\}
+\ifthenelse{\equal{#1}{}}{}{\uppercase{\textbf{{\em \underline{#1\\}}}}\\}
 }
 }
 
@@ -181,33 +181,78 @@
 % \newcommand{\cores}{}
 % \newcommand{\noncores}{}
 
-\NewDocumentCommand\core{>{\SplitList{;}}m}
-  {
-    \begin{itemize}[label={}]
-      \ProcessList{#1}{ \insertitem }
-    \end{itemize}
-  }
-\newcommand\insertitem[1]{\item #1}
+% \NewDocumentCommand\core{>{\SplitList{;}}m}
+%   {
+%     \begin{itemize}[label={}]
+%       \ProcessList{#1}{ \insertitem }
+%     \end{itemize}
+%   }
+% \newcommand\insertitem[1]{\item #1}
 
-\NewDocumentCommand\noncore{>{\SplitList{;}}m}
-  {
-    \begin{itemize}[label={}]
-      \ProcessList{#1}{ \insertitem }
-    \end{itemize}
-  }
-\renewcommand\insertitem[1]{\item #1}
+% \NewDocumentCommand\noncore{>{\SplitList{;}}m}
+%   {
+%     \begin{itemize}[label={}]
+%       \ProcessList{#1}{ \insertitem }
+%     \end{itemize}
+%   }
+% \renewcommand\insertitem[1]{\item #1}
 
-\newenvironment{Course}
-{\begin{flushleft}}
+\newcommand{\core}[1]
 {
-\begin{table}[h]
-\begin{tabular}{ll}
-\textbf{##1} & \parbox[t]{0.8\textwidth}{\raggedleft\texttt{}}\par\smallskip \\
-\end{tabular}
-\end{table}
-  % \textbf{\core}\\
-  % \textbf{\noncore}
-\end{flushleft}}
+\begin{center}
+
+% \vspace{-80pt}
+
+\begin{minipage}[t]{0.48\textwidth}
+\large
+{
+  \textbf{Core} \\
+}
+#1
+\end{minipage}
+\end{center}
+
+\vspace{10pt}
+
+\hfill
+}
+
+\newcommand{\noncore}[1]
+{
+\begin{center}
+
+\vspace{-95pt}
+
+\begin{minipage}[t]{0.48\textwidth}
+\begin{flushright}
+\large
+{
+  \textbf{Non-Core} \\
+}
+#1
+\end{flushright}
+\end{minipage}
+\end{center}
+
+\vspace{10pt}
+}
+
+\newenvironment{Course}{
+\Large
+{
+  \uppercase{\textbf{{\em \underline{Courses Taken}}}}\\
+}
+}
+% {\begin{flushleft}}
+% {
+% \begin{table}[h]
+% \begin{tabular}{ll}
+% \textbf{##1} & \parbox[t]{0.8\textwidth}{\raggedleft\texttt{}}\par\smallskip \\
+% \end{tabular}
+% \end{table}
+%   % \textbf{\core}\\
+%   % \textbf{\noncore}
+% \end{flushleft}}
 
 \renewcommand{\quote}[2]{
 
