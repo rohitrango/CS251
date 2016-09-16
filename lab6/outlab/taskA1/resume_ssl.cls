@@ -203,28 +203,19 @@
 
 % \vspace{-80pt}
 
-\begin{minipage}[t]{0.48\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \large
 {
   \textbf{Core} \\
 }
 #1
 \end{minipage}
-\end{center}
-
-\vspace{10pt}
-
-\hfill
+\begin{minipage}[t]{0.3\textwidth}
+\begin{flushright}
 }
 
 \newcommand{\noncore}[1]
 {
-\begin{center}
-
-\vspace{-95pt}
-
-\begin{minipage}[t]{0.48\textwidth}
-\begin{flushright}
 \large
 {
   \textbf{Non-Core} \\
