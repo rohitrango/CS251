@@ -4,4 +4,3 @@ all:
 	bibtex main
 	pdflatex main
 	pdflatex main
-	evince main.pdf
