@@ -18,6 +18,7 @@
 \usepackage{enumitem}
 \usepackage{xparse}
 \usepackage{ifthen}
+\usepackage{environ}
 
 \nofiles % .aux files are not needed for resumes
 \pagestyle{empty} % resumes do not need page numbers
@@ -117,7 +118,7 @@
 }
 
 
-\newenvironment{Subsection}[5]
+\newenvironment{Subsection}[4]
 {
 
 \large
@@ -145,12 +146,13 @@
   \ifthenelse{\equal{#4}{}}{}{\vspace{10pt}}
 }{\vspace{10pt}}
 
-\if\relax\detokenize{#5}\relax\else
+% \if\relax\detokenize{\BODY}\relax\else
 \vspace{-20pt}
     \begin{itemize}[nosep]
-    #5
-    \end{itemize}
-  \fi
+}
+{
+  \end{itemize}
+  % \fi
 }
 
 \newcommand{\core}[1]
