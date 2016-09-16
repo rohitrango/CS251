@@ -203,14 +203,14 @@
 
 % \vspace{-80pt}
 
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.48\textwidth}
 \large
 {
   \textbf{Core} \\
 }
 #1
 \end{minipage}
-\begin{minipage}[t]{0.3\textwidth}
+\begin{minipage}[t]{0.48\textwidth}
 \begin{flushright}
 }
 
