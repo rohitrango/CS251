@@ -1,0 +1,42 @@
+\section{Quicksort}
+\subsection{Introduction}
+Quicksort (sometimes called partition-exchange sort) is an efficient sorting algorithm, serving as a systematic method for placing the elements of an array in order.\cite{quicksort}
+\subsection{Algorithm}
+Quicksort is a divide and conquer algorithm. Quicksort first divides a large array into two smaller sub-arrays: the low elements and the high elements. Quicksort can then recursively sort the sub-arrays. The steps are -
+\begin{enumerate}
+	\item{Pick an element, called a pivot, from the array.}
+	\item{Partitioning: reorder the array so that all elements with values less than the pivot come before the pivot, while all elements with values greater than the pivot come after it (equal values can go either way). After this partitioning, the pivot is in its final position. This is called the partition operation.}
+	\item{Recursively apply the above steps to the sub-array of elements with smaller values and separately to the sub-array of elements with greater values.}
+\end{enumerate}
+\textbf{Base case}: When there are 0 or 1 elements in the array, which is trivially sorted.
+We use the Hoare partitioning scheme to determine the partition.
+\subsection{Pseudocode}
+	\subsubsection{Algorithm}
+	
+	\begin{algorithmic}[1]
+		\Function{quicksort}{$A,begin,end$}
+    			\If{$begin < end$} 
+    				\State{$p \gets $ \Call{partition}{$A,begin,end$}} 
+    				\State{\Call{quicksort}{$A,begin,p-1$}}
+    				\State{\Call{quicksort}{$A,p+1,end$}} 
+    			\EndIf 
+		\EndFunction 
+	\end{algorithmic}
+	
+	\subsubsection{Partitioning Scheme}
+
+	\begin{algorithmic}[1]
+		\Function{partition}{$A,begin,end$}
+			\State{$pivot \gets A[end]$}
+			\State{$ i \gets begin$}
+			\For{$j \gets begin$ to $end-1$} 
+				\If{$A[j] \leq pivot$}
+					\State{swap $A[i]$ with $A[j]$}
+					\State{$ i \gets i+1$}
+				\EndIf
+			\EndFor
+			\State{swap $A[i]$ with $A[end]$} 
+			\State{\Return{$i$}}
+		\EndFunction	
+	\end{algorithmic}
+	

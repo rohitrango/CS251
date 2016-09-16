@@ -1,0 +1,16 @@
+\section{Shortest path problem}
+\subsection{Introduction}
+In a graph, the `shortest path problem' is the problem of finding the minimum distance (represented by weights of edges) between two nodes of the graph.
+The problem of finding the shortest path between two intersections on a road map (the graph's vertices correspond to intersections and the edges correspond to road segments, each weighted by the length of its road segment) may be modelled by a special case of the shortest path problem in graphs.
+\subsection{Definition}
+The shortest path problem can be defined for graphs whether undirected, directed, or mixed. It is defined here for undirected graphs; for directed graphs the definition of path requires that consecutive vertices be connected by an appropriate directed edge.\cite{dijkstra}
+\subsection{Algorithms}
+There are many algorithms to solve the Shortest Path problem. Some of them are-
+\begin{enumerate}
+	\item{\textbf{Dijkstra's algorithm} solves the single-source shortest path problem.}
+	\item{\textbf{Bellman–Ford algorithm} solves the single-source problem if edge weights may be negative.}
+	\item{\textbf{A* search algorithm} solves for single pair shortest path using heuristics to try to speed up the search.}
+	\item{\textbf{Floyd–Warshall algorithm} solves all pairs shortest paths.}
+	\item{\textbf{Johnson's algorithm} solves all pairs shortest paths, and may be faster than Floyd–Warshall on sparse graphs.}
+	\item{\textbf{Viterbi algorithm} solves the shortest stochastic path problem with an additional probabilistic weight on each node.}
+\end{enumerate}

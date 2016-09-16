@@ -1,0 +1,22 @@
+\section{Inorder Binary Tree Traversal}
+
+\subsection{Traversal}
+There are several types of traversals. Depth-first traversals are traversals which traverse the complete depth of a node, and then move to the next node, as opposed to breadth-first traversals which traverse completely on the same level before moving on to the next level. Depth first traversals are of 3 types -
+\begin{enumerate}
+	\item{Inorder}
+	\item{Preorder}
+	\item{Postorder}
+\end{enumerate}
+\subsection{Inorder traversal}
+In inorder tree traversal, we recursively call the function on the left subtree first, then we print the current node value, and then we call the function recursively on the right subtree.
+This method of traversal makes the value on the leftmost node to be printed first and the rightmost node to be printed at the last, and all the nodes in the same order as in the tree, and hence, it is called inorder traversal. \cite{inorder}
+
+In case of a binary tree, this traversal will print in \textbf{sorted order} (or reverse sorted, if the tree is maintained in a reverse way.)
+
+\subsection{Analysis}
+The algorithm runs in $O(n)$ time complexity and $O(1)$ space complexity. The analysis can be done as follows- 
+\begin{enumerate}
+	\item{Time taken to print a node is of order $O(1)$.}
+	\item{$ T(n) = T(k) + T(n-k) + O(1) $}
+\end{enumerate}
+Each node is only accessed once, hence, we can easily say that the time compelexity is of order $O(n)$.

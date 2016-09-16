@@ -1,0 +1,19 @@
+\documentclass{article}
+\begin{document}
+\typein[\n]{Enter the value of n :-}
+
+\newcommand{\factorial}[1]{
+	\newcount\nvalue
+	\newcount\nfac
+	\nvalue #1\relax
+	\nfac 1\relax
+	\loop
+		\ifnum \nvalue > 0
+			\nfac \numexpr \the\nfac*\the\nvalue \relax		
+			\nvalue \numexpr \the\nvalue -1\relax
+	\repeat
+	\huge{\the\nfac}
+}
+
+\factorial{\n}
+\end{document}
