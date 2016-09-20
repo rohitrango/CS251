@@ -1,0 +1,4 @@
+error lm = 163868.2 
+const = 30.42325 
+coeffx = 1.25248 
+coeffx2 = -0.8463498 

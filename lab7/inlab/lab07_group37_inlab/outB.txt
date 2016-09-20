@@ -1,0 +1,2 @@
+slope = 1.485585
+y intercept = 25.55704
