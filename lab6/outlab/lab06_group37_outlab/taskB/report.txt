@@ -1,0 +1,17 @@
+After looking at the plot, we could notice that the graph is not symmetrical about the maximum point. So all distributions arising from Gaussian is a no-no. The Rayleigh distribution was the most probable distribution. Plus, we did it in the inlab and it looked familiar.
+Hence, our guess - It is a Rayleigh distribution.
+
+After fitting the given data using A(x) ~ Rayleigh distribution and N(x) ~ Gaussian distribution with mean zero, we got the following parameters for the fit.
+For A(x) ~ Rayleigh
+	sigma = 11.5
+
+For N(x) ~ Gaussian with 0 mean
+	s = 5.49989
+
+In addition, we also have
+	final sum of squares of residuals : 2.44523e-11
+	variance of residuals (reduced chisquare) = WSSR/ndf   : 8.17803e-14
+
+
+
+	 

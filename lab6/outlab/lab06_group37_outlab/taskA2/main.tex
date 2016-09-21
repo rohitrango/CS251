@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+\usepackage{algpseudocode}
+\usepackage{xstring}
+\usepackage{ifthen}
+\usepackage{hyperref}
+\hypersetup{				% customized hyperlinks for citations
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    filecolor=black,
+    urlcolor=black,
+}
+\title{TaskA2}
+
+\begin{document}
+
+	\typein[\files]{Enter the files you want to include!}
+
+	\IfStrEq{\files}{all}{
+		\include{part1}
+		\include{part2}
+		\include{part3}
+	}{
+		\IfSubStr{\files}{part1}{
+			\include{part1}
+		}{}
+		\IfSubStr{\files}{part2}{
+			\include{part2}
+		}{}
+		\IfSubStr{\files}{part3}{
+			\include{part3}
+		}{}
+	}
+
+	\bibliography{biblio}
+	\bibliographystyle{ieeetr}
+\end{document}

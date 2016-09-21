@@ -1,0 +1,5 @@
+*.aux
+main.out
+main.log
+main.blg
+main.bbl
