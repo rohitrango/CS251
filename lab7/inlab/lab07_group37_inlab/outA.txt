@@ -1,0 +1,6 @@
+mean = 97.58921
+median = 68.31533
+standard deviation = 79.05172
+slope = 67.48034
+y intercept = -127.4221
+error = 27667.84 
