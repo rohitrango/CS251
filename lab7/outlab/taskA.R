@@ -1,24 +1,25 @@
-inp = read.csv("data_bi_lin.csv")
-plot(y~x,data=inp)
-lmout = lm(y~x, data=inp)
-abline(lmout, col="red")
-errorlm = sum(lmout$residuals^2)
-n=nrow(inp)
-minerror = Inf
-mini = 3
-for(i in 1:(n-1)){
-  error = 0
-  lmout = lm(y~x, data=inp[1:i,])
-  error = sum(lmout$residuals^2)
-  lmout = lm(y~x, data=inp[(i+1):n,])
-  error = error + sum(lmout$residuals^2)
-  minerror=min(error,minerror)
-  if(minerror==error) mini = i
+taskAdata = read.csv('data_bi_lin.csv')
+taskAdata = taskAdata[with(taskAdata, order(x),),]
+x = taskAdata$x
+y = taskAdata$y
+samples = length(x)
+simple_lm = lm(y ~ x)
+plot(x,y)
+abline(simple_lm , col= "red")
+
+index = 0
+minError = Inf
+for(i in 1:samples-1) {
+  e1 = sum(lm(y[1:i] ~ x[1:i])$residuals^2)
+  e2 = sum(lm(y[i+1:samples] ~ x[i+1:samples])$residuals^2)
+  if(e1 + e2 < minError) {
+    minError = e1+e2
+    index = i
+  }
 }
-lmout = lm(y~x, data=inp[1:mini,])
-abline(lmout, col="green")
-lmout = lm(y~x, data=inp[(mini+1):n,])
-abline(lmout, col="green")
-cat("error lm = ", errorlm)
-cat("error broken = ", minerror)
-cat("C =",inp[mini,2])
+
+abline(lm(y[1:index] ~ x[1:index]),col="blue")
+abline(lm(y[index+1:samples] ~ x[index+1:samples]),col="green")
+cat('error lm =',sum(simple_lm$residuals^2),"\n")
+cat('error broken =',minError,"\n")
+cat('C =',x[index],"\n")

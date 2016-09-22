@@ -1,0 +1,3 @@
+useDynLib("Rlof")
+import("doParallel","foreach")
+export("lof","distmc")

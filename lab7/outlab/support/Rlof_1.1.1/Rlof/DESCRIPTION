@@ -1,0 +1,15 @@
+Package: Rlof
+Version: 1.1.1
+Date: 2015-09-16
+Title: R Parallel Implementation of Local Outlier Factor(LOF)
+Author: Yingsong Hu, Wayne Murray and Yin Shan, Australia.
+Maintainer: Yingsong Hu <yingsonghu@hotmail.com>
+Depends: R (>= 2.14.0), doParallel, foreach
+Description: R parallel implementation of Local Outlier Factor(LOF) which uses multiple CPUs to significantly speed up the LOF computation for large datasets. (Note: The overall performance depends on the computers especially the number of the cores).It also supports multiple k values to be calculated in parallel, as well as various distance measures in addition to the default Euclidean distance. 
+License: GPL (>= 2)
+Packaged: 2015-09-16 12:47:58 UTC; yingsong
+NeedsCompilation: yes
+Repository: CRAN
+Date/Publication: 2015-09-17 07:51:00
+Built: R 3.3.1; x86_64-w64-mingw32; 2016-09-21 01:23:58 UTC; windows
+Archs: i386, x64

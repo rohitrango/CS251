@@ -1,0 +1,4 @@
+Rlof-package            R Parallel Implementation of Local Outlier
+                        Factor(LOF)
+distmc                  Distance Matrix Computation with multi-threads
+lof                     Local Outlier Factor
