@@ -31,12 +31,12 @@ while(x[t+1] < x_0) {
 segments(x[t],m1*x[t]+c1,x1 = x_0, m1*x_0 + c1, col="blue")
 segments(x_0,m2*x_0+c2,x1 = x[t+1], m2*x[t+1] + c2, col="blue")
 t = t+1
-while(t < samples-1) {
+while(t <= samples-1) {
   segments(x[t],m2*x[t]+c2,x1 = x[t+1], y1 = m2*x[t+1] + c2, col="darkblue")
   t = t+1
 }
 
 cat('error lm =',sum(simple_lm$residuals^2),"\n")
 cat('error broken =',minError,"\n")
-cat('C =',x[index],"\n")
-  
+cat('C =',x[index+1],"\n")
+
