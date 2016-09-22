@@ -23,8 +23,8 @@ colproc = function(col){
   }
   else{
     lolol = (lapply(col,list))
-    return(lolol)
-    #return(lapply(lolol,function(x) x[1][[1]]))
+    #return(lolol)
+    return(lapply(lolol,function(x) x[1][[1]]))
   }
 }
 udata = lapply((1:length(rawdata)),function(x) colproc(rawdata[[x]]))
