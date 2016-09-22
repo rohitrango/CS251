@@ -59,6 +59,24 @@ for(icol in (1:ncol)){
   vctr.mu = vctr.sum/vctr.num
   vctr.stdev = sqrt((vctr.sqsum/vctr.num - vctr.mu**2))
   udata[icol] = normalize(udata[icol],vctr.mu,vctr.stdev)
+  udata[icol] = normalize(udata[icol],-6,0.1)
 }
 #}
+
+countnum = function(x){
+  return(sum(unlist(lapply(x,is.numeric))))
+}
+X=15
+for(i in (1:nentries)){
+  score[[i]] = sum(unlist(sapply(udata,function(x) sum(unlist(x[[i]]),na.rm=TRUE))),na.rm=TRUE)
+  entry.num = sum(unlist(sapply(udata,function(x) countnum(x[[i]]))),na.rm=TRUE)
+}
+sortedscore = sort(unlist(score),decreasing =TRUE,index.return=TRUE)$ix
+for(i in (1:X)){
+  cat(sortedscore[i],score[[sortedscore[i]]],"\n")
+}
+for(i in (X+1):nentries){
+  if(score[[sortedscore[i]]]!=score[[sortedscore[X]]]) break
+  else cat(sortedscore[i],score[[sortedscore[i]]],"\n")
+}
 
