@@ -63,6 +63,7 @@ for(icol in (1:ncol)){
 }
 #}
 
+#Ranking 1{
 countnum = function(x){
   return(sum(unlist(lapply(x,is.numeric))))
 }
@@ -79,4 +80,17 @@ for(i in (X+1):nentries){
   if(score[[sortedscore[i]]]!=score[[sortedscore[X]]]) break
   else cat(sortedscore[i],score[[sortedscore[i]]],"\n")
 }
+#}
+
+#Ranking2{
+X=15
+n=10
+udata = normalize(udata,60,10)
+for(i in (1:nentries)){
+  # relevant =   
+  # score[[i]] = sum(unlist(),na.rm=TRUE)
+  # entry.num = sum(unlist(sapply(udata,function(x) countnum(x[[i]]))),na.rm=TRUE)
+}
+#}
+
 
