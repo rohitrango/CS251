@@ -39,7 +39,7 @@ normalize = function(x,mu,stdev){
 
 # length of x of any list
 mylength = function(x){
-  if(class(x)=="logical"){return(0)}
+  if(class(x[[1]])=="logical"){return(0)}
   else{return(length(x))}
 }
 
@@ -61,6 +61,7 @@ for(icol in (1:ncol)) {
 
   udata[[icol]] = normalize(udata[[icol]],vctr.mu,vctr.stdev)
   udata[[icol]] = normalize(udata[[icol]],-6,0.1)
+  cat(vctr.mu,vctr.stdev, "\n")
 }
 
 ### All cool
