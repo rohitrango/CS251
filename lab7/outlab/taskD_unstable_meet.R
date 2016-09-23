@@ -28,7 +28,8 @@ colproc = function(col){
   }
 }
 
-vdata = udata = lapply((1:length(rawdata)),function(x) colproc(rawdata[[x]]))
+vdata = lapply((1:length(rawdata)),function(x) colproc(rawdata[[x]]))
+udata = vdata
 
 # Normalization, x can be list, array or anything else
 normalize = function(x,mu,stdev){
@@ -39,7 +40,7 @@ normalize = function(x,mu,stdev){
 
 # length of x of any list
 mylength = function(x){
-  if(class(x[[1]])=="logical"){return(0)}
+  if(class(x)=="logical"){return(0)}
   else{return(length(x))}
 }
 
@@ -55,14 +56,14 @@ for(icol in (1:ncol)) {
   #     vctr.sqsum = vctr.sqsum + sum(unlist(lapply(cell,function(x) x**2)))
   #   }
   # }
-  v = unlist(udata[[icol]])
-  vctr.mu = mean(v , na.rm = T)
-  vctr.stdev = sd(v,na.rm = T)
-
+  # vctr.mu = vctr.sum/vctr.num
+  # vctr.stdev = sqrt((vctr.sqsum/vctr.num - vctr.mu**2))
+  vctr.mu = mean(unlist(udata[[icol]]))
+  vctr.stdev = sd(unlist(udata[[icol]]))
   udata[[icol]] = normalize(udata[[icol]],vctr.mu,vctr.stdev)
-  udata[[icol]] = normalize(udata[[icol]],-6,0.1)
-  cat(vctr.mu,vctr.stdev, "\n")
 }
+udata = normalize(-6,0.1)
+ndata = udata     # ndata stores standardized data for Saphiro test for 1
 
 ### All cool
 ###################################################################################################
@@ -76,8 +77,8 @@ X=15
 firstScores = list()
 
 for(i in (1:nentries)){
-  firstScores[[i]] = sum(sapply(udata,function(x) sum(unlist(x[[i]]),na.rm=TRUE)),na.rm=TRUE)
-  entry.num        = sum(sapply(udata,function(x) sum((sapply(x[[i]],is.numeric)),na.rm=TRUE)),na.rm=TRUE)
+  firstScores[[i]] = sum(unlist(sapply(udata,function(x) sum(unlist(x[[i]]),na.rm=TRUE))),na.rm=TRUE)
+  entry.num = sum(unlist(sapply(udata,function(x) countnum(x[[i]]))),na.rm=TRUE)
   firstScores[[i]] = firstScores[[i]] / entry.num
   if(entry.num == 0)
     firstScores[[i]] = NA
@@ -117,6 +118,7 @@ X=15
 n=10
 secondScores = list()           # list to insert -Inf or total score of 1:n
 udata = normalize(udata,60,10)  # normalize the scores from standarised data
+
 ## find the top X scores
 for(i in (1:nentries)){
     rowScore = sort(unlist(sapply(udata,function(x) x[[i]])),decreasing=TRUE)
@@ -176,36 +178,34 @@ inversions = function(left,right) {
 }
 ninv12 = inversions(firstScores,secondScores)
 cat('No. of inversions:', ninv12)
-## ndata is used for the 4 bin system
+
 ## Third part, put into bins!
 ## Already normalized data
 ## thirdScores[[i]][[j]] = ith company, jth bin
 X = 15
 n = 10
-ndata = vdata       # use original data to standardize
+udata = vdata       # use original data to standardize
 
 ## Normalise columns '4' bins at a time
 for(icol in (seq(1,ncol,4))) {
-  # vctr.sum = 0
-  # vctr.num = 0
-  # vctr.sqsum = 0
-  # for(j in 0:3) {
-  #   for(cell in ndata[[icol + j]]) {
-  #     if(!is.na(cell[1])){
-  #       vctr.num = vctr.num + length(cell)
-  #       vctr.sum = vctr.sum + sum(unlist(cell))
-  #       vctr.sqsum = vctr.sqsum + sum(unlist(lapply(cell,function(x) x**2)))
-  #     }
-  #   }
-  # }
-  # vctr.mu = vctr.sum/vctr.num
-  # vctr.stdev = sqrt((vctr.sqsum/vctr.num - vctr.mu**2))
-  normalisedVector = c(unlist(ndata[[i]]),unlist(ndata[[i+1]]),unlist(ndata[[i+2]]),unlist(ndata[[i+3]]))
-  vctr.mu = sum(normalisedVector,na.rm = TRUE)
-  vctr.stdev = sd(normalisedVector,na.rm = TRUE)
+  vctr.sum = 0
+  vctr.num = 0
+  vctr.sqsum = 0
   for(j in 0:3) {
-      ndata[[icol+j]] = normalize(ndata[[icol+j]],vctr.mu,vctr.stdev)
-      ndata[[icol+j]] = normalize(ndata[[icol+j]],-6,0.1)
+    for(cell in udata[[icol + j]]) {
+      if(!is.na(cell[1])){
+        vctr.num = vctr.num + length(cell)
+        vctr.sum = vctr.sum + sum(unlist(cell))
+        vctr.sqsum = vctr.sqsum + sum(unlist(lapply(cell,function(x) x**2)))
+      }
+    }
+  }
+  vctr.mu = vctr.sum/vctr.num
+  vctr.stdev = sqrt((vctr.sqsum/vctr.num - vctr.mu**2))
+  cat(vctr.mu, vctr.stdev, "\n")
+  for(j in 0:3) {
+      udata[[icol+j]] = normalize(udata[[icol+j]],vctr.mu,vctr.stdev)
+      udata[[icol+j]] = normalize(udata[[icol+j]],-6,0.1)
   }
 }
 
@@ -213,7 +213,7 @@ thirdScores = list()
 # find the max 15 scores here
 ## find the top X scores
 for(i in (1:nentries)){
-    rowScore = sort(unlist(sapply(ndata,function(x) x[[i]])),decreasing=TRUE)
+    rowScore = sort(unlist(sapply(udata,function(x) x[[i]])),decreasing=TRUE)
     if(length(rowScore) < n) {
         thirdScores[[i]] = -Inf
     }
@@ -254,7 +254,7 @@ cat('\n\n')
 #### The Shapiro Wilk test on all columns
 countNormalDist = 0
 for(i in 1:ncol) {
-  pval = shapiro.test(unlist(vdata[[i]]))$p.value
+  pval = shapiro.test(unlist(ndata[[i]]))$p.value
   if(pval > 0.02) {
       countNormalDist = countNormalDist + 1
   }
@@ -264,11 +264,10 @@ cat(1-countNormalDist/ncol,'fraction is NOT normally distributed.\n')
 
 countNormalDist = 0
 for(i in seq(1,ncol,4)) {
-  v = unlist(vdata[[i]])
+  v = unlist(udata[[i]])
   for(j in 1:3) {
-    v = c(v , unlist(vdata[[i+j]]) )
+    v = c(v , unlist(udata[[i+j]]) )
   }
-
   pval = shapiro.test(v)$p.value
   if(pval > 0.02) {
       countNormalDist = countNormalDist + 1
@@ -295,7 +294,7 @@ cat(1-countNormalDist/(ncol/4),'fraction is NOT normally distributed. (in bins o
 #   }
 #   for(i in 1:length(rankList2)){
 #     for(j in 1:length(rankList1)){
-      
+
 #     }
 #   }
 # }
