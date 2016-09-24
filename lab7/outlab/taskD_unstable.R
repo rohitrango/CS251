@@ -74,14 +74,17 @@ countnum = function(x){
 
 X=15
 firstScores = list()
+firstScores2 = list()
 
 for(i in (1:nentries)){
-  firstScores[[i]] = sum(sapply(udata,function(x) sum(unlist(x[[i]]),na.rm=TRUE)),na.rm=TRUE)
+ # firstScores[[i]] = sum(sapply(udata,function(x) sum(unlist(x[[i]]),na.rm=TRUE)),na.rm=TRUE)
   entry.num        = sum(sapply(udata,function(x) sum((sapply(x[[i]],is.numeric)),na.rm=TRUE)),na.rm=TRUE)
+  firstScores[[i]] = sum(unlist(lapply(udata, function(x) x[[i]])),na.rm=T) 
   firstScores[[i]] = firstScores[[i]] / entry.num
   if(entry.num == 0)
     firstScores[[i]] = NA
 }
+firstscore3 = firstScores
 
 firstScores = sort(unlist(firstScores),decreasing =TRUE,index.return=TRUE)
 firstScores$ranks = c(1)
