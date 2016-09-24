@@ -48,16 +48,16 @@ chisq.test(stu)
 
 p-value = 0.07617
 
-Confidence level = 99% ---> alpha < p-val  ---> Accept the hypothesis
-Confidence level = 95% ---> alpha < p-val  ---> Accept the hypothesis
-Confidence level = 90% ---> alpha > p-val  ---> Reject the hypothesis
+Confidence level = 99% ---> alpha < p-val  ---> Accept the hypothesis (Yes)
+Confidence level = 95% ---> alpha < p-val  ---> Accept the hypothesis (Yes)
+Confidence level = 90% ---> alpha > p-val  ---> Reject the hypothesis (No)
 
 1. Hypothesis = #freshies = #sophies = 2*#thirdies = 2*#fourthies
 chisq.test(stu,p = c(2,2,1,1), rescale.p = T)
 
 p-value = 0.4694
 
-Confidence level = 99% ---> alpha < p-val  ---> Accept the hypothesis
-Confidence level = 95% ---> alpha < p-val  ---> Accept the hypothesis
-Confidence level = 90% ---> alpha < p-val  ---> Accept the hypothesis
+Confidence level = 99% ---> alpha < p-val  ---> Accept the hypothesis (Yes)
+Confidence level = 95% ---> alpha < p-val  ---> Accept the hypothesis (Yes)
+Confidence level = 90% ---> alpha < p-val  ---> Accept the hypothesis (Yes)
 
