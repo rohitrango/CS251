@@ -450,7 +450,7 @@ cat('No. of inversions of ratings of TaskD5 and TaskD6(n=15) (after Shapiro test
 cat('No. of inversions of ratings of TaskD5 and TaskD6(n=15) (after Shapiro test):',newinv23_X10,'\n')
 options(warn=0)
 
-mat = c(firstScores$x[1:15],secondScores$x[1:15],secondScoresX_10$x[1:15],thirdScores$x[1:15],thirdScoresX_10$x[1:15])
+mat = c(firstScores$ix[1:15],secondScores$ix[1:15],secondScoresX_10$ix[1:15],thirdScores$ix[1:15],thirdScoresX_10$ix[1:15])
 mat = matrix(mat,ncol=5)
-write(t(mat),file = 'ratings.txt')
+write(t(mat),file = 'rankings.txt')
 closeAllConnections()
