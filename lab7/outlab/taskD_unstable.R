@@ -3,6 +3,7 @@ ncol = length(rawdata)
 nentries = length(rawdata[[1]])
 lmax = 1
 X = 15
+options(warn=-1)
 #loads rawdata into usable format udata
 #converts each cell to list
 lister = function(x){
@@ -430,3 +431,8 @@ newinv23_X10 = inversions(newSecondScoresX_10,newthirdScoresX_10)
 
 cat('No. of inversions of ratings of TaskD5 and TaskD6(n=15) (after Shapiro test):',newinv23_X15,'\n')
 cat('No. of inversions of ratings of TaskD5 and TaskD6(n=15) (after Shapiro test):',newinv23_X10,'\n')
+options(warn=0)
+
+mat = c(firstScores$x[1:15],secondScores$x[1:15],secondScoresX_10$x[1:15],thirdScores$x[1:15],thirdScoresX_10$x[1:15])
+mat = matrix(mat,ncol=5,nrow=15)
+write(mat,file = file('ratings.txt'))
