@@ -1,0 +1,5 @@
+error brokenline = 1636.848 
+error polynomial = 499.9275 
+outliers 
+-8.982257 239 
+-4.217378 256 
