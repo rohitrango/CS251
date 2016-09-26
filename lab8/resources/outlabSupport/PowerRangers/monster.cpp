@@ -1,9 +1,7 @@
 #include "monster.hpp"
-
 // constructor for the monster
 Monster::Monster(int size){
 	this->size = size;
-
 	facePosition.x = 0;
 	facePosition.y = 0;
 	facePosition.z = 0;
@@ -54,13 +52,8 @@ double Monster::computeArmLength(){
 	double term = 1;
 	int iter = 1;
 	while(term > 1e-9) {
-		double addedValue = 0;
-		for(int i=0; i<size*size; i++) {
-			for(int j=0; j<size; j++) {
-				addedValue += term;
-			}
-		}
-		term = addedValue / (size * size * iter);
+		double addedValue = term * size;
+		term = addedValue / iter;
 		length += term;
 		iter++;
 	}
