@@ -30,14 +30,17 @@ This lab was interesting. The theme reminded us of our favorite characters in ch
 ---------------------------------------------------------------------------------------
 TASK A:-
 ---------------------------------------------------------------------------------------
+The task was easy. It was easy to figure out which part took the highest time, and then it was a piece of cake to change the function to run much faster. Once we used the DP solution, and found our first item, we were further motivated to do the other ones. Although the task wasn't as challenging, we enjoyed it. 
 
 ---------------------------------------------------------------------------------------
 TASK B:-
 ---------------------------------------------------------------------------------------
+This task was also fun! We came to know what Doxygen is capable of (we know that we have just scratched the surface, the Doxygen documentation is huge).
 
 ---------------------------------------------------------------------------------------
 TASK C:-
 ---------------------------------------------------------------------------------------
+Matplotlib is a very easy to use and highly user-friendly. Since its written in python, it was a breeze to work on. Scatter plot was easy to make, and we didn't really expect a 'message' inside the scatter plot. Brilliant idea!
 
 ---------------------------------------------------------------------------------------
 TASK D:-
