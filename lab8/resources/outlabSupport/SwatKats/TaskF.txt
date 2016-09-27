@@ -1,0 +1,15 @@
+Once again the Swat Cats(Bade Miyan and Chote Miyan) save the Megakat City with the latest weapon upgrade to their $Turbokat$
+
+(Output)
+
+First we figured out what does time do. It prints 3 different times:-
+
+sys - Total number of CPU-seconds used by the system on behalf of the process (in kernel mode), in seconds.
+user - Total number of CPU-seconds that the process used directly (in user mode), in seconds.
+real - Elapsed real (wall clock) time used by the process, in seconds.
+
+We thought that the process may not be on the CPU for the entire real time elapsed, so CPU time was the relevant time required. It would be the sum of user and sys times.
+
+time gave its output to stderr, so it couldn't be directly piped. We redirected output to stdin.
+
+We extracted these times using sed and cut. We used a command 'bc' to sum them. (They couldn't be summed directly because they were obtained as strings. Trying to sum them concatenated them. bc evaluates this concatenated string). We made an array to store it and then sorted it lexicographically after adding leading zeroes. So we got the sorted order. Then we executed files in those order to get output as above. WE USED BACKGROUND PROCESSES TO FASTEN THINGS UP. Please wait after execution completes.
