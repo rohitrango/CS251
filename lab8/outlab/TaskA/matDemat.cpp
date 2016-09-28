@@ -65,21 +65,9 @@ int getBrick(int row, int column) {
 		return cumulativeScene[row][column];
 
 	else {
-		int sumr=0, sumc=0;
-		for(int i=0;i<row;i++)
-			sumr+=scene[i][column];
-		for(int j=0;j<=column;j++) 
-			sumc+=scene[row][j];
-		return cumulativeScene[row][column] = getBrick(row-1,column-1) + sumc + sumr;
+		cumulativeScene[row][column] = getBrick(row-1,column) + getBrick(row,column-1) - getBrick(row-1,column-1) + scene[row][column];
+		return cumulativeScene[row][column];
 	}
-	// int sum = 0;
-	// // Brick value is the sum of the rectangle with (row,column) as the bottom right corner
-	// for(int i=0; i<=row; i++){
-	// 	for(int j=0; j<=column; j++) {
-	// 		sum += scene[i][j];
-	// 	}
-	// }
-	// return sum;
 }
 void buildWall();
 
@@ -94,7 +82,14 @@ int main() {
 		scene[i][j] = rand()%100;
 		bakeBrick(i,j);
 	}
+
+	// init
 	cumulativeScene[0][0] = scene[0][0];
+	for(int i=1;i<MAX;i++) {
+		cumulativeScene[i][0] = cumulativeScene[i-1][0] + scene[i][0];
+		cumulativeScene[0][i] = cumulativeScene[0][i-1] + scene[0][i];
+	}
+
 	buildWall();
 	return 0;
 }

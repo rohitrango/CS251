@@ -2,4 +2,4 @@ After running `gprof` on the given code and changing MAX = 100, we see that the 
 
 Efficiency
 ------------
-So we applied a DP solution where we store the value of the sum till 'r' rows and 'c' columns in a new MAX*MAX array. This reduced the total time complexity from O(n^4) to O(n^3), hence reducing the expected running time from ~1000s (~ 20 minutes) to ~ 1s.
+So we applied a DP solution where we store the value of the sum till 'r' rows and 'c' columns in a new MAX*MAX array. This reduced the total time complexity from O(n^4) to O(n^2), hence reducing the expected running time from ~1000s (~ 20 minutes) to ~ 0.067s.
