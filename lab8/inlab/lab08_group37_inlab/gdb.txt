@@ -1,0 +1,30 @@
+B.3 
+break calc
+
+B.5 
+next
+print minVal
+
+B.6
+break 11
+
+B.7
+print minVal
+print A.size()
+print A.size() < minVal
+
+B.8
+whatis minVal
+whatis A.size()
+
+B.9
+A.size() is of size_type which stores an unsigned integer. When minVal(an int) is compared with A.size(), C++ intrinsically converts it to size_type which can only be positive. Thus minVal gets converted to a very large positive integer. Hence loop runs for a very long time.
+
+(
+We reached at this conclusion since in B.7 we got
+
+(gdb) p (int)A.size() < minVal
+$9 = false
+(gdb) p A.size() < minVal
+$10 = true
+)

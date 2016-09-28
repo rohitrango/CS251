@@ -1,0 +1,10 @@
+I took a look at the given source and understood that the values of the 3 'check' variables needed to be changed.
+
+So I used the following commands:-
+
+1. start - To break at main
+2. set preFlightCheck1 = true
+3. set preFlightCheck2 = true
+4. set finalFlightCheck = true
+
+These set all three variables to true so none of the if condition is true and printKey() function gets executing on using `continue` command.
