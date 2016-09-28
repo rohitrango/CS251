@@ -1,0 +1,5 @@
+After running `gprof` on the given code and changing MAX = 100, we see that the getBrick() function takes most of the time. And it was inefficient. 
+
+Efficiency
+------------
+So we applied a DP solution where we store the value of the sum till 'r' rows and 'c' columns in a new MAX*MAX array. This reduced the total time complexity from O(n^4) to O(n^3), hence reducing the expected running time from ~1000s (~ 20 minutes) to ~ 1s.
