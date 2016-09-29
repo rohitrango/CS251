@@ -1,0 +1,61 @@
+We used time to get initial output time. It took about 57 seconds.
+**OUTPUT** :-
+Your code isn't optimised enough
+
+We discovered using gprof that Monster::computeArmLength() took almost all of the time taken by the program. We tried to understand the function.
+
+double Monster::computeArmLength(){
+
+				double length = 1;
+				double term = 1;
+				int iter = 1;
+				while(term > 1e-9) {
+					double addedValue = 0;
+					for(int i=0; i<size*size; i++) {
+						for(int j=0; j<size; j++) {
+							addedValue += term;
+						}
+					}
+					term = addedValue / (size * size * iter);
+					length += term;
+					iter++;
+					return length;
+				}
+
+}
+
+We guessed the combination of two for loops and a while loop was what took so much time. term was being added repeatedly to zero. We converted repeated addition to multiplication and did some cancelling to get:-
+
+double Monster::computeArmLength(){
+
+				double length = 1;
+				double term = 1;
+				int iter = 1;
+				while(term > 1e-9) {
+					term = size *(term / iter);
+					length += term;
+					iter++;
+					return length;
+				}
+
+}
+
+**OUTPUT** :-
+Zeltrax proves his loyality, he offers you a $Dino Gem$
+
+Yet sometimes we got "Your code isn't optimised enough" when we ran it multiple times.
+
+We tried to further understand the code. Every time in while loop term got multiplied by size/iter and iter got incremented once. Thus term stored (size^iter)/(iter!). length stored sum of values of term, until value of term was insignificant. Hence it was sum of infinite series whose i-th term was (size^i)/(i!). This was tailor series for e^size.
+
+Hence we returned e^size instead.
+
+double Monster::computeArmLength(){
+
+			return exp(size);
+
+}
+
+**OUTPUT** :-
+Zeltrax proves his loyality, he offers you a $Dino Gem$
+
+This time output was same for all the time we run it.
