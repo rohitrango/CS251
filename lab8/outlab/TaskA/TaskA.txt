@@ -1,3 +1,9 @@
+Statement
+------------
+As always Road Runner has rapidly materialised the scene and tricked left you with a stick of  $dynamite$
+
+Code
+-----
 After running `gprof` on the given code and changing MAX = 100, we see that the getBrick() function takes most of the time. And it was inefficient. 
 
 Efficiency

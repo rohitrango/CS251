@@ -1,3 +1,9 @@
+Statement
+-----------
+You're on a roll!!! The whole of $BladeBreakers$ has agreed to join you;
+
+Task
+------
 After we tried to compile it normally, we got an error that processSituation function had too little parameters passed. And we could not check each and every file. So generating a documentation made our lives easier. 
 
 We generated a normal Doxygen file and made the following changes (keeping it in the same directory as intelligentReverseSpin.cpp)-
