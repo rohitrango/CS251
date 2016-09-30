@@ -1,3 +1,7 @@
 Statement
 --------------
 Fred lends you the $Mystery Machine$ for helping them cross the mine path.
+
+Instructions 
+--------------
+Place the TaskD.py in the same folder as `Mines` and run it. The plot is generated and shown. To increasing readability of the message in the image, we have colored one scatter plot with lightblue color.
