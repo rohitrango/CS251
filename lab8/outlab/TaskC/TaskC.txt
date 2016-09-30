@@ -1,1 +1,9 @@
-I ran the executable and got a Segmentation Fault. gdb have me the address of the line where segmentation fault happened. I set a breakpoint at that address, then checked the value of `i` at the first break(This is because in that line segmentation fault can only be due to OutOfBound Index). Then I used `continue` command. At the second break I saw the value of `i` was increasing. So I checked the condition on the loop and found that the update condition was wrong.
+Statement
+-----------
+Awesome!!! $Blossom$ has agreed to join your team
+
+Task
+------
+I ran the executable and got a Segmentation Fault. gdb have me the address of the line where segmentation fault happened.
+I set a breakpoint at that address, then checked the value of `i` at the first break(This is because in that line segmentation fault can only be due to OutOfBound Index).
+Then I used `continue` command. At the second break I saw the value of `i` was increasing. So I checked the condition on the loop and found that the update condition was wrong.

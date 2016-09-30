@@ -1,3 +1,7 @@
+Zeltrax proves his loyality, he offers you a $Dino Gem$
+
+----------------------------------------------------------------------------------------
+
 We used time to get initial output time. It took about 57 seconds.
 **OUTPUT** :-
 Your code isn't optimised enough
