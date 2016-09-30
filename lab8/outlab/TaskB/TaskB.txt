@@ -8,7 +8,7 @@ After we tried to compile it normally, we got an error that processSituation fun
 
 We generated a normal Doxygen file and made the following changes (keeping it in the same directory as intelligentReverseSpin.cpp)-
 
-INPUT = glm/
+INPUT = glm/ includes.h intelligentReverseSpin.cpp
 RECURSIVE = YES
 
 This created the complete docs. We went to the HTML version and searched for processSituation. We saw this in the docs for the function -
