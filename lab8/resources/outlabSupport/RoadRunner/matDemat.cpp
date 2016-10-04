@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-const int MAX = 1000;
+const int MAX = 100;
 
 int scene[MAX][MAX];
 int wall[MAX][MAX];
@@ -88,7 +88,7 @@ void buildWall() {
 		}
 	}
 
-	if(MAX != 1000){
+	if(MAX != 100){
 		cout<<"Invalid of MAX used expected 1000"<<endl;
 	}else{
 		for(int i=0;i<105;i++){
