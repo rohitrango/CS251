@@ -1,5 +1,5 @@
 import java.util.Random;
-public class thought {
+public class thought_multi_core {
     public static void main(String[] args) {
 	int[] cell = new int[10000000];
 	int[] innerCell = new int[1000000];
