@@ -1,0 +1,17 @@
+Setting the alias:
+--------------------
+
+The alias is set using
+
+`alias omp4j='java8 -jar <path_to_jar_file>'`
+
+which in my case was(using relative path)
+
+alias omp4j='java8 -jar ./omp4j-1.2.jar'
+
+Time = 6.805s
+CPU usage = 381.1%
+
+This runs a little faster than the threaded one since it is able to use multiple cores efficiently(CPU usage is more).
+
+Harry should use multi-core since it the fastest mechanism to get the answer. 

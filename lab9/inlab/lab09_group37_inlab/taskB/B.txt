@@ -1,0 +1,11 @@
+Feature used to create a function:
+
+`alt + shift + M`
+
+on the keyboard. Then gave the name of the function in the dialog box. Had to place the file in a project for this to work.
+
+For renaming the class, feature of eclipse used:
+
+`alt + shift + R`
+
+The new method using thread is very superior to the original program. It runs about 3 times as fast as the original code.(Took ~7 seconds while the original toop ~21 seconds.). Also using `top` command we saw that while the original code used 100% of the cpu. the threaded code uses more than 300% and thus is almost 3 times as fast. 

@@ -1,0 +1,18 @@
+In eclipse, we have a project structure which contains an src folder where it keeps the source files, a bin folder, where the .class files are stored.
+
+To run the file, first we created a new Java project named 'taskA1', and then made a new class 'math' and wrote the entire contents of the file made in taskA1 into the class. We did not make any package since there were less number of files. Finally, we copied the input.txt into the taskA1 folder (since it was throwing exceptions whne we kept it in the bin/ folder, to our surprise). then, we clicked on the 'Run' button and the output.txt file was created with correct output.  
+
+Eclipse stores the source files in the src folder of the project folder inside the workspace.
+
+The directory structure is -
+
+taskA1/
+	src/
+		math.java
+	bin/
+		math.class
+	input.txt
+	output.txt
+
+Classpath - /users/ug15/mtaraviya/workspace/taskA1/
+

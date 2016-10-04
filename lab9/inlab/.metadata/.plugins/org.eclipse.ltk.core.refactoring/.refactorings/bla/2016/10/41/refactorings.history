@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract method &apos;private static void run(int [] cell, int [] innerCell, int i, int randomNum)&apos; from &apos;bla.thought.main()&apos; to &apos;bla.thought&apos;&#x0A;- Original project: &apos;bla&apos;&#x0A;- Method name: &apos;run&apos;&#x0A;- Destination type: &apos;bla.thought&apos;&#x0A;- Declared visibility: &apos;private&apos;" comments="false" description="Extract method &apos;run&apos;" destination="0" exceptions="false" flags="786434" id="org.eclipse.jdt.ui.extract.method" input="/src&lt;bla{thought.java" name="run" replace="false" selection="436 294" stamp="1475595692812" version="1.0" visibility="2"/>
+</session>
