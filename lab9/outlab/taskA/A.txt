@@ -1,0 +1,7 @@
+First of all, we saw that there were a lot of errors, and upon reading, we saw that the errors arised due to absence of a build path. 
+
+So we went to the Properties of the project. Then, we added "JRE System Library" to the "Libraries", and half of the errors were resolved. Then, there were some errors with the Sort.java file. All of them were some syntax errors and wrong variable use.
+After fixing the errors and running, we got the output 'Sirius is a criminal'.
+There was a logical error in Sort.java file which basically sorted in a wrong order. The correct logic is - if left[i] <= right[j], number[k] = left[i], otherwise, number[k] = right[j]
+
+After fixing this, we got the output "Sirius is innocent"
