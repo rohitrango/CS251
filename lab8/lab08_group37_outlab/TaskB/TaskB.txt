@@ -1,0 +1,29 @@
+Statement
+-----------
+You're on a roll!!! The whole of $BladeBreakers$ has agreed to join you;
+
+Task
+------
+After we tried to compile it normally, we got an error that processSituation function had too little parameters passed. And we could not check each and every file. So generating a documentation made our lives easier. 
+
+We generated a normal Doxygen file and made the following changes (keeping it in the same directory as intelligentReverseSpin.cpp)-
+
+INPUT = glm/ includes.h intelligentReverseSpin.cpp
+RECURSIVE = YES
+
+This created the complete docs. We went to the HTML version and searched for processSituation. We saw this in the docs for the function -
+
+Process a given situation vector
+
+Parameters
+situation	The current situation
+summary	should be set to sum of all four values in situation
+a	set to any value
+b	set to any value
+c	value must be a+b
+See also
+GLM_GTX_vector_query extensions.
+
+We passed 1,1,2 as a,b,c and for the summary, we had to lookup the `vec4` class and we saw that they used 4 variables - x,y,z,w.
+In the summary, we simply passed the sum.
+ 

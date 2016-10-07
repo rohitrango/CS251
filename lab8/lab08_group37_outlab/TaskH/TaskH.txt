@@ -1,0 +1,12 @@
+Statement
+-----------
+You Win
+
+Task
+------
+So first I ran the executable and saw what all was happening.
+Then seeing the suggested reading I decided to use `info functions`. I saw the functions in FinalBattle.cpp(since that was the file from which the binary was compiled).
+Seeing the function battle() I suspected that should be the place where the battle happened. So I put a breakpoint at battle().
+Inside the function I used `info locals` to get the local variables and found a variable called `EnemyHP`. So I have to change this to 0 and then `continue` running and I would win.
+It wasn't showing the correct HP ( 10000 ) as of now so I used `next` 3 or 4 times and checked its value again. Now I had `EnemyHP = 10000`.
+So I used `set EnemyHP = 0` and then used `continue`. And got the result 'You Win'.
