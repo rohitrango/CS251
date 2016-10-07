@@ -5,7 +5,7 @@ public class Prince {
 	public static void main(String[] args) {
 
 		try {
-			URL myurl = new URL("https://www.cse.iitb.ac.in/~sharat/current/cs251/Assign/Lab09/support/Prince.php");
+			URL myurl = new URL("http://10.129.3.2:80/~sharat/current/cs251/Assign/Lab09/support/Prince.php");
 			URLConnection mConnect = myurl.openConnection();
 			if(mConnect instanceof HttpURLConnection) {
 				BufferedReader content = new BufferedReader(new InputStreamReader(mConnect.getInputStream()));
