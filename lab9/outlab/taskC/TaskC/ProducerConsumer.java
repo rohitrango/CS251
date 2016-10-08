@@ -1,76 +1,113 @@
-class Chat {
-   boolean flag = false;
-   Integer BUFFER_SIZE=5;
-   Integer numFull=0;
-   Integer numEmpty=BUFFER_SIZE;
+import java.util.LinkedList;
+import java.util.Queue;
 
-   public synchronized void Produce() {
-   	numEmpty--;
-	if (numEmpty==0) {
-	 	try {
-			wait();
-		}catch (InterruptedException e){;}
+public class ProducerConsumer
+{
+	public static void main(String[] args)
+	{
+		int size = 5;
+		
+		Queue commonQueue = new LinkedList<Object>();
+		
+		Prod p = new Prod(commonQueue, size);
+		Cons c = new Cons(commonQueue, size);
+		
+		
+		Thread p1 = new Thread(p, "Producer");
+		Thread c1 = new Thread(c, "Consumer");
+		
+		p1.start();
+		c1.start();
 	}
-	numFull++;
-	System.out.println("Produce " + numFull.toString());
-	try{
-		Thread.sleep(400);
+	
+	private static class Prod implements Runnable
+	{
+		int bufLen;
+		Queue Q1;
+		
+		Prod(Queue Q, int s)
+		{
+			bufLen = s;
+			Q1 = Q;
+		}
+
+		@Override
+		public void run() {
+			while(true)
+			{
+				try
+				{
+						while(Q1.size() == bufLen)
+						{
+							synchronized(Q1)
+							{
+								System.out.println("Produced waiting");
+								Q1.wait();
+							}
+						}
+						
+						synchronized(Q1)
+						{
+							Q1.notifyAll();
+							Q1.add("hey");
+							System.out.println("Produced: " + Q1.size());
+						}
+						
+						int ProductionRateInverse = 500;
+						Thread.sleep(ProductionRateInverse);
+				}			
+				catch(InterruptedException e)
+				{
+					;
+				}
+			}
+		}
 	}
-	catch(InterruptedException e){;}
-	notify();
-   }
+	
+	private static class Cons implements Runnable
+	{
+		int bufLen;
+		Queue Q1;
+		
+		Cons(Queue Q, int s)
+		{
+			bufLen = s;
+			Q1 = Q;
+		}
 
-   public synchronized void Consume() {
-	numFull--;
-	if (numFull==0) {
-		try {
-	    	wait();
-		}catch (InterruptedException e) {;}
+		@Override
+		public void run() {
+			while(true)
+			{
+				try
+				{
+					
+						while(Q1.size() == 0)
+						{
+							synchronized(Q1)
+							{
+								System.out.println("Consumer waiting");
+								Q1.wait();
+							}
+						}
+						
+						synchronized(Q1)
+						{
+							Q1.notifyAll();
+							Q1.remove();
+							System.out.println("Consumed: " + Q1.size());
+						}
+						
+						int ConsumptionRateInverse = 500;
+						Thread.sleep(ConsumptionRateInverse);
+							
+				}
+				catch(InterruptedException e)
+				{
+					;
+				}
+			}
+			
+		}
 	}
-	numEmpty++;
-	System.out.println("Consume "+ numFull.toString());
-	try{
-		Thread.sleep(1000);
-	}
-	catch(InterruptedException e){;}
-	notify();
-   }
-}
-
-
-class T1 implements Runnable {
-   Chat m;
-
-   public T1(Chat m1) {
-      this.m = m1;
-      new Thread(this, "Produce").start();
-   }
-
-   public void run() {
-   while(true) m.Produce();
-   }
-}
-
-
-class T2 implements Runnable {
-   Chat m;
-   String[] s2 = { "Hi", "I am good, what about you?", "Great!" };
-
-   public T2(Chat m2) {
-      this.m = m2;
-      new Thread(this, "Consume").start();
-   }
-
-   public void run() {
-      while(true) m.Consume();
-   }
-}
-
-
-public class ProducerConsumer {
-   public static void main(String[] args) {
-      Chat m = new Chat();
-      new T1(m);
-      new T2(m);
-   }
 }
