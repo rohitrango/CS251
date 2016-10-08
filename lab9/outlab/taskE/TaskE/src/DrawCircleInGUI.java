@@ -14,8 +14,9 @@ public class DrawCircleInGUI extends JFrame {
 	int xd, yd, rd;
 	JButton button1;
 	
-	GPanel thepanel;
-	
+	JPanel thepanel;
+	GPanel paintPanel;
+	JPanel textPanel;
 	JLabel lab;
 	
 	private static final long serialVersionUID = 1L;
@@ -32,9 +33,16 @@ public class DrawCircleInGUI extends JFrame {
         setSize(400, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        JPanel thepanel2 = new JPanel();
-        thepanel = new GPanel();
+       // JPanel thepanel2 = new JPanel();
+        thepanel = new JPanel();
+        thepanel.setLayout(new BoxLayout(thepanel, BoxLayout.Y_AXIS));
         add(thepanel);
+        
+        paintPanel = new GPanel();
+        textPanel = new JPanel();
+        
+        thepanel.add(paintPanel);
+        thepanel.add(textPanel);
         //add(thepanel2);
         
         
@@ -54,15 +62,15 @@ public class DrawCircleInGUI extends JFrame {
         
         button1.addActionListener(lbutton);
         
-        thepanel.add(xlabel);
-        thepanel.add(x);
-        thepanel.add(ylabel);
-        thepanel.add(y);
-        thepanel.add(rlabel);
-        thepanel.add(r);
-        thepanel.add(button1);
+        textPanel.add(xlabel);
+        textPanel.add(x);
+        textPanel.add(ylabel);
+        textPanel.add(y);
+        textPanel.add(rlabel);
+        textPanel.add(r);
+        textPanel.add(button1);
         lab = new JLabel("The circle will be out of draw area. Try different values.");
-		thepanel.add(lab);
+		textPanel.add(lab);
 		lab.setVisible(false);
     }
 	    
