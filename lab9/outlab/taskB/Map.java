@@ -1,11 +1,11 @@
 import java.util.*;
 import java.io.*;
 class Map{
-   
-   	public static void main(String []argh) throws Exception 
+
+   	public static void main(String[] args) throws Exception
    	{
-   		Scanner sc = new Scanner(new FileReader("map.txt"));
-    	
+   		Scanner sc = new Scanner(new FileReader("input.txt"));
+
       	Integer m=Integer.parseInt(sc.next()),
       		n=Integer.parseInt(sc.next()),
       		s=Integer.parseInt(sc.next())-1,
@@ -34,7 +34,7 @@ class Map{
       	mindist[s]=0.0;
       	int c=s;
       	while(c!=p){
-      		int nextc=-1; 
+      		int nextc=-1;
       		Double nextcmindist=Double.POSITIVE_INFINITY;
       		for(int i=0; i<m; i++){
       			if(!vstd[i]){
@@ -57,6 +57,6 @@ class Map{
       	if(mindist[p].isInfinite()) System.out.println("Path does not exist\n");
       	else System.out.println("Length of shortest path = "+((Integer)(int)(double)mindist[p]).toString());
 
-      
+
    }
 }
