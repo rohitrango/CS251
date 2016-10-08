@@ -53,6 +53,7 @@ public class ProducerConsumer
 							System.out.println("Produced: " + Q1.size());
 						}
 						
+						// Inversely proportional to Production rate
 						int ProductionRateInverse = 500;
 						Thread.sleep(ProductionRateInverse);
 				}			
@@ -98,7 +99,8 @@ public class ProducerConsumer
 							System.out.println("Consumed: " + Q1.size());
 						}
 						
-						int ConsumptionRateInverse = 500;
+						// Inversely proportional to Consumption rate
+						int ConsumptionRateInverse = 500; 
 						Thread.sleep(ConsumptionRateInverse);
 							
 				}
