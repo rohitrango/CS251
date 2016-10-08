@@ -37,6 +37,7 @@ class Chat {
    }
 }
 
+
 class T1 implements Runnable {
    Chat m;
 
@@ -49,6 +50,7 @@ class T1 implements Runnable {
    while(true) m.Produce();
    }
 }
+
 
 class T2 implements Runnable {
    Chat m;
@@ -63,6 +65,8 @@ class T2 implements Runnable {
       while(true) m.Consume();
    }
 }
+
+
 public class ProducerConsumer {
    public static void main(String[] args) {
       Chat m = new Chat();
