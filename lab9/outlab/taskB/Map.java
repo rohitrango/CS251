@@ -12,21 +12,21 @@ class Map{
       		p=Integer.parseInt(sc.next())-1;
 
       	Boolean vstd[] = new Boolean[m];
-      	Double mindist[] = new Double[m];
-     	Double mtx[][] = new Double[m][m];
+      	Integer mindist[] = new Integer[m];
+     	Integer mtx[][] = new Integer[m][m];
      	for(int i=0; i<m; i++){
      		vstd[i]=false;
      		mtx[i][i]=0.0;
-     		mindist[i]=Double.POSITIVE_INFINITY;
+     		mindist[i]=Integer.POSITIVE_INFINITY;
      		for(int j=i+1; j<m; j++){
-     			mtx[i][j]=Double.POSITIVE_INFINITY;
-     			mtx[j][i]=Double.POSITIVE_INFINITY;
+     			mtx[i][j]=Integer.POSITIVE_INFINITY;
+     			mtx[j][i]=Integer.POSITIVE_INFINITY;
      		}
      	}
       	for(int k=0; k<n; k++){
       	Integer vi=Integer.parseInt(sc.next())-1,
       		vj=Integer.parseInt(sc.next())-1;
-      	Double wt= (double) Integer.parseInt(sc.next());
+      	Integer wt= (Integer)Integer.parseInt(sc.next());
       		mtx[vi][vj]=wt;
       		mtx[vj][vi]=wt;
 
@@ -35,7 +35,7 @@ class Map{
       	int c=s;
       	while(c!=p){
       		int nextc=-1;
-      		Double nextcmindist=Double.POSITIVE_INFINITY;
+      		Integer nextcmindist=Integer.POSITIVE_INFINITY;
       		for(int i=0; i<m; i++){
       			if(!vstd[i]){
       				if(mindist[c]+mtx[c][i]<mindist[i]) mindist[i] =mindist[c]+mtx[c][i];
@@ -51,11 +51,11 @@ class Map{
             c=0;
             while(c!=p && vstd[c]) c++;
           }
-      		nextcmindist = Double.POSITIVE_INFINITY;
+      		nextcmindist = Integer.POSITIVE_INFINITY;
 
       	}
       	if(mindist[p].isInfinite()) System.out.println("Path does not exist\n");
-      	else System.out.println("Length of shortest path = "+((Integer)(int)(double)mindist[p]).toString());
+      	else System.out.println("Length of shortest path = "+((Integer)(int)mindist[p]).toString());
 
 
    }
