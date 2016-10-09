@@ -45,7 +45,10 @@ public class Map{
       		for(int i=0; i<m; i++){
       			if(!vstd[i] && mtx[c][i] != 2147483647){
       				if(mindist[c]+mtx[c][i] < mindist[i])
+      				{
       					mindist[i] = mindist[c]+mtx[c][i];
+      					path[i] = c;
+      				}
       				
       			}
       			if(!vstd[i] && nextcmindist > mindist[i] && i != c){
@@ -56,7 +59,6 @@ public class Map{
       		vstd[c] = true;
       		if(nextc >= 0)
   			{
-      			path[nextc] = c; // This is not correct.
   				c = nextc;
   			}
             else{
@@ -78,7 +80,7 @@ public class Map{
       			pathStack.push(k);
       			k = path[k];
       		}
-      		
+      		System.out.print((s+1) + " ");
       		while(!pathStack.isEmpty())
       		{
       			System.out.print(Integer.toString(((int)pathStack.pop() + 1)) + " ");
