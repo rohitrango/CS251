@@ -71,7 +71,7 @@ public class Map{
       	if(mindist[p] == 2147483647) System.out.println("Path does not exist\n");
       	else
   		{
-      		System.out.println("Length of shortest path = "+((Integer)(int)mindist[p]).toString());
+      		System.out.println("Total Time: "+((Integer)(int)mindist[p]).toString());
       		System.out.print("Path: ");
       		Stack pathStack = new Stack();
       		int k = p;
