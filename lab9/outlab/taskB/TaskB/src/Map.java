@@ -62,8 +62,9 @@ public class Map{
   				c = nextc;
   			}
             else{
-	            c=0;
-	            while(c!=p && vstd[c]) c++;
+            	break;
+//	            c=0;
+//	            while(c!=p && vstd[c]) c++;
             }
       		nextcmindist = 2147483647;
 
