@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block title %}
+Login / Sign Up
+{% endblock %}
+
+{% block content %}
+    <script type="text/javascript">
+      window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '1114137342016241',
+            cookie     : true,
+            xfbml      : true,
+            status     : true,
+            version    : 'v2.8',
+          });
+
+          // FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+      function loginFB() {
+
+            FB.getLoginStatus(function(response){
+                console.log(response);
+                if(response.status == "connected") {  
+                    var accessToken = response.authResponse.accessToken; 
+                    document.getElementById('access_token').value = accessToken;
+                    document.getElementById('access_token_form').submit();
+                }
+                else {
+
+                    FB.login(function(response) {
+
+                        FB.getLoginStatus(function(response){
+                            if(response.status == "connected") {
+                                var accessToken = response.authResponse.accessToken; 
+                                document.getElementById('access_token').value = accessToken;
+                                document.getElementById('access_token_form').submit();
+                            }
+                        });
+
+                    });
+                        
+                }
+
+            });
+      }
+
+    </script>
+    <!-- This is where the login and signup form will be! -->
+    <div class="navbar-fixed" style="z-index: 100">
+<nav style="z-index: 100">
+{#    <img src="{% static "images/logo.png" %}"/>#}
+    <div class="nav-wrapper blue" style="z-index: 100">
+      <a href="{% url 'website:home' %}" class="brand-logo">&nbsp;&nbsp;Feed'er</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      </ul>
+    </div>
+</nav>
+</div>
+    <div class="container">
+
+        <div style="text-align: center">
+            <h4>Welcome to Feed'er!</h4>
+        </div>
+        <br>
+        <!-- messages -->
+        <div class="messages center">
+            {% if messages %}
+                {% for message in messages %}
+                    {% if 'error' in message.tags %}
+                    <p class="red-text">{{message}}</p>
+                    {% elif 'success' in message.tags %}
+                    <p class="green-text">{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <!-- Tab bars -->
+        <div class="row">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s6"><a class="active" href="#loginContainer">Login</a></li>
+                <li class="tab col s6"><a href="#signupContainer">Signup</a></li>
+              </ul>
+            </div>
+
+            <!-- The forms -->
+            <div id="loginContainer" class="col s12">
+                <div class="container">
+                    <br>
+                    <br>
+                    <!-- form here -->
+                    <form action="" method="POST" name="signinForm">
+                        {% csrf_token %}
+                        <div class="input-field">
+                            <input type="email" id="username" name="username" class="validate" required="required">
+                            <label for="username">Email address:</label>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="password" name="password" id="password" class="validate" required="required">
+                            <label for="password">Password:</label>
+                        </div>
+
+                        <div class="input-field center">
+                            <input type="submit" id="loginSubmit" value="Login" class="btn waves-light">
+                        </div>
+                    </form>
+                    <br>
+                    <center>OR</center>
+                    <br>
+                    <div class="center">
+                        <button type="button" onclick="loginFB()" class="btn btn-facebook">Login with Facebook</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- signup -->
+            <div id="signupContainer" class="col s8 offset-m2">
+                <br><br>
+                <!-- form is here -->
+                <form action="/signup" method="POST" name="signupForm">
+                    {% csrf_token %}
+                    <div class="input-field">
+                        <input type="text" id="fullname" name="fullname" required="required">
+                        <label for="fullname">Full name:</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="email" name="sUsername" id="sUsername" required="required">
+                        <label for="sUsername">Enter email address:</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="password" name="sPassword" id="sPassword" minlength="8" required="required">
+                        <label for="sPassword">Choose a password:</label>
+                    </div>
+
+                    <div class="input-field">
+                        <br>
+                        <input type="checkbox" name="prof" id="prof">
+                        <label for="prof">I'm a professor!</label>
+                    </div>
+
+                    <div class="input-field center">
+                        <input type="submit" name="signupSubmit" id="signupSubmit" class="btn waves-light" value="Sign Up">
+                    </div>
+                    <!--  Facebook Login here -->
+                    <br>
+                    <div class="center">
+                        OR
+                        <br>
+                        <br>
+                        <button type="button" onclick="loginFB()" class="btn btn-facebook">Signup with Facebook</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <form action="{% url 'website:complete-reg' %}" method="POST" id="access_token_form">
+                {% csrf_token %}
+                <input type="hidden" name="access_token" id="access_token" value="">
+            </form>
+
+          </div>
+
+    </div>
+{% endblock %}

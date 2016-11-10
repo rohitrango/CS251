@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}{% endblock %}</title>
+	<script type="text/javascript" src="{% static 'jquery.js' %}"></script>
+	<script type="text/javascript" src="{% static 'jquery-ui.min.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'materialize/css/materialize.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.0.0/bootstrap-social.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'materialize/sass/clockpicker.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'morris.css' %}">
+    <script type="text/javascript" src="{% static 'raphael-min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'morris.min.js' %}"></script>
+
+</head>
+<body>
+	<!-- Navbar goes here -->
+	{% block navbar %}
+	{% endblock %}
+
+	{% block content %}
+	Base template!
+	{% endblock %}
+    <!-- For back button -->
+    {% block back %}
+    {% endblock %}
+	<br>
+	<br>
+	<br>
+	<script type="text/javascript" src="{% static 'materialize/js/materialize.js' %}"></script>
+    <script type="text/javascript" src="{% static 'materialize/js/materialize.clockpicker.js' %}"></script>
+<script>
+    $(document).ready(function() {
+    $('select').material_select();
+  });
+  $('#timepicker').pickatime({
+    autoclose: true,
+    twelvehour: false
+  });
+     $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year
+     onSet: function( arg ){
+        if ( 'select' in arg ){ //prevent closing on selecting month/year
+            this.close();
+        }
+     }
+  });
+
+</script>
+</body>
+</html>

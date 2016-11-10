@@ -1,0 +1,226 @@
+{% extends 'nav.html' %}
+
+{% block title %}
+Add feedback!
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+	<br>
+
+	<div class="messages center">
+	    {% if messages %}
+	        {% for message in messages %}
+	            {% if 'error' in message.tags %}
+	            <p class="red-text">{{message}}</p>
+	            {% elif 'success' in message.tags %}
+	            <p class="green-text">{{message}}</p>
+	            {% endif %}
+	        {% endfor %}
+	    {% endif %}
+	</div>
+	
+	<br>
+	<br>
+		{% if error %}
+			<div class="row">
+<div class="col s8 offset-m2">
+    <h4 style="font-weight: 200; color: #f00;text-align: center">{{ error }}</h4>
+        </div></div>
+		{% else %}
+		<!-- Content here -->
+		<h4 class="center">Add feedback form</h4>
+		<p><b>Course Name: </b>{{course.name}} <br>
+		<b>Course Code: </b>{{course.course_code}} <br>
+		<b>Semester: </b> {{course.semester}} <br>
+		<b>Year: </b> {{course.added.year}} <br>
+		</p>
+		<form action="" method="POST">
+			{% csrf_token %}
+			
+			<!-- General data like name of Feedback form -->
+			<div class="input-field">
+				<input type="text" name="feedbackname" required="required" id="fname">
+				<label for="fname">Name of Feedback form</label>
+			</div>
+
+			<input type="hidden" name="course_id" value="{{course.pk}}">
+
+			<div class="input-field">
+				<input type="date" name="deadline" class="datepicker" required="required" id="deadline">
+				<label for="deadline">Deadline</label>
+			</div>
+			<br>
+			<!-- A div will contain the question numbers box, inside which we will have a question and its type -->
+			<h5>Rating Questions</h5>
+			<p>These questions will contain a rating from 1 to 5 (both included).</p>
+			<br>
+			<div class="question-box card-panel" id="ratingQuestionBox">
+				<!-- Will contain all rating questions -->
+
+				<div class="rating-question card-panel">
+					<div class="input-field">
+						<input type="text" required="required" name="Rquestion" id="Rquestion1">
+						<label for="Rquestion1">Add your question here</label>
+					</div>
+					<div class="right">
+					</div>
+					<br>
+					<br>
+				</div>
+
+				<!-- Add Button -->
+				<br>
+				<div id="addRatingQuestionBtn">
+					<button type="button" id="ratingQBtn" class="btn green waves-effect" onclick="addRatingQuestion()">Add Question</button>
+				</div>
+			</div>
+			<!-- Rating questions over here -->
+			
+
+			<br>
+			<h5>Short Answers type Questions</h5>
+			<p>These questions will require a textual answer. Best suited for subjective feedback.</p>
+			<br>
+			<div class="question-box card-panel" id="shortQuestionBox">
+				<!-- Will contain all short questions -->
+
+				<!-- Add Button -->
+				<br>
+				<div id="addShortQuestionBtn">
+					<button type="button" id="shortQBtn" class="btn green waves-effect" onclick="addShortQuestion()">Add Question</button>
+				</div>
+			</div>
+			
+
+			<br>
+			<h5>Multiple Choice type Questions</h5>
+			<p>These questions will at least 2 choices each. Students can select any one out of them.</p>
+			<br>
+			<div class="question-box card-panel" id="MCQQuestionBox">
+				<!-- Will contain all short questions -->
+	
+				<!-- Add Button -->
+				<br>
+				<div id="addMCQQuestionBtn">
+					<div class="row">
+						<div class="col s8">
+							<div class="input-field">
+								<input type="number" value="0" id="optionsNumber">
+								<label for="optionsNumber">Add number of options</label>
+							</div>
+						</div>
+						<div class="col s4">
+							<br>
+							<button type="button" id="MCQQBtn" class="btn green waves-effect" onclick="addMCQQuestion()">Add Question</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Submit button -->
+			<div class="input-field center">
+				<input type="submit" class="btn waves-effect" name="submit" id="sumbit" value="Create feedback!">
+			</div>
+		</form>
+		
+
+		<script type="text/javascript">
+
+			var ratingQ = 2;
+			var MCQ = 1;
+			var ShortQ = 1;
+
+			$(document).ready(function(){
+				// datepicker used from here = http://jsfiddle.net/nicolapeluchetti/dAyzq/1/
+				// slight modification done to match our needs
+				dateToday = new Date();
+				$('.datepicker').pickadate({
+				    selectMonths: true, // Creates a dropdown to control month
+				    selectYears: 5, // Creates a dropdown of 15 years to control year
+				    minDate: dateToday,
+				    onSelect: function(selectedDate) {
+				            var option = this.id == "from" ? "minDate" : "maxDate",
+				                instance = $(this).data("datepicker"),
+				                date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+				            dates.not(this).datepicker("option", option, date);
+				    }
+				});		
+			});
+
+				// add a rating Question
+				function addRatingQuestion() {
+					
+					var mybtnhtml = '<div class="rating-question card-panel">\
+					<div class="input-field"><input type="text" required="required" name="Rquestion" id="Rquestion' + ratingQ + '">\
+						<label for="Rquestion' + ratingQ + '">Add your question here</label>\
+					</div>\
+					<div class="right">\
+						<button type="button" class="btn btn-small waves-effect red" onclick="deleteQuestion(\'Rquestion' + ratingQ + '\')">Delete Question</button>\
+					</div><br><br>';
+
+					$('#ratingQBtn').before(mybtnhtml);
+					ratingQ += 1;
+					console.log(ratingQ);
+				}
+				// add a short Question
+				function addShortQuestion() {
+					
+					var mybtnhtml = '<div class="short-question card-panel">\
+					<div class="input-field"><input type="text" required="required" name="Squestion" id="Squestion' + ShortQ + '">\
+						<label for="Squestion' + ShortQ + '">Add your question here</label>\
+					</div>\
+					<div class="right">\
+						<button type="button" class="btn btn-small waves-effect red" onclick="deleteQuestion(\'Squestion' + ShortQ + '\')">Delete Question</button>\
+					</div><br><br>';
+
+					$('#shortQBtn').before(mybtnhtml);
+					ShortQ += 1;
+					console.log(ShortQ);
+				}
+
+
+				function addMCQQuestion() {
+					var number = Number($('#optionsNumber').val());
+					console.log(number);
+					if(number < 2) {
+						alert("Please enter at least 2 options to add a question!");
+					}
+					else {
+						var mybtnhtml = '<div class="mcq-question card-panel">\
+						<div class="input-field"><input type="text" required="required" name="Mquestion" id="Mquestion' + MCQ + '">\
+							<label for="Mquestion' + MCQ + '">Add your question here</label>\
+						</div>\
+						<div class="input-field"><input type="hidden" name="NoOptions" value="' + number + '"></div>\
+						<div class="input-field">\
+						<div class="row"><div class="col s8">';
+
+						for(var i=1;i<=number;i++) {
+							mybtnhtml += '\
+						<div class="input-field"><input type="text" required="required" id="Q' + MCQ +'Option' + i +'" name="MAnswer" placeholder="Option' + i + '"></div>\
+						';
+						}
+
+						mybtnhtml += '</div></div> \
+						<div class="right">\
+							<button type="button" class="btn btn-small waves-effect red" onclick="deleteQuestion(\'Mquestion' + MCQ + '\')">Delete Question</button>\
+						</div><br><br>';
+						
+						$('#addMCQQuestionBtn').before(mybtnhtml);
+						MCQ+=1;
+						console.log(MCQ);
+
+					}
+				}
+
+
+				// delete the entire question box when clicked!
+				function deleteQuestion(id) {
+					$('#'+(id)).parent().parent().remove();
+				}
+		</script>
+
+
+		{% endif %}
+	</div>
+{% endblock %}

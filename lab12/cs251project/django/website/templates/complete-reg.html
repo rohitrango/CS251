@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}
+Complete your details!
+{% endblock %}
+
+
+{% block content %}
+    
+    <div class="container">
+        <h5 class="center">Complete your registration</h5>
+        <br>
+        <br>
+        <br>
+        <form action="{% url 'website:complete_signup' %}" method="POST">
+            {% csrf_token %}
+            <div class="input-field">
+                <input type="text" name="fullname" id="fullname" required="required" value="{{fullname}}">
+                <label for="fullname">Full name:</label>
+            </div>
+
+            <div class="input-field">
+                <input type="hidden" name="username" id="username" required="required" value="{{username}}">
+            </div>
+
+            <div class="input-field">
+                <input type="checkbox" id="prof" name="prof">
+                <label for="prof">I'm a professor.</label>
+            </div>
+
+            <div class="input-field center">
+                <input type="submit" name="submit" value="Complete my profile!" class="btn waves-light">
+            </div>
+        </form>
+    </div>
+{% endblock %}

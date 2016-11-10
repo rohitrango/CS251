@@ -1,0 +1,48 @@
+{% extends 'nav.html' %}
+{% load index %}
+{% block title %} Feedback details for {{member.fullname}} {% endblock %}
+
+{% block content %}
+	<div class="container">
+	<br>
+	<br>
+	<br>
+		{% if error %}
+			<div class="row">
+<div class="col s8 offset-m2">
+    <h4 style="font-weight: 200; color: #f00;text-align: center">{{ error }}</h4>
+        </div></div>
+		{% else %}
+			<h5 class="center">All feedbacks for {{member.fullname}}</h5>
+			{% for c in course_data %}
+				<br>
+				<div class="card-panel hoverable">
+					<h5 class="center">{{c.course.name}} - {{c.course.course_code}}</h5>
+					{% if c.feedbacks %}
+						<table class="highlight">
+							<thead>
+								<th>Feedback Name</th>
+								<th>Deadline</th>
+								<th class="center">Accepting responses</th>
+								<th class="center">View Details</th>
+							</thead>
+
+							<tbody>
+								{% for feedback in c.feedbacks %}
+									<tr>
+										<td>{{feedback.name}}</td>
+										<td>{{feedback.deadline | date:'j M, Y'}}</td>
+										<td class="center">{% if feedback.deadline < now %} <i class="material-icons red-text">clear</i> {% else %} <i class="material-icons green-text">done</i> {% endif %}</td>
+										<td><a href="{% url 'website:view_feedback' feedback.pk %}" class="btn btn-block">View</a></td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					{% else %} <br>
+					Sorry, no feedback forms for this course. Add one <a href="{% url 'website:add_feedback_all' %}">here.</a>
+					{% endif %}
+				</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'nav.html' %}
+{% block title %}View Student Details{% endblock %}
+
+{% block content %}
+<!-- Block begins here -->
+
+	<div class="container">
+		<br>
+		<div class="messages center">
+		    {% if messages %}
+		        {% for message in messages %}
+		            {% if 'error' in message.tags %}
+		            <p class="red-text">{{message}}</p>
+		            {% elif 'success' in message.tags %}
+		            <p class="green-text">{{message}}</p>
+		            {% endif %}
+		        {% endfor %}
+		    {% endif %}
+		</div>
+
+		{% if error %}
+			<h5 class="center red-text">{{error}}</h5>
+		{% else %}
+			<!-- Do your thing here -->
+			{% if students %}
+			<!-- Add table -->
+			<br>
+			<h5 class="center">Students List</h5>
+			<div class="row">
+				<div class="col s8"></div>
+				<div class="col s4 right-align">
+					<a href="{% url 'website:add_students' %}" class="btn green">Add a student!</a>
+				</div>
+			</div>
+			<table class="highlight">
+				<thead>
+					<tr>
+						<th>Sl. No.</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th class="center" width="25%">Number of courses taken</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for student in students %}
+					<tr>
+						<td>{{forloop.counter}}</td>
+						<td>{{student.fullname}} </td>
+						<td>{{student.user.username}} </td>
+						<td class="center">{{student.course_set.all.count}} </td>
+					</tr>
+					{% endfor %}
+				</tbody>
+
+			</table>
+			{% else %}
+			<b>There are no registered students. Register one <a href="{% url 'website:add_students' %}">here.</a></b>
+			{% endif %}
+		{% endif %}
+	</div>
+
+{% endblock %}

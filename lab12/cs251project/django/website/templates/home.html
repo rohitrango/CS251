@@ -1,0 +1,69 @@
+{% extends 'nav.html' %}
+
+{% load staticfiles %}
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<br>
+		<br>
+		<br>
+    <center>
+		Welcome, {{member.fullname}} <br>
+		You are {{member.get_mtype_display}} <br> <br>
+        {% if member.mtype == "AD" %}
+        <img src="{% static 'images/access_granted.png' %}" width="600">
+        {% else %}
+            <img src="{% static 'images/prof.jpg' %}">
+        {% endif %}
+    </center>
+		<hr>
+
+		<!-- Add content here -->
+		{% if member.mtype == "AD" %}
+			<div class="row center">
+				<div class="col s6">
+					<a href="{% url 'website:add_course' %}" class="btn btn-block">Add Courses!</a>
+				</div>
+				<div class="col s6">
+					<a href="{% url 'website:view_course' %}" class="btn btn-block">View Courses</a>
+				</div>
+			</div>
+			<div class="row center">
+				<div class="col s6">
+					<a href="{% url 'website:view_students' %}" class="btn btn-block">View student list</a>
+				</div>
+				<div class="col s6">
+					<a href="{% url 'website:add_students' %}" class="btn btn-block">Add student</a>
+				</div>
+			</div>
+		{% else %}
+            <div class="row center">
+                    <div class="col s6 offset-m3">
+					<a href="{% url 'website:view_course' %}" class="btn btn-block ">My Courses</a>
+				    </div>
+            </div>
+			<div class="row center">
+                <div class="col s6">
+                    <a href="{% url 'website:view_assignment' %}" class="btn btn-block">View Assignments</a>
+				</div>
+                <div class="col s6">
+                    <a href="{% url 'website:add_assignment' %}" class="btn btn-block">Add Assignments</a>
+				</div>
+			</div>
+
+			<div class="row center">
+				<div class="col s6">
+					<a href="{% url 'website:view_feedback_all' %}" class="btn btn-block ">View Feedbacks</a>
+				</div>
+				<div class="col s6">
+					<a href="{% url 'website:add_feedback_all' %}" class="btn btn-block ">Add Feedback</a>
+				</div>
+			</div>
+
+		{% endif %}
+
+	</div>
+{% endblock %}

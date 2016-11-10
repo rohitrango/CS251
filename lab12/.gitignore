@@ -1,0 +1,11 @@
+Include/
+Lib/
+Scripts/
+pip-selfcheck.json
+tcl/
+readme.txt
+*/db.sqlite3
+*.pyc
+db.sqlite3
+.idea/*
+venv3/*

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}404! {% endblock %}
+
+{% block content %}
+	<div class="center container">
+		<h2 class="flow-text">404! Page Not Found! </h2>
+
+		<p>You have landed on some invalid page! </p>
+	</div>
+    <br>
+    <br>
+    <div class="center">
+        <h5 style="text-align: center">Meanwhile enjoy this xkcd</h5>
+        <br>
+        <img src="http://imgs.xkcd.com/comics/shouldnt_be_hard.png">
+        <br><br><br>
+        <a href="{% url 'website:signin' %}" class="btn green">Back to Homepage!</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'nav.html' %}
+{% block title %}View Student Details{% endblock %}
+
+{% block content %}
+<!-- Block begins here -->
+	<div class="container">
+		{% if error %}
+			<div class="row">
+<div class="col s8 offset-m2">
+    <h4 style="font-weight: 200; color: #f00;text-align: center">{{ error }}</h4>
+        </div></div>
+		{% endif %}
+		<!-- Make the form here -->
+		{% if not hide %}
+			<br>
+			<div class="messages center">
+			    {% if messages %}
+			        {% for message in messages %}
+			            {% if 'error' in message.tags %}
+			            <p class="red-text">{{message}}</p>
+			            {% elif 'success' in message.tags %}
+			            <p class="green-text">{{message}}</p>
+			            {% endif %}
+			        {% endfor %}
+			    {% endif %}
+			</div>
+
+			<br>
+			<h5 class="center">Add a student</h5>
+			<div class="card-panel hoverable">
+				<p class="center">Add Single Student</p>
+				<form action="" method="POST">
+					{% csrf_token %}
+					<div class="input-field">
+						<input type="text" name="fullname" id="fullname" required="required">
+						<label for="fullname">Full name of student</label>
+					</div>
+
+					<div class="input-field">
+						<div class="row">
+							<div class="col s8">
+								<input type="text" name="rollnumber" id="rollnumber" required="required">
+								<label for="rollnumber">Roll number</label></div>
+							<div class="col s4"><br>@iitb.ac.in</div>
+						</div>
+					</div>
+
+					<div class="input-field">
+						<input type="password" name="password" id="password" required="required" minlength="8">
+						<label for="password">Password</label>
+					</div>
+
+					<div class="input-field center">
+						<input type="submit" name="submit" id="submit" value="Add student!" class="btn green">
+					</div>
+				</form>
+			</div>
+<br><br>
+			<!-- CSV file input -->
+			<div class="card-panel hoverable">
+				<div class="center">
+					<p class="center">Upload via file (CSV or TXT file formats only)</p>
+					<span class="red-text center">Note that passwords should be atleast 8 characters long and there should be 3 columns. <br>
+					First column should contain students name, second columns should contain roll numbers, and third column should contain passwords. <br>
+					If you are using a txt file, please make sure to separate student details by commas, and separate rows by newlines.
+					</span><br>
+				</div>
+				<form action="" method="POST" enctype="multipart/form-data" >
+					{% csrf_token %}
+					<div class="file-field input-field">
+					      <div class="btn">
+					        <span>Upload file</span>
+					        <input type="file" required="required" name="students" accept=".csv, .txt"> 
+					      </div>
+					      <div class="file-path-wrapper">
+					        <input class="file-path validate" type="text">
+					      </div>
+					</div>
+					
+					<div class="input-field center">
+						<input type="submit" name="submit" id="submit" value="Add students!" class="btn green">
+					</div>
+				</form>
+			</div>
+
+
+		{% endif %}
+
+	</div>
+
+{% endblock %}

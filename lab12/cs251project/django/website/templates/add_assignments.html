@@ -1,0 +1,63 @@
+{% extends 'nav.html' %}
+
+{% block title %}
+
+    Add Assignments
+
+{% endblock %}
+
+
+{% block content %}
+
+{#    <div class="input-field col s12">#}
+{#    <label for="timepicker">Time</label>#}
+{#    <input id="timepicker" class="timepicker" type="time">#}
+{#    </div>#}
+{% if error %}
+        <div class="row">
+<div class="col s8 offset-m2">
+    <h4 style="font-weight: 200; color: #f00;text-align: center">{{ error }}</h4>
+        </div></div>
+    {% else %}
+    <h3 class="center"> Add Assignemnts </h3>
+    <div class="row">
+        <form class="col s8 offset-m2" action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field">
+                    <input id="name" name="name" type="text" required>
+                    <label for="name">Name of Assignment</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <textarea class="materialize-textarea" id="desc" name="desc" type="text"></textarea>
+                    <label for="desc">Description</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s5">
+                    <div class="input-field">
+                        <input type="date" id="deadline" name="deadline" class="datepicker" required>
+                        <label for="deadline">Deadline</label>
+                    </div>
+                </div>
+                <div class="col s5 offset-m2">
+                    <div class="input-field">
+                        <select id="course" name="course" required>
+                            <option value="" disabled selected>Choose Course</option>
+                            {% for course in courses %}
+                                <option value="{{ course }}">{{ course }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="course">Course Name</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row" align="center">
+                <button class="btn waves-effect waves-light center" type="submit" name="action">Add Assignment</button>
+            </div>
+        </form>
+    </div>
+{% endif %}
+{% endblock %}
