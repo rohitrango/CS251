@@ -1,0 +1,126 @@
+{% extends 'nav.html' %}
+{% load index %}
+{% block title %} Feedback details for {{feedback.name}} {% endblock %}
+
+{% block content %}
+	<div class="container">
+	<br>
+	<br>
+	<br>
+		{% if error %}
+			<div class="center">
+				{{error}}
+			</div>
+		{% else %}
+		<!-- Course details -->
+			<h5>Feedback details for {{feedback.name}}</h5>
+			<b>Course: </b> {{course.name}} <br>
+			<b>Deadline: </b> {{feedback.deadline | date:"M d, Y" }} 
+			{% if feedback.deadline < now %}
+			<p class="red-text"><b>This Feedback form is no longer accepting responses.</b></p>
+			{% else %}
+			<p class="green-text"><b>This Feedback form is active and is accepting responses.</b></p>
+			{% endif %}
+			<hr>
+			<br>
+			<div class="">
+			<!-- Rating Questions -->
+				<h5>Rating Questions</h5>
+				{% for q in rating %}
+					<div class="card-panel">
+						<h6><b>Q.</b> {{q.question}}</h6><br>
+						<!-- <ol>
+						{% for ans in q.answers %}
+							<li>Rating: {{ans.rating}}, Votes: {{ans.votes}}</li>
+						{% endfor %}
+						</ol> -->
+						<div id="rating-answer{{forloop.counter}}"></div>
+					</div>
+				{% endfor %}
+				<!-- MCQ here -->
+				{% if mcq %}
+				<br>
+				<hr>
+					<h5>Multiple Choice Questions</h5><br>
+					{% for q in mcq %}
+						<div class="card-panel">
+							<h6><b>Q.</b> {{q.question}}</h6><br>
+							<!-- <ol>
+							{% for ans in q.answers %}
+								<li>{{ans.text}},Votes given: {{ans.votes_count}}</li>
+							{% endfor %}
+							</ol> -->
+							<div id="mcq-answer{{forloop.counter}}"></div>
+						</div>
+					{% endfor %}
+				{% endif %}
+				<!-- Short Answers here -->
+
+				{% if short %}
+					<br>
+					<hr>
+					<h5>Short Answer type Questions</h5><br>
+					{% for q in short %}
+						<div class="card-panel">
+							<h6><b>Q.</b> {{q.question}}</h6><br>
+							{% if q.answers %}
+								<table class="highlight">
+									<thead>
+										<tr>
+											<th width="20%" class="center">Student Number</th>
+											<th>Response</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for ans in q.answers %}
+											<tr>
+												<td class="center">{{forloop.counter}}</td>
+												<td>{{ans.text}}</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							{% else %}
+							No responses to show!
+							{% endif %}
+						</div>
+					{% endfor %}
+				{% endif %}
+			</div>
+		{% endif %}
+	</div>
+
+	<script type="text/javascript">
+		// For all the rating Questions
+		{% for q in rating %}
+			new Morris.Bar({
+			  element: 'rating-answer{{forloop.counter}}',
+			  data: [
+			 	{% for ans in q.answers %}{ y: '{{ans.rating}}', 'number_of_students':{{ans.votes}} },{% endfor %}
+			  ],
+			  xkey: 'y',
+			  ykeys: ['number_of_students'],
+			  labels: ['Number of students'],
+			  resize: true,
+			});
+		{% endfor %}
+
+
+		{% for q in mcq %}
+			Morris.Bar({
+			  element: 'mcq-answer{{forloop.counter}}',
+			  data: [
+			    {% for ans in q.answers %}{y: '{{ans.text}}', 'number_of_students': {{ans.votes_count}} },{% endfor %}
+			  ],
+			  resize:true,
+			  xkey: 'y',
+			  ykeys: ['number_of_students'],
+			  labels: ['Number of students'],
+			});
+
+		{% endfor %}
+
+
+
+	</script>
+{% endblock %}

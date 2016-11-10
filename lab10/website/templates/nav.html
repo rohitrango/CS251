@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<div class="navbar-fixed" style="z-index: 100">
+<nav style="z-index: 100">
+    <div class="nav-wrapper blue" style="z-index: 100">
+      <a href="{% url 'website:home' %}" class="brand-logo">&nbsp;&nbsp;Feed'er</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      	<li><a href="{% url 'website:home' %}">Home</a></li>       
+        <li><a href="{% url 'website:signout' %}">Logout</a></li>       
+      </ul>
+    </div>
+</nav>
+</div>
+{% endblock %}
+
+{#{% block back %}#}
+{#    <div class="row">#}
+{#        <div class="col s2 offset-l5 center">#}
+{#            <a class="waves-effect waves-light btn center" href="{% url 'website:home' %}">Back</a>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}

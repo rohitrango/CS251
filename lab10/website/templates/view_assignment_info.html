@@ -1,0 +1,32 @@
+{% extends 'nav.html' %}
+
+{% block title %}
+
+{{ assign.name }}
+
+{% endblock %}
+
+{% block content %}
+    {% if error %}
+        <div class="row">
+<div class="col s8 offset-m2">
+    <h4 style="font-weight: 200; color: #f00;text-align: center">{{ error }}</h4>
+        </div></div>
+    {% else %}
+<div class="row">
+<div class="col s8 offset-m2 center">
+    <h3 style="font-weight: 200" class="center">{{ assign.name }} - {{ assign.course }}</h3>
+
+    <h5 class="center" style="color: #f00;">{{ assign.deadline|date }}</h5>
+    {% if assign.deadline < now %}
+    <span class="red-text">The assignment deadline has passed.</span> <br>
+    {% else %}
+    <span class="green-text">The assignment deadline hasn't passed.</span> <br>
+    {% endif %}
+
+    <p style="font-weight: 300; font-size: 20px;" class="center">{{ assign.description }}</p>
+<center>
+    </center>
+    </div></div>
+    {% endif %}
+{% endblock %}

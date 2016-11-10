@@ -1,0 +1,553 @@
+{% extends 'nav.html' %}
+
+{% block title %}
+Add a new course!
+{% endblock %}
+{% block content %}
+<br><br>
+<div class="container">
+	
+	{% if mtype == "AD" %}
+		{% if students and profs %}
+			<h3 class="center">Add a course</h3>
+			<form action="" method="POST">
+				{% csrf_token %}
+
+				<!-- Accordion here -->
+				<ul class="collapsible" data-collapsible="accordion">
+				   <li>
+				   <!-- Course Details -->
+				     <div class="collapsible-header"><b>Course Details</b></div>
+				     <div class="collapsible-body container">
+				     	
+							<div class="input-field">
+								<input type="text" name="name" required="required">
+								<label for="name">Course name:</label>
+							</div>
+
+							<div class="input-field">
+								<select name="semester" required>
+			                      <option value="" disabled selected>Choose your option</option>
+			                      <option value="1">Fall</option>
+			                      <option value="2">Spring</option>
+			                      <option value="3">Summer</option>
+			                    </select>
+			                    <label for="semester">Semester:</label>
+							</div>
+							<div class="input-field">
+								<input type="text" name="code" required="required">
+								<label for="code">Course Code:</label>
+							</div>
+
+
+							<div class="row">
+							<!-- Professors -->
+							<div class="col s4">
+								<h5>Professors:</h5>
+								<div class="input-field">
+									<select name="prof" required="required">
+									     <option value="" disabled selected>Choose your option</option>
+									     {% for prof in profs %}
+									     <option value="{{prof.user.username}}">{{prof.fullname}}</option>
+									     {% endfor %}
+									</select>
+									<label>{{prof.fullname}}</label>
+								</div>
+							</div>
+
+							<!-- Teaching Assistants -->
+							<div class="col s4">
+								<h5>TA:</h5>
+								<div class="input-field">
+									<select name="ta" multiple required="required">
+										<option value="" disabled selected>Choose your option</option>
+									{% for ta in tas %}
+									<option value="{{ta.user.username}}">{{ta.fullname}}</option>
+									{% endfor %}
+									</select>
+								</div>
+							</div>
+
+
+							<!-- Students -->
+							<div class="col s4">
+								<h5>Students:</h5>
+								<div class="input-field">
+									<select name="student" multiple required="required">
+										<option value="" disabled selected>Choose your option</option>
+										{% for student in students %}
+											<option value="{{student.user.username}}">{{student.fullname}}</option>
+										{% endfor %}
+									</select>
+								</div>
+							</div>
+
+							</div>
+
+				     </div>
+				   </li>
+				<!-- MIDSEM FORM FEEDBACK -->
+				<!--  -->
+				<!--  -->
+				<!--  -->
+				<!--  -->
+				   <li>
+				     <div class="collapsible-header"><b>Midsem Feedback Form</b></div>
+				     <div class="collapsible-body container">
+				     	<!-- MIDSEM FORM FEEDBACK -->
+				     	<!--  -->
+				     	<!--  -->
+				     	<!--  -->
+				     	<!--  -->
+				     	<div class="">
+				     	<h5 class="center">Midsem Feedback form</h5>
+				     		
+				     		<!-- General data like name of Feedback form -->
+				     		<div class="input-field">
+				     			<input type="text" name="feedbacknameM" required="required" id="fnameM">
+				     			<label for="fnameM">Name of Feedback form</label>
+				     		</div>
+
+				     		<div class="input-field">
+				     			<input type="date" name="deadlineM" class="datepicker" required="required" id="deadlineM">
+				     			<label for="deadlineM">Deadline</label>
+				     		</div>
+				     		<br>
+				     		<!-- A div will contain the question numbers box, inside which we will have a question and its type -->
+				     		<h5>Rating Questions</h5>
+				     		<span>These questions will contain a rating from 1 to 5 (both included).</span><br>
+
+				     		<div class="question-box" id="ratingQuestionBoxM">
+				     			<!-- Will contain all rating questions -->
+				     			<div class="rating-question card-panel">
+				     				<div class="input-field">
+				     					<input type="text" required="required" name="RquestionM" id="Rquestion1M">
+				     					<label for="Rquestion1M">Add your question here</label>
+				     				</div>
+				     				<div class="right">
+				     				</div>
+				     			</div>
+				     			<!-- Add Button -->
+				     			<div id="addRatingQuestionBtnM">
+				     				<button type="button" id="ratingQBtnM" class="btn green waves-effect" onclick="addRatingQuestionM()">Add Question</button>
+				     			</div>
+				     		</div>
+				     		<!-- Rating questions over here -->
+				     		
+				     		<br><br>
+				     		<h5>Short Answers type Questions</h5>
+				     		<span>These questions will require a textual answer. Best suited for subjective feedback.</span><br>
+				     		<div class="question-box" id="shortQuestionBoxM">
+				     			<!-- Will contain all short questions -->
+									<br>
+				     			<!-- Add Button -->
+				     			<div id="addShortQuestionBtn">
+				     				<button type="button" id="shortQBtnM" class="btn green waves-effect" onclick="addShortQuestionM()">Add Question</button>
+				     			</div>
+				     		</div>
+				     		
+
+				     		<br><br>
+				     		<h5>Multiple Choice type Questions</h5>
+				     		<span>These questions will at least 2 choices each. Students can select any one out of them.</span>
+				     		<br>
+				     		<div class="question-box" id="MCQQuestionBoxM">
+				     			<!-- Will contain all short questions -->
+				     	
+				     			<!-- Add Button -->
+				     			<div id="addMCQQuestionBtnM">
+				     				<div class="row">
+				     					<div class="col s8">
+				     						<div class="input-field">
+				     							<input type="number" value="0" id="optionsNumberM">
+				     							<label for="optionsNumberM">Add number of options</label>
+				     						</div>
+				     					</div>
+				     					<div class="col s4">
+				     						<br>
+				     						<button type="button" id="MCQQBtnM" class="btn green waves-effect" onclick="addMCQQuestionM()">Add Question</button>
+				     					</div>
+				     				</div>
+				     			</div>
+				     		</div>
+				     	</div>
+
+				     	<script type="text/javascript">
+
+				     		var ratingQM = 2;
+				     		var MCQM = 1;
+				     		var ShortQM = 1;
+
+				     		$(document).ready(function(){
+				     			// datepicker used from here = http://jsfiddle.net/nicolapeluchetti/dAyzq/1/
+				     			// slight modification done to match our needs
+				     			dateToday = new Date();
+				     			$('.datepicker').pickadate({
+				     			    selectMonths: true, // Creates a dropdown to control month
+				     			    selectYears: 5, // Creates a dropdown of 15 years to control year
+				     			    minDate: dateToday,
+				     			    onSelect: function(selectedDate) {
+				     			            var option = this.id == "from" ? "minDate" : "maxDate",
+				     			                instance = $(this).data("datepicker"),
+				     			                date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+				     			            dates.not(this).datepicker("option", option, date);
+				     			    }
+				     			});		
+				     		});
+
+				     			// add a rating Question
+				     			function addRatingQuestionM() {
+				     				
+				     				var mybtnhtml = '<div class="rating-question card-panel">\
+				     				<div class="input-field"><input type="text" required="required" name="RquestionM" id="Rquestion' + ratingQM + 'M">\
+				     					<label for="Rquestion' + ratingQM + 'M">Add your question here</label>\
+				     				</div>\
+				     				<div class="right">\
+				     					<button type="button" class="btn btn-small waves-effect red" onclick="deleteQuestionM(\'Rquestion' + ratingQM + 'M\')">Delete Question</button>\
+				     				</div><br><br>';
+
+				     				$('#ratingQBtnM').before(mybtnhtml);
+				     				ratingQM += 1;
+				     				console.log(ratingQM);
+				     			}
+				     			// add a short Question
+				     			function addShortQuestionM() {
+				     				
+				     				var mybtnhtml = '<div class="short-question card-panel">\
+				     				<div class="input-field"><input type="text" required="required" name="SquestionM" id="Squestion' + ShortQM + 'M">\
+				     					<label for="Squestion' + ShortQM + 'M">Add your question here</label>\
+				     				</div>\
+				     				<div class="right">\
+				     					<button type="button" class="btn btn-small waves-effect red" onclick="deleteQuestionM(\'Squestion' + ShortQM + 'M\')">Delete Question</button>\
+				     				</div><br><br>';
+
+				     				$('#shortQBtnM').before(mybtnhtml);
+				     				ShortQM += 1;
+				     				console.log(ShortQM);
+				     			}
+
+
+				     			function addMCQQuestionM() {
+				     				var number = Number($('#optionsNumberM').val());
+				     				console.log(number);
+				     				if(number < 2) {
+				     					alert("Please enter at least 2 options to add a question!");
+				     				}
+				     				else {
+				     					var mybtnhtml = '<div class="mcq-question card-panel">\
+				     					<div class="input-field"><input type="text" required="required" name="MquestionM" id="Mquestion' + MCQM + 'M">\
+				     						<label for="Mquestion' + MCQM + 'M">Add your question here</label>\
+				     					</div>\
+				     					<div class="input-field"><input type="hidden" name="NoOptionsM" value="' + number + '"></div>\
+				     					<div class="input-field">\
+				     					<div class="row"><div class="col s8">';
+
+				     					for(var i=1;i<=number;i++) {
+				     						mybtnhtml += '\
+				     					<div class="input-field"><input type="text" required="required" id="Q' + MCQM +'Option' + i +'M" name="MAnswerM" placeholder="Option' + i + '"></div>\
+				     					';
+				     					}
+
+				     					mybtnhtml += '</div></div> \
+				     					<div class="right">\
+				     						<button type="button" class="btn btn-small waves-effect red" onclick="deleteQuestionM(\'Mquestion' + MCQM + 'M\')">Delete Question</button>\
+				     					</div><br><br>';
+				     					
+				     					$('#addMCQQuestionBtnM').before(mybtnhtml);
+				     					MCQM+=1;
+				     					console.log(MCQM);
+
+				     				}
+				     			}
+
+
+				     			// delete the entire question box when clicked!
+				     			function deleteQuestionM(id) {
+				     				$('#'+(id)).parent().parent().remove();
+				     			}
+				     	</script>
+
+				     	<!--  -->
+				     	<!--  -->
+				     	<!--  -->
+				     	<!--  -->
+
+				     </div>
+				   </li>
+						<!--  -->
+						<!--  -->
+						<!-- Endsem -->
+				   <li>
+				     <div class="collapsible-header"><b>Endsem Feedback Form</b></div>
+				     <div class="collapsible-body container">
+				     	<!-- Endsem -->
+						<div class="">
+						<h5 class="center">Endsem Feedback form</h5>
+							
+							<!-- General data like name of Feedback form -->
+							<div class="input-field">
+								<input type="text" name="feedbacknameE" required="required" id="fnameE">
+								<label for="fnameE">Name of Feedback form</label>
+							</div>
+
+							<div class="input-field">
+								<input type="date" name="deadlineE" class="datepicker" required="required" id="deadlineE">
+								<label for="deadlineE">Deadline</label>
+							</div>
+							<br>
+							<!-- A div will contain the question numbers box, inside which we will have a question and its type -->
+							<h5>Rating Questions</h5>
+							<span>These questions will contain a rating from 1 to 5 (both included).</span>
+							<br>
+							<div class="question-box" id="ratingQuestionBoxE">
+								<!-- Will contain all rating questions -->
+
+								<div class="rating-question card-panel">
+									<div class="input-field">
+										<input type="text" required="required" name="RquestionE" id="Rquestion1E">
+										<label for="Rquestion1E">Add your question here</label>
+									</div>
+									<div class="right">
+									</div>
+								</div>
+
+								<!-- Add Button -->
+								<div id="addRatingQuestionBtnE">
+									<button type="button" id="ratingQBtnE" class="btn green waves-effect" onclick="addRatingQuestionE()">Add Question</button>
+								</div>
+							</div>
+							<!-- Rating questions over here -->
+
+							<br>
+							<h5>Short Answers type Questions</h5>
+							<span>These questions will require a textual answer. Best suited for subjective feedback.</span>
+							<br>
+							<div class="question-box" id="shortQuestionBoxE">
+								<!-- Will contain all short questions -->
+								<!-- Add Button -->
+								<br>
+								<div id="addShortQuestionBtn">
+									<button type="button" id="shortQBtnE" class="btn green waves-effect" onclick="addShortQuestionE()">Add Question</button>
+								</div>
+							</div>
+
+							<br>
+							<h5>Multiple Choice type Questions</h5>
+							<span>These questions will at least 2 choices each. Students can select any one out of them.</span>
+							<br>
+							<div class="question-box" id="MCQQuestionBoxE">
+								<!-- Will contain all short questions -->
+								<!-- Add Button -->
+								<div id="addMCQQuestionBtnE">
+									<div class="row">
+										<div class="col s8">
+											<div class="input-field">
+												<input type="number" value="0" id="optionsNumberE">
+												<label for="optionsNumberE">Add number of options</label>
+											</div>
+										</div>
+										<div class="col s4">
+											<br>
+											<button type="button" id="MCQQBtnE" class="btn green waves-effect" onclick="addMCQQuestionE()">Add Question</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<script type="text/javascript">
+
+							var ratingQE = 2;
+							var MCQE = 1;
+							var ShortQE = 1;
+
+								// add a rating Question
+								function addRatingQuestionE() {
+									
+									var mybtnhtml = '<div class="rating-question card-panel">\
+									<div class="input-field"><input type="text" required="required" name="RquestionE" id="Rquestion' + ratingQE + 'E">\
+										<label for="Rquestion' + ratingQE + 'E">Add your question here</label>\
+									</div>\
+									<div class="right">\
+										<button type="button" class="btn btn-small waves-effect red" onclick="deleteQuestionE(\'Rquestion' + ratingQE + 'E\')">Delete Question</button>\
+									</div><br><br>';
+
+									$('#ratingQBtnE').before(mybtnhtml);
+									ratingQE += 1;
+									console.log(ratingQE);
+								}
+								// add a short Question
+								function addShortQuestionE() {
+									
+									var mybtnhtml = '<div class="short-question card-panel">\
+									<div class="input-field"><input type="text" required="required" name="SquestionE" id="Squestion' + ShortQE + 'E">\
+										<label for="Squestion' + ShortQE + 'E">Add your question here</label>\
+									</div>\
+									<div class="right">\
+										<button type="button" class="btn btn-small waves-effect red" onclick="deleteQuestionE(\'Squestion' + ShortQE + 'E\')">Delete Question</button>\
+									</div><br><br>';
+
+									$('#shortQBtnE').before(mybtnhtml);
+									ShortQE += 1;
+									console.log(ShortQE);
+								}
+
+
+								function addMCQQuestionE() {
+									var number = Number($('#optionsNumberE').val());
+									console.log(number);
+									if(number < 2) {
+										alert("Please enter at least 2 options to add a question!");
+									}
+									else {
+										var mybtnhtml = '<div class="mcq-question card-panel">\
+										<div class="input-field"><input type="text" required="required" name="MquestionE" id="Mquestion' + MCQE + 'E">\
+											<label for="Mquestion' + MCQE + 'E">Add your question here</label>\
+										</div>\
+										<div class="input-field"><input type="hidden" name="NoOptionsE" value="' + number + '"></div>\
+										<div class="input-field">\
+										<div class="row"><div class="col s8">';
+
+										for(var i=1;i<=number;i++) {
+											mybtnhtml += '\
+										<div class="input-field"><input type="text" required="required" id="Q' + MCQE +'Option' + i +'E" name="MAnswerE" placeholder="Option' + i + '"></div>\
+										';
+										}
+
+										mybtnhtml += '</div></div> \
+										<div class="right">\
+											<button type="button" class="btn btn-small waves-effect red" onclick="deleteQuestionE(\'Mquestion' + MCQE + 'E\')">Delete Question</button>\
+										</div><br><br>';
+										
+										$('#addMCQQuestionBtnE').before(mybtnhtml);
+										MCQE+=1;
+										console.log(MCQE);
+
+									}
+								}
+
+								// delete the entire question box when clicked!
+								function deleteQuestionE(id) {
+									$('#'+(id)).parent().parent().remove();
+								}
+						</script>
+				     </div>
+				   </li>
+						<!--  -->
+						<!--  -->
+						<!--  -->
+						<!-- Midsem exam -->
+					
+					<li>
+					  <div class="collapsible-header"><b>Midsem Exam Details</b></div>
+					  <div class="collapsible-body">
+							<!--  -->
+							<!--  -->
+							<!--  -->
+							<!--  -->
+							<!-- Midsem Exam here -->
+							<!--  -->
+							<!--  -->
+							<div class="">
+							<h5 class="center"> Midsem Exam form </h5>
+							<div class="container">
+							        <div class="row card-panel">
+							            <div class="input-field">
+							            	<span><b>Name:</b> Mid semester exam</span><br>
+							                <input id="enamem" name="enamem" type="hidden" value="Mid semester exam" required>
+							                <!-- <label for="enamem">Name of Assignment</label> -->
+							        	</div>
+							        </div>
+
+							        <div class="row card-panel">
+							            <div class="input-field">
+							                <textarea class="materialize-textarea" id="edescm" name="edescm" type="text"></textarea>
+							                <label for="edescm">Description</label>
+							            </div>
+							        </div>
+
+							        <div class="row card-panel">
+
+							            <div class>
+							                <div class="input-field">
+							                    <input type="date" id="edeadlinem" name="edeadlinem" class="datepicker" required>
+							                    <label for="edeadlinem">Deadline</label>
+							                </div>
+							            </div>
+
+							        </div>
+							</div>
+							</div>
+
+					  </div>
+					</li>
+					<!-- Endsem exam -->
+																	
+					<li>
+					  <div class="collapsible-header"><b>Endsem Exam Details</b></div>
+					  <div class="collapsible-body">
+					  	<!--  -->
+						<div class="container">
+						<h5 class="center"> Endsem Exam form </h5>
+						<div>
+						        <div class="row card-panel">
+						            <div class="input-field">
+						            	<span><b>Name:</b> End semester exam</span><br>
+						                <input id="enamee" name="enamee" type="hidden" value="End semester exam" required>
+						                <!-- <label for="enamee">Name of Assignment</label> -->
+						        	</div>
+						        </div>
+
+						        <div class="row card-panel">
+						            <div class="input-field">
+						                <textarea class="materialize-textarea" id="edesce" name="edesce" type="text"></textarea>
+						                <label for="edesce">Description</label>
+						            </div>
+						        </div>
+
+						        <div class="row card-panel">
+
+						            <div class>
+						                <div class="input-field">
+						                    <input type="date" id="edeadlinee" name="edeadlinee" class="datepicker" required>
+						                    <label for="edeadlinee">Deadline</label>
+						                </div>
+						            </div>
+
+						        </div>
+						</div>
+						</div>
+
+						<br>
+						
+					  </div>
+					</li>
+
+
+				 </ul>
+				<!-- Accordion ends -->
+				
+				
+				
+				<!-- E-NAME-M -> exam name midsem -->
+				<!--  -->
+				<!--  -->
+				<!--  -->
+				<!-- Endsem Exam here -->
+				<!--  -->
+				<!--  -->
+				<div class="input-field center">
+					<input type="submit" class="btn light-waves" value="Add Course!">
+				</div>
+			</form>
+		{% else %}
+			There are insufficient Professors or students. <br>
+			<a href="{% url 'website:home' %}" class="btn waves-effect">Go back to Home!</a>
+		{% endif %}
+
+	{% else %} 
+		You are not an admin! Please go back!
+	{% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends 'nav.html' %}
+
+{% block title %} Course Details for {{course.code}} {% endblock %}
+
+{% block content %}
+	<div class="container">
+	<br>
+	<br>
+	<br>
+		{% if error %}
+			<div class="center">
+				{{error}}
+			</div>
+		{% else %}
+
+			<h3>Course details for {{course.course_code}}</h3>
+			<b>Course name</b>: {{course.name}} <br>
+			<b>Semester</b>: {{course.semester}} <br>
+			<b>Year</b>: {{course.added.year}} <br>
+			<b>Students Enrolled</b>: {{students_enrolled}} <br>
+			<b>Number of Teaching Assistants</b>: {{ta_count}} <br>
+			<hr>
+			{% if member.mtype == "AD" %}
+			<b>Professor</b>: {{courseprof}} <br>
+			{% endif %}
+
+			
+			<div class="row">
+				<div class="col s12">
+					<h5>Feedbacks</h5>
+				</div>
+				<div class="col s12">
+					{% if member.mtype != "AD" %}<a href="{% url 'website:add_feedback' course.pk %}" class="btn green">Add Feedback</a>{% endif %}
+				</div>
+			</div>
+			{% if feedbacks %}
+					<table class="highlight">
+						<thead>
+							<th>Name</th>
+							<th>Deadline</th>
+							<th class="center">Accepting Responses</th>
+							{% if member.mtype != "AD" %}
+							<th class="center">View feedback details</th>
+							{% endif %}
+						</thead>
+
+						<tbody>
+						{% for feedback in feedbacks %}
+							<tr>
+								<td>{{feedback.name}}</td>
+								<td>{{feedback.deadline | date:'d M, Y'}}</td>
+								<td class="center">
+									{% if feedback.deadline < now %}
+										<i class="material-icons red-text">clear</i>
+									{% else %}
+										<i class="material-icons green-text">done</i>
+									{% endif %}
+								</td>
+								{% if member.mtype != "AD" %}
+								<td class="center">
+								<a class="btn" href="{% url 'website:view_feedback' feedback.pk %}">View</a>
+								</td>
+								{% endif %}
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+								
+			{% else %}
+				<p>Hurray, no feedbacks!</p>
+			{% endif %}
+			<br><hr>
+			<br>
+			<div class="row">
+				<div class="col s12">
+					<h5>Assignments</h5>
+				</div>
+				<div class="col s12">
+				{% if member.mtype != "AD" %}<a href="{% url 'website:add_assignment' %}" class="btn green">Add Assignment</a>{% endif %}
+				</div>	
+			</div>		
+			
+			{% if assignments %}
+				
+				<table class="highlight">
+					<thead>
+						<th>Name</th>
+						<th>Deadline</th>
+						<th class="center">Accepting submissions</th>
+						{% if member.mtype != "AD" %}
+						<th class="center">View assignment details</th>
+						{% endif %}
+					</thead>
+
+					<tbody>
+					{% for assignment in assignments %}
+						<tr>
+							<td>{{assignment.name}}</td>
+							<td>{{assignment.deadline | date:'d M, Y'}}</td>
+							<td class="center">
+								{% if assignment.deadline < now %}
+									<i class="material-icons red-text">clear</i>
+								{% else %}
+									<i class="material-icons green-text">done</i>
+								{% endif %}
+							</td>
+							{% if member.mtype != "AD" %}
+							<td class="center"><a class="btn" href="{% url 'website:view_assign_info' assignment.pk %}">View</a></td>
+							{% endif %}
+						</tr>
+					{% endfor %}
+					</tbody>
+
+				</table>
+
+			{% else %}
+				<p>Hurray, no assignments!</p>
+			{% endif %}
+
+		{% endif %}
+		<br>
+		<center><a class="waves-effect waves-light btn" href="{% url 'website:view_course' %}">Back</a></center>
+	</div>
+{% endblock %}
